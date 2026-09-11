@@ -36,8 +36,8 @@
   --r-pill: 999px;
 
   /* measure */
-  --measure: 680px;
-  --measure-wide: 900px;
+  --measure: 740px;         /* one column: text, cards and diagrams all fill it */
+  --measure-wide: 740px;    /* kept for older markup; equals --measure on purpose */
   --measure-landing: 1100px;
   --gutter: 48px;
 
@@ -119,8 +119,8 @@ img, svg { max-width: 100%; }
 .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
 .grid { display: grid; gap: 16px; }
-.grid--cards { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.grid--rules { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+.grid--cards { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.grid--rules { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 
 /* ---------- Site chrome ---------- */
 .site-nav {
@@ -267,10 +267,6 @@ img, svg { max-width: 100%; }
 .section { padding: var(--section-y) var(--gutter); }
 .section--alt { background: var(--ground-alt); }
 .section--landing { padding-block: var(--landing-y); }
-/* One left edge for every section: the reading column starts where the wide column starts,
-   instead of each being centred on its own width. Centred closings are exempt. */
-.section > .wrap:not(.wrap--wide):not(.wrap--landing) { margin-left: max(0px, calc((100% - var(--measure-wide)) / 2)); margin-right: auto; }
-.section.closing > .wrap:not(.wrap--wide) { margin-left: auto; }
 
 /* ---------- Hero ---------- */
 .hero {
