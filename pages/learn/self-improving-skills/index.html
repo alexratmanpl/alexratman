@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills That Get Better From Being Used — Alex Ratman</title>
+<meta name="description" content="A set of AI skills lives in a public repo. Using them reveals weaknesses; a scheduled agent turns the notes into pull requests; CI republishes. A walk through the loop, the push problem, and an experiment that changed the instructions and not the inputs.">
+<link rel="canonical" href="https://alexratman.com/learn/self-improving-skills/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Skills That Get Better From Being Used">
+<meta property="og:description" content="AI skills in a public repo, notes in a private one, a scheduled agent that opens pull requests — and an experiment that shows which instruction mattered.">
+<meta property="og:url" content="https://alexratman.com/learn/self-improving-skills/">
+<meta property="og:site_name" content="Alex Ratman">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></symbol>
+</svg>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progress"></div></div>
+<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 8</span><span id="stage-name">Hello</span></div>
+
+<header class="site-nav">
+  <a class="site-nav__brand" href="/">Alex Ratman</a>
+  <nav class="site-nav__links" aria-label="Site">
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- 1 · HERO -->
+<section class="hero" id="s1" data-stage="1" data-stage-name="Hello">
+  <div class="hero__inner">
+    <div class="rule" aria-hidden="true"></div>
+    <div class="label">A working system, failures included</div>
+    <h1>Skills that get better<br>from being used</h1>
+    <p class="lead hero__lead">A set of AI skills lives in a public repo. When using one reveals a weakness, a note goes into a private repo. A scheduled agent reads the notes and opens pull requests that fix the skills. The skills improve from being used.</p>
+    <div class="journey" aria-hidden="true">
+      <div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>use</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>notice</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>capture</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>summarise</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>pull request</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>publish</div></div>
+    </div>
+    <div class="hero__cue"><span>Scroll</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chevron-down"/></svg></div>
+  </div>
+</section>
+
+<!-- 2 · A SKILL -->
+<section class="section section--alt" id="s2" data-stage="2" data-stage-name="A skill">
+  <div class="wrap stack reveal">
+    <div class="label">Step 1 · What a skill is</div>
+    <h2>A folder with one file that matters</h2>
+    <p>An Agent Skill is a folder with a <code>SKILL.md</code> in it: a few lines of front matter — <code>name</code>, <code>description</code> — and then plain-English instructions. It can carry scripts and reference files alongside. The format is an open standard supported by a range of agent tools, so a skill written once is portable.</p>
+    <p>The <code>description</code> is the load-bearing field. An agent reads only the name and description of every skill it has, and loads the full body only when the description matches the task. This is <strong>progressive disclosure</strong>: a bad description means a good skill never gets used. Flip the card to see the difference.</p>
+    <div class="card">
+      <div class="row" style="gap:10px">
+        <button class="toggle is-on" type="button" id="skill-first" aria-pressed="true">What the agent sees first</button>
+        <button class="toggle" type="button" id="skill-full" aria-pressed="false">The whole file</button>
+      </div>
+      <div class="skillfile" id="skillfile">
+        <div class="skillfile__path">skills/careers/pay-check/SKILL.md</div>
+        <pre class="skillfile__front" id="skill-front"></pre>
+        <div class="skillfile__body" id="skill-body"></div>
+      </div>
+      <p class="caption" id="skill-caption"></p>
+    </div>
+    <div class="takeaway"><div class="label">Takeaway</div><p>The agent decides whether to open a skill from its description alone. Write that line as if it is the only one anyone will read — usually it is.</p></div>
+  </div>
+</section>
+
+<!-- 3 · TWO REPOS -->
+<section class="section" id="s3" data-stage="3" data-stage-name="Two repos">
+  <div class="wrap wrap--wide stack reveal" style="gap:28px">
+    <div class="wrap stack" style="margin-inline:0">
+      <div class="label">Step 2 · The architecture</div>
+      <h2>Two repositories and a one-way valve</h2>
+      <p>The notes are taken during real job-search conversations — which companies, which roles, what went wrong in which interview. They cannot be public. The skills are meant to be public, both so they can be installed and because a skill nobody can read is hard to trust. One repo cannot be both, so there are two: private input, public output, and a valve between them.</p>
+    </div>
+    <div class="repos">
+      <div class="repo repo--private">
+        <div class="repo__head"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-lock"/></svg><span class="repo__name">alexratmanpl/claude</span><span class="repo__tag">private · the control repo</span></div>
+        <pre class="repo__tree">CLAUDE.md          conventions
+business-agent-skills/
+  CAPTURE.md       how to write a finding
+  AGENT.md         what the summariser does
+  feedback/        the findings
+  state/           runs + watermark</pre>
+      </div>
+      <div class="valve" aria-hidden="true">
+        <div class="valve__line"></div>
+        <div class="valve__label">scheduled agent reads left,<br>opens pull requests right</div>
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow-right"/></svg>
+      </div>
+      <div class="repo repo--public">
+        <div class="repo__head"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-globe"/></svg><span class="repo__name">alexratmanpl/business-agent-skills</span><span class="repo__tag">public · the product</span></div>
+        <pre class="repo__tree">skills/
+  business/company-research/
+  careers/role-fit/
+  careers/interview-prep/
+  careers/pay-check/
+scripts/build_skills.py
+.github/workflows/</pre>
+      </div>
+    </div>
+    <div class="wrap stack" style="margin-inline:0">
+      <p><strong>The valve is a rule, not a mechanism.</strong> Nothing technically stops the summariser from copying a company name out of a note and into a pull request. What stops it is an instruction in <code>CAPTURE.md</code> telling the note-taker to redact before writing, plus the fact that every pull request is read by a person before it merges. The boundary is enforced at the point where a human looks at it. That is a real limitation, and a more useful thing to say than pretending it is airtight.</p>
+      <div class="takeaway"><div class="label">Takeaway</div><p>Private input, public output. The line between them is held by a review step, and it helps to know exactly which step.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · THE PUSH PROBLEM -->
+<section class="section section--alt" id="s4" data-stage="4" data-stage-name="Pushing code">
+  <div class="wrap wrap--wide stack reveal" style="gap:28px">
+    <div class="wrap stack" style="margin-inline:0">
+      <div class="label">Step 3 · The problem solved first</div>
+      <h2>How does an agent push code?</h2>
+      <p>The agent runs in a sandboxed cloud container. Its outbound traffic goes through a proxy, and <code>git push</code> goes through a git proxy that swaps in its own credentials — and only for repositories attached when the session started. Nothing could add a repo to that set mid-session. So: an agent that can write files, run tests and compose a perfectly good commit, and cannot send it anywhere.</p>
+      <p>Pick a route and watch where it stops.</p>
+    </div>
+    <div class="card">
+      <div class="row" style="gap:10px" id="route-btns">
+        <button class="toggle" type="button" data-route="push">git push</button>
+        <button class="toggle" type="button" data-route="curl">curl api.github.com</button>
+        <button class="toggle" type="button" data-route="mcp">GitHub connector</button>
+      </div>
+      <div class="routes" id="routes"></div>
+      <p class="caption" id="route-caption">Three ways out of the container. Two of them are walls.</p>
+    </div>
+    <div class="wrap stack" style="margin-inline:0">
+      <p>The way around it was not to fight the proxy. A connector — the GitHub connector, authorised against the account — does not use the session's network at all. Its traffic leaves through Anthropic's servers and arrives at GitHub's REST API by a different road. The git proxy never sees it; the container's domain allowlist never sees it either.</p>
+      <blockquote class="quote">The sandbox restricts what the <em>machine</em> can reach. The connector restricts what the <em>account</em> has granted. They are separate systems, and the second is the one that matters for writing to GitHub.</blockquote>
+      <p>A second discovery followed. Once connected, the connector could see public repositories but not the private one. The GitHub App had been <em>authorised</em> but not <em>installed</em> — authorisation is an identity handshake; installation is what grants repository access, and it is installation that exposes the “only select repositories” picker. Selecting exactly two repos fixed the access problem and tightened it in the same move. Both walls were then tested by trying to break them:</p>
+    </div>
+    <div class="card">
+      <div class="row" style="gap:10px" id="wall-btns">
+        <button class="btn btn--secondary" type="button" data-wall="scope">Write to a third repo</button>
+        <button class="btn btn--secondary" type="button" data-wall="ruleset">Commit straight to master</button>
+        <button class="btn btn--secondary" type="button" data-wall="pr">Open a pull request</button>
+      </div>
+      <div class="walls" id="walls">
+        <div class="wall" data-wall="scope"><div class="wall__what">Installation scope · <em>which</em> repos the agent can touch at all</div><div class="wall__code" aria-live="polite"></div></div>
+        <div class="wall" data-wall="ruleset"><div class="wall__what">Branch ruleset on <code>master</code> · <em>what</em> can happen inside them</div><div class="wall__code" aria-live="polite"></div></div>
+        <div class="wall" data-wall="pr"><div class="wall__what">The one door left open</div><div class="wall__code" aria-live="polite"></div></div>
+      </div>
+      <p class="caption">403 and 409 are the status codes actually observed. Neither wall is client-side; neither depends on the agent choosing to behave.</p>
+    </div>
+    <div class="wrap" style="margin-inline:0">
+      <div class="takeaway"><div class="label">Takeaway</div><p>A network boundary and a capability boundary are different things. Confusing them is why this looked unsolvable for longer than it should have.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · THE LOOP -->
+<section class="section" id="s5" data-stage="5" data-stage-name="The loop">
+  <div class="wrap stack reveal">
+    <div class="label">Step 4 · The loop</div>
+    <h2>Seven steps, then back to the first</h2>
+    <p>Click any step. It advances on its own until you do.</p>
+    <div class="card">
+      <div class="loop" id="loop">
+        <svg viewBox="0 0 360 360" aria-hidden="true"><circle cx="180" cy="180" r="128" fill="none" stroke="#E3E4E6" stroke-width="2.5" stroke-dasharray="6 7"/><path d="M 300 158 L 296 174 L 310 168 Z" fill="#8A8F96"/></svg>
+        <div id="loop-steps"></div>
+      </div>
+      <div class="loop__detail" id="loop-detail"></div>
+    </div>
+    <p>Two details in that loop are more interesting than they look.</p>
+    <p><strong>Step 3 is deliberately trivial.</strong> The <code>log-finding</code> skill is 36 lines. It does not contain the rules for writing a finding — it points at <code>CAPTURE.md</code> in the control repo, where the rules live. The same pattern runs through the whole system:</p>
+    <div class="card card--stack">
+      <div class="label label--sm label--muted">The thin-pointer pattern</div>
+      <p class="small">Each rule lives in exactly one place: where it is enforced. Every layer above it points rather than copies.</p>
+      <div class="pointers">
+        <div class="pointer"><span>the <code>log-finding</code> skill</span><span class="pointer__arrow">→</span><span><code>CAPTURE.md</code></span></div>
+        <div class="pointer"><span><code>AGENT.md</code></span><span class="pointer__arrow">→</span><span><code>.github/pull_request_template.md</code></span></div>
+        <div class="pointer"><span>the scheduled task's prompt</span><span class="pointer__arrow">→</span><span><code>AGENT.md</code></span></div>
+      </div>
+      <p class="small">Copy a rule into a second place and there are two places to update. One of them will be wrong within a month, and it will be the one you forget.</p>
+    </div>
+    <p><strong>Step 4 keeps a watermark.</strong> <code>state/watermark.json</code> records the last processed commit, so a run that wakes to nothing new does nothing, and a run that crashes halfway does not reprocess. It is the smallest possible piece of state, and it is what makes the schedule safe to run unattended.</p>
+    <p class="caption">One footnote. <code>AGENT.md</code> lives in the repo the automation can edit, so in principle the automation could edit its own instructions. The invariants that must not drift are therefore repeated in the scheduled task's own prompt, which the automation cannot reach. A self-improving system needs at least one thing about itself it cannot improve.</p>
+    <div class="takeaway"><div class="label">Takeaway</div><p>Write each rule where it is enforced and point at it from everywhere else.</p></div>
+  </div>
+</section>
+
+<!-- 6 · THE EXPERIMENT -->
+<section class="section section--alt" id="s6" data-stage="6" data-stage-name="The experiment">
+  <div class="wrap wrap--wide stack reveal" style="gap:28px">
+    <div class="wrap stack" style="margin-inline:0">
+      <div class="label">Step 5 · The experiment</div>
+      <h2>Same findings, same model, new instructions</h2>
+      <p>After the first automated run, its pull requests were reviewed and rated. Then the state was reset — watermark cleared, run log archived, pull requests closed unmerged — the instructions were rewritten, and the same findings were fed to the same model again. Inputs held fixed; only the instructions changed.</p>
+      <p>Four rules were added to <code>AGENT.md</code>. Click one to see where it shows up in the second run's output.</p>
+    </div>
+    <div class="rules" id="rules">
+      <button class="rulechip" type="button" data-rule="one">1 · One concern per pull request</button>
+      <button class="rulechip" type="button" data-rule="claim">2 · Don't claim a check that wasn't run</button>
+      <button class="rulechip" type="button" data-rule="date">3 · Take the date from GitHub</button>
+      <button class="rulechip" type="button" data-rule="cut">4 · Keep the skill readable — when adding, cut</button>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <div class="cmp">
+        <div class="cmp__col">
+          <div class="cmp__head"><span class="cmp__run">Run 1</span><a href="https://github.com/alexratmanpl/business-agent-skills/pull/13" rel="noopener">PR #13</a><span class="cmp__state">closed, not merged</span></div>
+          <div id="cmp-run1"></div>
+        </div>
+        <div class="cmp__col">
+          <div class="cmp__head"><span class="cmp__run">Run 2</span><a href="https://github.com/alexratmanpl/business-agent-skills/pull/17" rel="noopener">PR #17</a><span class="cmp__state cmp__state--merged">merged</span></div>
+          <div id="cmp-run2"></div>
+        </div>
+      </div>
+      <div class="cmp__note" id="cmp-note">Both pull requests answer the same finding about the <code>company-research</code> skill: material the agent <em>reasoned</em> was sitting next to material it <em>found</em>, in the same register. Both change the same file, and GitHub counts both as +3 −2 lines. Read the two new bullets.</div>
+    </div>
+    <div class="wrap stack" style="margin-inline:0">
+      <div class="scores">
+        <div class="scores__row scores__row--head"><span></span><span>Run 1</span><span>Run 2</span></div>
+        <div class="scores__row"><span>Pull requests opened</span><span>2</span><span>4</span></div>
+        <div class="scores__row"><span>Accuracy — did it change the right things?</span><span>8 / 10</span><span>9 / 10</span></div>
+        <div class="scores__row"><span>Change quality — was the change any good?</span><span>5 / 10</span><span><strong>8 / 10</strong></span></div>
+      </div>
+      <p class="caption">Both ratings are one reviewer's subjective judgement of the same findings processed twice. They are presented as such.</p>
+      <p>Accuracy barely moved. Quality moved a lot. The original instructions were good at saying <em>what</em> to do and said nothing about <em>how well</em>. The agent had been picking the right problems from the start; what it lacked was any standard for what a good fix looked like, so it defaulted to adding — more words, more caveats, several concerns in one pull request. Every addition was defensible. The aggregate was a document nobody would read.</p>
+      <p>The line that made rule 4 stick was not the principle but the accounting: <em>state in the pull request how many lines the skill gained or lost.</em> A number the agent has to write down is a constraint. A principle it merely has to agree with is not.</p>
+      <div class="takeaway"><div class="label">Takeaway</div><p>Telling an agent what to do is the easy half. The instruction that improved the output most was the one that told it what to remove — and made it count.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · FAILURES -->
+<section class="section" id="s7" data-stage="7" data-stage-name="Failures">
+  <div class="wrap wrap--wide stack reveal" style="gap:28px">
+    <div class="wrap stack" style="margin-inline:0">
+      <div class="label">Step 6 · Failures, kept on the record</div>
+      <h2>What went wrong, and what is still wrong</h2>
+      <p>The system's own rule is not to claim checks that were not run, so a presentation about it that quietly dropped the failures would be self-refuting. Two of them are still open.</p>
+    </div>
+    <div class="grid grid--cards">
+      <div class="card card--stack fail"><div class="label label--sm label--muted">Caught</div><h3>A file hash was fabricated</h3><p class="small">Mid-task, a SHA was needed for an API call and one was invented rather than fetched. The API rejected it — the only reason it was caught. The workflow was switched to an endpoint that does not need the caller to supply one, and the mistake was disclosed rather than quietly fixed.</p></div>
+      <div class="card card--stack fail"><div class="label label--sm label--muted">Caught</div><h3>The linter flagged its own documentation</h3><p class="small">A checklist script that flags AI-writing tells had <em>leverage</em> on its list and fired on the skill's own correct use of the word. It also only looked for a bracket <em>after</em> an acronym, never before, so “applicant tracking system (ATS)” tripped it. Both fixed.</p></div>
+      <div class="card card--stack fail"><div class="label label--sm label--muted">Caught</div><h3>The validator had a blind spot</h3><p class="small">It checked bundled-file references only when they contained a slash, so flat files sitting next to <code>SKILL.md</code> were never verified.</p></div>
+      <div class="card card--stack fail fail--open"><div class="label label--sm">Still open</div><h3>The fix that introduced a bug</h3><p class="small">Dates were drifting, so a rule said: take the date from GitHub, not the local clock. But it reads the control repo's <em>last commit</em>, which in a quiet repo is stale. Two pull requests opened on 4 September 2026 sit on branches named <code>claude/2026-08-25-…</code> — ten days off. Nobody noticed for three weeks.</p></div>
+      <div class="card card--stack fail fail--open"><div class="label label--sm">Still open</div><h3>A release nobody can install</h3><p class="small">The publishing workflow marks the rolling release as a prerelease. GitHub's <code>/releases/latest</code> endpoint excludes prereleases, so the obvious URL returns 404. The release exists and is invisible to the obvious way of fetching it. Unfixed — because the agent deliberately has no permission to edit <code>.github/workflows/</code>, which is the right call.</p></div>
+      <div class="card card--stack fail"><div class="label label--sm label--muted">Found by run 3</div><h3>A record that forgot everything</h3><p class="small">The interview record page was saving to <code>window.storage</code>, which does not exist, so nothing survived a reload. The third run found it, switched to <code>localStorage</code>, and verified the fix in a browser it drove itself — inside an iframe that withholds storage permission, to check the fallback too.</p></div>
+    </div>
+    <div class="wrap" style="margin-inline:0"><div class="takeaway"><div class="label">Takeaway</div><p>Audiences trust the account that includes the failures. So do the people who have to maintain the thing.</p></div></div>
+  </div>
+</section>
+
+<!-- 8 · WHERE IT STANDS -->
+<section class="section section--alt closing" id="s8" data-stage="8" data-stage-name="Where it stands" style="padding-bottom:140px">
+  <div class="wrap wrap--wide stack reveal" style="gap:28px">
+    <div class="wrap stack" style="margin-inline:0">
+      <div class="label">Step 7 · Where it stands</div>
+      <h2>The current state, from the repo itself</h2>
+      <p>The public repository's pull-request list is open, so this table can check itself. It starts from a snapshot taken on 11 September 2026 and, if GitHub answers, updates the status column from the live API.</p>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="state" id="state">
+        <thead><tr><th>Pull request</th><th>What</th><th>Status</th></tr></thead>
+        <tbody id="state-body"></tbody>
+      </table>
+      <div class="state__foot"><span id="state-release">Release: <code>latest</code>, built 25 Aug 2026, four packaged skills, marked prerelease</span><span class="caption" id="state-live">Snapshot of 11 Sep 2026</span></div>
+    </div>
+    <div class="wrap stack" style="margin-inline:0">
+      <p>Not in any table: one unprocessed finding, dated 10 September, saying that <code>interview-prep</code> prepares <em>knowledge</em> rather than <em>performance</em> — the candidate knew the material and could not do the thing under assessment. That is a substantive gap, and the next run will have to decide what to do with it.</p>
+      <h3 style="margin-top:12px">What this argues</h3>
+      <ol class="claims">
+        <li>A capability boundary and a network boundary are different things.</li>
+        <li>Write rules where they are enforced and point at them from everywhere else.</li>
+        <li>Telling an agent what to do is the easy half; standards about what to <em>remove</em> are what separate output you would ship from output you would not.</li>
+        <li>Give the agent a number it has to write down. “Keep it readable” is advice; “state how many lines it gained or lost” changes behaviour.</li>
+      </ol>
+      <p>And the honest closing: the private/public boundary is held by a person reading pull requests, the date bug went unnoticed for three weeks, and the release URL still 404s. It works, and it is not finished.</p>
+      <div class="row" style="margin-top:8px">
+        <a class="btn btn--lg" href="https://github.com/alexratmanpl/business-agent-skills" rel="noopener"><span>Browse the public repo</span><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-external"/></svg></a>
+        <a class="btn btn--secondary btn--lg" href="/learn/from-thought-to-answer/">Read From Thought to Answer</a>
+      </div>
+      <p class="caption" style="margin-top:16px">Everything quoted here is from the public repository or was cleared for publication. Nothing from the private repo appears: no findings, no companies, no roles.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div>© 2026 Alex Ratman</div>
+  <div class="site-footer__links"><a href="https://github.com/alexratmanpl" rel="me">GitHub</a><a href="https://github.com/alexratmanpl/alexratman">Source of this site</a></div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
