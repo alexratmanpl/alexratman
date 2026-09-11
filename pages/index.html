@@ -24,6 +24,9 @@
   .learn-card__meta { font-size: 13px; font-weight: 600; color: var(--muted); }
   .learn-card__cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .learn-card:hover .learn-card__cta { color: var(--red); }
+  .hero__about { font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 640px; margin-top: 12px; }
+  .learn-card--soon { justify-content: center; color: var(--muted); }
+  .learn-card--soon h3 { color: var(--muted); }
   @media (max-width: 720px) { .learn-card h3 { font-size: 24px; } }
 </style>
 </head>
@@ -48,6 +51,7 @@
         <a class="btn btn--lg" href="/learn/from-thought-to-answer/"><span>Start with From Thought to Answer</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--secondary btn--lg" href="https://github.com/alexratmanpl" rel="me">GitHub</a>
       </div>
+      <p class="hero__about">I'm Alex — a senior fullstack engineer in Prague with 11+ years across product, backend and infrastructure, most recently building shared services and an observability practice at <a href="https://www.mews.com/" rel="noopener">Mews</a>. These days I work on AI-powered systems, and this site is where I explain how they actually work. More on <a href="https://www.linkedin.com/in/alexratman" rel="me noopener">LinkedIn</a>.</p>
     </div>
   </section>
 
@@ -73,6 +77,11 @@
             <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
+        <div class="card card--placeholder learn-card learn-card--soon" aria-label="Next explainer: coming soon">
+          <div class="label label--muted">Next</div>
+          <h3>Coming soon</h3>
+          <p>The next explainer is still being chosen. This slot will fill in when it's ready.</p>
+        </div>
       </div>
     </div>
   </section>
