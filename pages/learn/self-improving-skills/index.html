@@ -99,13 +99,14 @@
     </div>
     <div class="repos">
       <div class="repo repo--private">
-        <div class="repo__head"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-lock"/></svg><span class="repo__name">alexratmanpl/claude</span><span class="repo__tag">private · the control repo</span></div>
-        <pre class="repo__tree">CLAUDE.md          conventions
-business-agent-skills/
-  CAPTURE.md       how to write a finding
-  AGENT.md         what the summariser does
-  feedback/        the findings
-  state/           runs + watermark</pre>
+        <div class="repo__head"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-lock"/></svg><span class="repo__name repo__name--plain">A private repo</span><span class="repo__tag">the input</span></div>
+        <ul class="repo__list">
+          <li>the rules for writing a note</li>
+          <li>the summariser's instructions</li>
+          <li>the notes themselves, dated</li>
+          <li>a record of runs, and where the last one stopped</li>
+        </ul>
+        <div class="repo__foot">Described, not shown.</div>
       </div>
       <div class="valve" aria-hidden="true">
         <div class="valve__line"></div>
@@ -124,7 +125,7 @@ scripts/build_skills.py
       </div>
     </div>
     <div class="wrap stack" style="margin-inline:0">
-      <p><strong>The valve is a rule, not a mechanism.</strong> Nothing technically stops the summariser from copying a company name out of a note and into a pull request. What stops it is an instruction in <code>CAPTURE.md</code> telling the note-taker to redact before writing, plus the fact that every pull request is read by a person before it merges. The boundary is enforced at the point where a human looks at it. That is a real limitation, and a more useful thing to say than pretending it is airtight.</p>
+      <p><strong>The valve is a rule, not a mechanism.</strong> Nothing technically stops the summariser from copying a company name out of a note and into a pull request. What stops it is a rule in the note-writing instructions telling the note-taker to redact before writing, plus the fact that every pull request is read by a person before it merges. The boundary is enforced at the point where a human looks at it. That is a real limitation, and a more useful thing to say than pretending it is airtight.</p>
       <div class="takeaway"><div class="label">Takeaway</div><p>Private input, public output. The line between them is held by a review step, and it helps to know exactly which step.</p></div>
     </div>
   </div>
@@ -186,19 +187,19 @@ scripts/build_skills.py
       <div class="loop__detail" id="loop-detail"></div>
     </div>
     <p>Two details in that loop are more interesting than they look.</p>
-    <p><strong>Step 3 is deliberately trivial.</strong> The <code>log-finding</code> skill is 36 lines. It does not contain the rules for writing a finding — it points at <code>CAPTURE.md</code> in the control repo, where the rules live. The same pattern runs through the whole system:</p>
+    <p><strong>Step 3 is deliberately trivial.</strong> The capture skill is 36 lines. It does not contain the rules for writing a note — it points at the file in the private repo where the rules live. The same pattern runs through the whole system:</p>
     <div class="card card--stack">
       <div class="label label--sm label--muted">The thin-pointer pattern</div>
       <p class="small">Each rule lives in exactly one place: where it is enforced. Every layer above it points rather than copies.</p>
       <div class="pointers">
-        <div class="pointer"><span>the <code>log-finding</code> skill</span><span class="pointer__arrow">→</span><span><code>CAPTURE.md</code></span></div>
-        <div class="pointer"><span><code>AGENT.md</code></span><span class="pointer__arrow">→</span><span><code>.github/pull_request_template.md</code></span></div>
-        <div class="pointer"><span>the scheduled task's prompt</span><span class="pointer__arrow">→</span><span><code>AGENT.md</code></span></div>
+        <div class="pointer"><span>the capture skill</span><span class="pointer__arrow">→</span><span>the note-writing rules</span></div>
+        <div class="pointer"><span>the summariser's instructions</span><span class="pointer__arrow">→</span><span>the public repo's pull-request template</span></div>
+        <div class="pointer"><span>the scheduled task's prompt</span><span class="pointer__arrow">→</span><span>the summariser's instructions</span></div>
       </div>
       <p class="small">Copy a rule into a second place and there are two places to update. One of them will be wrong within a month, and it will be the one you forget.</p>
     </div>
-    <p><strong>Step 4 keeps a watermark.</strong> <code>state/watermark.json</code> records the last processed commit, so a run that wakes to nothing new does nothing, and a run that crashes halfway does not reprocess. It is the smallest possible piece of state, and it is what makes the schedule safe to run unattended.</p>
-    <p class="caption">One footnote. <code>AGENT.md</code> lives in the repo the automation can edit, so in principle the automation could edit its own instructions. The invariants that must not drift are therefore repeated in the scheduled task's own prompt, which the automation cannot reach. A self-improving system needs at least one thing about itself it cannot improve.</p>
+    <p><strong>Step 4 keeps a watermark.</strong> One small state file records the last commit it processed, so a run that wakes to nothing new does nothing, and a run that crashes halfway does not reprocess. It is the smallest possible piece of state, and it is what makes the schedule safe to run unattended.</p>
+    <p class="caption">One footnote. The summariser's instructions live in a repo the automation can edit, so in principle the automation could edit its own instructions. The invariants that must not drift are therefore repeated in the scheduled task's own prompt, which the automation cannot reach. A self-improving system needs at least one thing about itself it cannot improve.</p>
     <div class="takeaway"><div class="label">Takeaway</div><p>Write each rule where it is enforced and point at it from everywhere else.</p></div>
   </div>
 </section>
@@ -210,7 +211,7 @@ scripts/build_skills.py
       <div class="label">Step 5 · The experiment</div>
       <h2>Same findings, same model, new instructions</h2>
       <p>After the first automated run, its pull requests were reviewed and rated. Then the state was reset — watermark cleared, run log archived, pull requests closed unmerged — the instructions were rewritten, and the same findings were fed to the same model again. Inputs held fixed; only the instructions changed.</p>
-      <p>Four rules were added to <code>AGENT.md</code>. Click one to see where it shows up in the second run's output.</p>
+      <p>Four rules were added to the summariser's instructions. Click one to see where it shows up in the second run's output.</p>
     </div>
     <div class="rules" id="rules">
       <button class="rulechip" type="button" data-rule="one">1 · One concern per pull request</button>
@@ -258,7 +259,7 @@ scripts/build_skills.py
       <div class="card card--stack fail"><div class="label label--sm label--muted">Caught</div><h3>A file hash was fabricated</h3><p class="small">Mid-task, a SHA was needed for an API call and one was invented rather than fetched. The API rejected it — the only reason it was caught. The workflow was switched to an endpoint that does not need the caller to supply one, and the mistake was disclosed rather than quietly fixed.</p></div>
       <div class="card card--stack fail"><div class="label label--sm label--muted">Caught</div><h3>The linter flagged its own documentation</h3><p class="small">A checklist script that flags AI-writing tells had <em>leverage</em> on its list and fired on the skill's own correct use of the word. It also only looked for a bracket <em>after</em> an acronym, never before, so “applicant tracking system (ATS)” tripped it. Both fixed.</p></div>
       <div class="card card--stack fail"><div class="label label--sm label--muted">Caught</div><h3>The validator had a blind spot</h3><p class="small">It checked bundled-file references only when they contained a slash, so flat files sitting next to <code>SKILL.md</code> were never verified.</p></div>
-      <div class="card card--stack fail fail--open"><div class="label label--sm">Still open</div><h3>The fix that introduced a bug</h3><p class="small">Dates were drifting, so a rule said: take the date from GitHub, not the local clock. But it reads the control repo's <em>last commit</em>, which in a quiet repo is stale. Two pull requests opened on 4 September 2026 sit on branches named <code>claude/2026-08-25-…</code> — ten days off. Nobody noticed for three weeks.</p></div>
+      <div class="card card--stack fail fail--open"><div class="label label--sm">Still open</div><h3>The fix that introduced a bug</h3><p class="small">Dates were drifting, so a rule said: take the date from GitHub, not the local clock. But it reads the private repo's <em>last commit</em>, which in a quiet repo is stale. Two pull requests opened on 4 September 2026 sit on branches named <code>claude/2026-08-25-…</code> — ten days off. Nobody noticed for three weeks.</p></div>
       <div class="card card--stack fail fail--open"><div class="label label--sm">Still open</div><h3>A release nobody can install</h3><p class="small">The publishing workflow marks the rolling release as a prerelease. GitHub's <code>/releases/latest</code> endpoint excludes prereleases, so the obvious URL returns 404. The release exists and is invisible to the obvious way of fetching it. Unfixed — because the agent deliberately has no permission to edit <code>.github/workflows/</code>, which is the right call.</p></div>
       <div class="card card--stack fail"><div class="label label--sm label--muted">Found by run 3</div><h3>A record that forgot everything</h3><p class="small">The interview record page was saving to <code>window.storage</code>, which does not exist, so nothing survived a reload. The third run found it, switched to <code>localStorage</code>, and verified the fix in a browser it drove itself — inside an iframe that withholds storage permission, to check the fallback too.</p></div>
     </div>
