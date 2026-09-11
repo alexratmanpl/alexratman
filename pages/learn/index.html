@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn — Alex Ratman</title>
+<meta name="description" content="Interactive explainers on how AI works.">
+<link rel="canonical" href="https://alexratman.com/learn/">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .learn-card { display: flex; flex-direction: column; gap: 18px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
+  .learn-card:hover { border-color: var(--ink); color: inherit; }
+  .learn-card h3 { font-size: 28px; line-height: 1.15; letter-spacing: -0.015em; }
+  .learn-card p { font-size: 16px; line-height: 1.6; color: var(--muted); }
+  .learn-card__foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
+  .learn-card__meta { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .learn-card__cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .learn-card:hover .learn-card__cta { color: var(--red); }
+  @media (max-width: 720px) { .learn-card h3 { font-size: 24px; } }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <a class="site-nav__brand" href="/">Alex Ratman</a>
+  <nav class="site-nav__links" aria-label="Site">
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero hero--landing" style="padding-bottom:64px">
+    <div class="hero__inner">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="label">Learn</div>
+      <h1 style="font-size:clamp(36px,6vw,64px)">Interactive explainers</h1>
+      <p class="lead hero__lead">Each one is a scroll-through page with things to play with along the way. Five minutes, no prior knowledge needed.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt section--landing">
+    <div class="wrap wrap--landing" style="margin-inline:0">
+      <div class="learn-grid">
+        <a class="card learn-card" href="/learn/from-thought-to-answer/">
+          <div class="journey journey--sm" style="justify-content:flex-start" aria-hidden="true">
+            <div class="journey__dot journey__dot--1"></div><div class="journey__link" style="margin-top:4px"></div>
+            <div class="journey__dot journey__dot--2"></div><div class="journey__link" style="margin-top:4px"></div>
+            <div class="journey__dot journey__dot--3"></div><div class="journey__link" style="margin-top:4px"></div>
+            <div class="journey__dot journey__dot--1"></div><div class="journey__link" style="margin-top:4px"></div>
+            <div class="journey__dot journey__dot--2"></div>
+          </div>
+          <h3>From Thought to Answer</h3>
+          <p>What happens in the seconds between your question and the AI's answer — tokens, the meaning map, attention, the weighted dice, the loop — and what that means for how you should prompt and verify.</p>
+          <div class="learn-card__foot">
+            <span class="learn-card__meta">12 steps · 5-minute scroll · 7 things to play with</span>
+            <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div>© 2026 Alex Ratman</div>
+  <div class="site-footer__links"><a href="https://github.com/alexratmanpl" rel="me">GitHub</a><a href="https://github.com/alexratmanpl/alexratman">Source of this site</a></div>
+</footer>
+
+</body>
+</html>
