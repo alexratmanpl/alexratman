@@ -267,6 +267,10 @@ img, svg { max-width: 100%; }
 .section { padding: var(--section-y) var(--gutter); }
 .section--alt { background: var(--ground-alt); }
 .section--landing { padding-block: var(--landing-y); }
+/* One left edge for every section: the reading column starts where the wide column starts,
+   instead of each being centred on its own width. Centred closings are exempt. */
+.section > .wrap:not(.wrap--wide):not(.wrap--landing) { margin-left: max(0px, calc((100% - var(--measure-wide)) / 2)); margin-right: auto; }
+.section.closing > .wrap:not(.wrap--wide) { margin-left: auto; }
 
 /* ---------- Hero ---------- */
 .hero {
