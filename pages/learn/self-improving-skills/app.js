@@ -74,12 +74,12 @@
 
   /* ---------- Step 3 · routes out of the container ---------- */
   var ROUTES = [
-    { id: 'push', name: 'git push', nodes: ['the container', 'git proxy', 'authorized repo set'], blockAt: 2, verdict: 'not in the session’s set', ok: false,
-      caption: 'git push goes through a git proxy that swaps in its own credentials — and only for repositories attached when the session started. The public skills repo was not one of them, and nothing could add it mid-session.' },
-    { id: 'curl', name: 'curl api.github.com', nodes: ['the container', 'egress proxy', 'domain allowlist'], blockAt: 2, verdict: 'host not allowed', ok: false,
-      caption: 'Plain HTTPS from the container goes through an egress proxy with a domain allowlist. GitHub’s API is not on it. Same machine, same wall, different door.' },
-    { id: 'mcp', name: 'GitHub connector', nodes: ['the container', 'GitHub connector', 'Anthropic’s servers', 'account grant', 'GitHub API'], blockAt: -1, verdict: 'reaches GitHub', ok: true,
-      caption: 'The connector does not use the session’s network at all. Its traffic leaves through Anthropic’s servers and reaches the GitHub REST API by a different road — bounded by what the account has granted, not by what the machine can reach.' }
+    { id: 'push', name: 'git push', nodes: ['the container', 'git proxy', 'attached repos'], blockAt: 2, verdict: 'not attached', ok: false,
+      caption: 'git push only knows the repositories attached when the session started. The public skills repo was not one of them, and nothing could add it mid-session.' },
+    { id: 'curl', name: 'curl api.github.com', nodes: ['the container', 'egress proxy', 'allowlist'], blockAt: 2, verdict: 'host not allowed', ok: false,
+      caption: 'Plain HTTPS from the container goes through a proxy with a domain allowlist. GitHub’s API is not on it. Same machine, same wall, different door.' },
+    { id: 'mcp', name: 'GitHub connector', nodes: ['the container', 'GitHub connector', 'account grant', 'GitHub API'], blockAt: -1, verdict: 'reaches GitHub', ok: true,
+      caption: 'The connector does not use the session’s network at all. Its traffic takes a different road to the GitHub API — bounded by what the account has granted, not by what the machine can reach.' }
   ];
   var routesEl = $('routes'), routeCap = $('route-caption'), routeTimers = [];
   if (routesEl) {
@@ -112,24 +112,8 @@
       routeCap.textContent = r.caption;
     }
     document.querySelectorAll('#route-btns .toggle').forEach(function (b) { b.addEventListener('click', function () { runRoute(b.getAttribute('data-route')); }); });
+    runRoute('push');
   }
-
-  /* ---------- Step 3 · the two walls ---------- */
-  var WALLS = { scope: { code: '403', hit: true, note: 'Forbidden. The GitHub App is installed on exactly two repositories; a write anywhere else is refused before it reaches a branch.' },
-                ruleset: { code: '409', hit: true, note: 'Conflict. A branch ruleset protects master; a direct commit is refused. Pull requests are the only way in.' },
-                pr: { code: 'opened', hit: false, note: 'A pull request, in one of the two repositories, reviewed by a person before it merges. That is the whole surface the agent has.' } };
-  var wallBtns = document.querySelectorAll('#wall-btns [data-wall]');
-  wallBtns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var id = b.getAttribute('data-wall'), w = WALLS[id];
-      document.querySelectorAll('.wall').forEach(function (x) {
-        var mine = x.getAttribute('data-wall') === id;
-        x.classList.toggle('is-hit', mine && w.hit); x.classList.toggle('is-open', mine && !w.hit);
-        if (mine) x.querySelector('.wall__code').textContent = w.code;
-      });
-      b.parentNode.parentNode.querySelector('.caption').textContent = w.note + ' 403 and 409 are the status codes actually observed.';
-    });
-  });
 
   /* ---------- Step 4 · the loop ---------- */
   var LOOP = [
@@ -141,12 +125,29 @@
     ['Publish', 'GitHub Actions validates every skill and, on merge to master, publishes a rolling latest release with packaged .skill files.'],
     ['Install', 'The improved skill is installed back into the account, and is in play the next time step 1 happens.']
   ];
-  var loopSteps = $('loop-steps'), loopDetail = $('loop-detail'), loopIdx = 0, loopTimer = null, loopEls = [];
+  var loopSteps = $('loop-steps'), loopDetail = $('loop-detail'), loopRing = $('loop-ring'), loopIdx = 0, loopTimer = null, loopEls = [];
   if (loopSteps) {
+    var RX = 41, RY = 38, N = LOOP.length, SVGNS = 'http://www.w3.org/2000/svg';
+    function angle(i) { return -Math.PI / 2 + (i / N) * Math.PI * 2; }
+    // the ring and the arrowheads, in the same geometry as the pills (viewBox 400×300 ↔ percent of the box)
+    if (loopRing) {
+      var ring = document.createElementNS(SVGNS, 'ellipse');
+      ring.setAttribute('cx', 200); ring.setAttribute('cy', 150); ring.setAttribute('rx', RX * 4); ring.setAttribute('ry', RY * 3);
+      ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', '#E3E4E6'); ring.setAttribute('stroke-width', '2.5'); ring.setAttribute('stroke-dasharray', '6 7');
+      loopRing.appendChild(ring);
+      for (var k = 0; k < N; k++) {
+        var am = angle(k) + Math.PI / N, px = 200 + RX * 4 * Math.cos(am), py = 150 + RY * 3 * Math.sin(am);
+        var deg = Math.atan2(RY * 3 * Math.cos(am), -RX * 4 * Math.sin(am)) * 180 / Math.PI;
+        var head = document.createElementNS(SVGNS, 'path');
+        head.setAttribute('d', 'M-7,-5 L6,0 L-7,5 Z'); head.setAttribute('fill', '#8A8F96');
+        head.setAttribute('transform', 'translate(' + px.toFixed(1) + ' ' + py.toFixed(1) + ') rotate(' + deg.toFixed(1) + ')');
+        loopRing.appendChild(head);
+      }
+    }
     LOOP.forEach(function (s, i) {
-      var a = -Math.PI / 2 + (i / LOOP.length) * Math.PI * 2;
+      var a = angle(i);
       var b = el('button', 'loop__step', (i + 1) + ' · ' + s[0]); b.type = 'button';
-      b.style.left = (50 + 35.5 * Math.cos(a)) + '%'; b.style.top = (50 + 35.5 * Math.sin(a)) + '%';
+      b.style.left = (50 + RX * Math.cos(a)) + '%'; b.style.top = (50 + RY * Math.sin(a)) + '%';
       b.addEventListener('click', function () { clearInterval(loopTimer); loopTimer = null; showLoop(i); });
       loopSteps.appendChild(b); loopEls.push(b);
     });
@@ -163,109 +164,81 @@
 
   /* ---------- Step 5 · the experiment: same finding, two runs ---------- */
   var SPOTS = [
-    { where: 'The list of sections',
+    { where: 'Scope of the pull request', rules: ['one'],
+      r1: { kind: 'add', text: 'Two concerns in one pull request: test the standards the skill already sets, and close the domain gap earlier.', meta: 'one pull request, two subjects' },
+      r2: { kind: 'add', text: 'One concern each — one pull request tests the standards, a separate one closes the gap.', meta: 'two pull requests, each easy to review' } },
+    { where: 'The list of sections', rules: [],
       r1: { kind: 'add', text: 'Anything derived rather than found goes after all of them, under its own heading, never inside one.', meta: '+18 words' },
       r2: { kind: 'add', text: 'Anything derived rather than found — suggestions, recommendations, questions to put to them — comes last, under a heading that says so, never inside a section above.', meta: '+27 words' } },
-    { where: 'The “mark confidence” bullet',
-      r1: { kind: 'add', text: 'Anything not directly evidenced is marked as such wherever it appears.', meta: '+11 words · the rule stated a second time', rules: [] },
-      r2: { kind: 'none', text: 'Left alone. “Marking it in a second place would state one rule twice.”', meta: '', rules: ['cut'] } },
-    { where: 'The new bullet',
+    { where: 'The “mark confidence” bullet', rules: ['cut'],
+      r1: { kind: 'add', text: 'Anything not directly evidenced is marked as such wherever it appears.', meta: '+11 words · the rule stated a second time' },
+      r2: { kind: 'none', text: 'Left alone. “Marking it in a second place would state one rule twice.”', meta: '' } },
+    { where: 'The new bullet', rules: ['cut'],
       r1: { kind: 'add', text: 'Keep your own reasoning apart from the findings. Suggestions, recommendations, inferences and questions to put to the company are the one thing here with no source behind it, so it is the one thing that must not sit among the sourced sections or share their register. Put it under a final heading — What this suggests: our reading, not sourced — after the gaps. The test is whether someone skimming can tell which lines rest on a source and which are our own reasoning, without checking either. Material drawn from the company’s own published wording is derived, not found: it belongs here, however closely it follows the source.', meta: '+108 words' },
-      r2: { kind: 'add', text: 'Keep your own reasoning apart. Anything reasoned from the material rather than found in it is derived, however closely it follows the source — reading a company’s own wording is still reading, not evidence. The test is whether someone skimming can tell which lines rest on a source and which are your reading, without checking either.', meta: '+56 words', rules: ['cut'] } },
-    { where: 'The sentence about why markdown',
+      r2: { kind: 'add', text: 'Keep your own reasoning apart. Anything reasoned from the material rather than found in it is derived, however closely it follows the source — reading a company’s own wording is still reading, not evidence. The test is whether someone skimming can tell which lines rest on a source and which are your reading, without checking either.', meta: '+56 words' } },
+    { where: 'The sentence about why markdown', rules: ['cut'],
       r1: { kind: 'none', text: 'Untouched.', meta: '' },
-      r2: { kind: 'del', text: 'it can be reread, quoted, extended as more is learned, and passed to whatever needs it next without conversion.', meta: '− 4 words · rewritten as “quotable, extendable as more is learned, and readable by whatever needs it next”', rules: ['cut'] } },
-    { where: 'The pull request description',
-      r1: { kind: 'add', text: 'Three paragraphs on what changed and why. No line count. Nothing about what was run.', meta: '', rules: [] },
-      r2: { kind: 'add', text: '“One clause of self-justification about the file format was cut. Net +1 line and +77 words on a 1,330-word file.” … “Nothing here is executable, so nothing was run except scripts/build_skills.py --check-only, which passes.”', meta: 'the accounting, and the check that was actually run', rules: ['cut', 'claim'] } }
+      r2: { kind: 'del', text: 'it can be reread, quoted, extended as more is learned, and passed to whatever needs it next without conversion.', meta: '− 4 words · rewritten as “quotable, extendable as more is learned, and readable by whatever needs it next”' } },
+    { where: 'The pull request description', rules: ['claim', 'cut'],
+      r1: { kind: 'add', text: 'Three paragraphs on what changed and why. No line count. Nothing about what was run.', meta: '' },
+      r2: { kind: 'add', text: '“One clause of self-justification about the file format was cut. Net +1 line and +77 words on a 1,330-word file.” … “Nothing here is executable, so nothing was run except scripts/build_skills.py --check-only, which passes.”', meta: 'the accounting, and the check that was actually run' } }
   ];
   var NOTES = {
-    none: 'Both pull requests answer the same finding about the company-research skill: material the agent reasoned was sitting next to material it found, in the same register. Both change the same file, and GitHub counts both as +3 −2 lines. Read the two new bullets.',
-    one: 'Run 1’s other pull request, #14, bundled two concerns: test the standards interview-prep already sets, and close the domain gap earlier. Run 2 split them into #16 and #18. That is why run 2 opened four pull requests to run 1’s two — and why each was easier to review.',
-    claim: 'Run 2 says what it checked and what it did not: “nothing was run except scripts/build_skills.py --check-only, which passes.” Run 1’s description says nothing about checks at all — which leaves the reviewer to assume.',
-    date: 'Both runs happened on 20 August 2026, so both branch names carry the right date; this rule cost nothing here. Its flaw surfaced later: it reads the private repo’s last commit, and two pull requests opened on 4 September sit on branches named claude/2026-08-25-… — see the failures below.',
-    cut: 'Run 2 cut a clause, left the confidence bullet alone rather than restate a rule, wrote the new bullet in 56 words instead of 108, and reported the accounting: +1 line and +77 words. Run 1 added 136 words and removed none.'
+    all: 'Every change both runs made to the company-research skill, side by side. GitHub counts the main change in each run as +3 −2 lines. Read the two new bullets.',
+    one: 'Run 1 bundled two concerns into one pull request. Run 2 split them — which is why it opened four pull requests to run 1’s two, and why each was easier to review.',
+    claim: 'Run 2 says what it checked and what it did not. Run 1’s description says nothing about checks at all, which leaves the reviewer to assume.',
+    cut: 'Run 2 cut a clause, declined to restate a rule, wrote the new bullet in 56 words instead of 108, and reported the accounting: +1 line, +77 words. Run 1 added 136 words and removed none.'
   };
   var run1 = $('cmp-run1'), run2 = $('cmp-run2'), cmpNote = $('cmp-note');
   if (run1) {
-    function spot(where, s) {
-      var d = el('div', 'spot'); d.setAttribute('data-rules', (s.rules || []).join(' '));
+    function spot(where, s, rules) {
+      var d = el('div', 'spot'); d.setAttribute('data-rules', rules.join(' '));
       d.appendChild(el('div', 'spot__where', where));
       d.appendChild(el('div', 'spot__text' + (s.kind === 'del' ? ' is-del' : s.kind === 'none' ? ' is-none' : ''), s.text));
       if (s.meta) d.appendChild(el('div', 'spot__meta', s.meta));
       return d;
     }
-    SPOTS.forEach(function (sp) { run1.appendChild(spot(sp.where, sp.r1)); run2.appendChild(spot(sp.where, sp.r2)); });
-    var activeRule = null;
-    document.querySelectorAll('.rulechip').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var id = b.getAttribute('data-rule');
-        activeRule = activeRule === id ? null : id;
-        document.querySelectorAll('.rulechip').forEach(function (x) { x.classList.toggle('is-on', x.getAttribute('data-rule') === activeRule); });
-        document.querySelectorAll('.spot').forEach(function (s) { s.classList.toggle('is-hit', !!activeRule && s.getAttribute('data-rules').split(' ').indexOf(activeRule) >= 0); });
-        cmpNote.textContent = NOTES[activeRule || 'none'];
+    SPOTS.forEach(function (sp) { run1.appendChild(spot(sp.where, sp.r1, sp.rules)); run2.appendChild(spot(sp.where, sp.r2, sp.rules)); });
+    function filterSpots(rule) {
+      document.querySelectorAll('.rulechip').forEach(function (x) { var on = x.getAttribute('data-rule') === rule; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      document.querySelectorAll('.spot').forEach(function (s) {
+        var mine = rule === 'all' || s.getAttribute('data-rules').split(' ').indexOf(rule) >= 0;
+        s.classList.toggle('is-hidden', !mine); s.classList.toggle('is-hit', mine && rule !== 'all');
       });
-    });
+      cmpNote.textContent = NOTES[rule];
+    }
+    document.querySelectorAll('.rulechip').forEach(function (b) { b.addEventListener('click', function () { filterSpots(b.getAttribute('data-rule')); }); });
+    filterSpots('all');
   }
 
-  /* ---------- Step 7 · where it stands: snapshot, then the live API ---------- */
-  var SNAPSHOT = [
-    { n: 21, what: 'Run 3 · interview-prep: add a reload to the record’s pre-delivery check', st: 'open' },
-    { n: 20, what: 'Run 3 · interview-prep: persist the record page with localStorage', st: 'open' },
-    { n: 18, what: 'Run 2 · ask how far the domain is from the candidate, and close it before the brief', st: 'merged' },
-    { n: 17, what: 'Run 2 · keep derived material out of a dossier’s sourced sections', st: 'merged' },
-    { n: 16, what: 'Run 2 · check the two standards interview-prep sets and never tests', st: 'merged' },
-    { n: 15, what: 'Run 2 · make the record’s controls work in the viewer, not just from a local file', st: 'merged' },
-    { n: 14, what: 'Run 1 · two concerns in one — closed unmerged as the experiment’s reset', st: 'closed' },
-    { n: 13, what: 'Run 1 · derived material — closed unmerged as the experiment’s reset', st: 'closed' }
-  ];
+  /* ---------- Step 7 · where it stands: numbers from the snapshot, then the live API ---------- */
   var REPO = 'alexratmanpl/business-agent-skills';
-  var tbody = $('state-body'), liveCap = $('state-live'), relLine = $('state-release');
-  var rows = {};
-  function badge(st) { var b = el('span', 'st st--' + st, st === 'merged' ? 'merged' : st === 'open' ? 'open' : 'closed'); return b; }
-  if (tbody) {
-    SNAPSHOT.forEach(function (p) {
-      var tr = el('tr'), td1 = el('td'), a = el('a', null, '#' + p.n); a.href = 'https://github.com/' + REPO + '/pull/' + p.n; a.rel = 'noopener';
-      td1.appendChild(a); tr.appendChild(td1);
-      tr.appendChild(el('td', null, p.what));
-      var td3 = el('td'); td3.appendChild(badge(p.st)); tr.appendChild(td3);
-      tbody.appendChild(tr); rows[p.n] = td3;
+  var stPrs = $('st-prs'), stMerged = $('st-merged'), stOpen = $('st-open'), liveCap = $('state-live'), relLine = $('state-release');
+  if (stPrs && window.fetch && window.AbortController) {
+    // Read-only, unauthenticated, public data; every value goes in as text.
+    var ctrl = new AbortController(); var t = setTimeout(function () { ctrl.abort(); }, 7000);
+    var opts = { signal: ctrl.signal, headers: { 'Accept': 'application/vnd.github+json' } };
+    Promise.all([
+      fetch('https://api.github.com/repos/' + REPO + '/pulls?state=all&per_page=100', opts).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); }),
+      fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=5', opts).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+    ]).then(function (res) {
+      clearTimeout(t);
+      var pulls = Array.isArray(res[0]) ? res[0] : [], rels = Array.isArray(res[1]) ? res[1] : [];
+      if (!pulls.length) throw new Error('empty');
+      var open = 0, merged = 0;
+      pulls.forEach(function (p) { if (p && p.merged_at) merged++; else if (p && p.state === 'open') open++; });
+      stPrs.textContent = String(pulls.length); stMerged.textContent = String(merged); stOpen.textContent = String(open);
+      var latest = rels.filter(function (r) { return r && r.tag_name === 'latest'; })[0] || rels[0];
+      if (latest && latest.published_at) {
+        var when = new Date(latest.published_at);
+        var assets = Array.isArray(latest.assets) ? latest.assets.length : 0;
+        relLine.textContent = 'Release: ' + String(latest.tag_name || '').slice(0, 40) + (assets ? ' · ' + assets + ' packaged skills' : '') + ' · ' + when.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      }
+      var now = new Date();
+      liveCap.textContent = 'Checked live · ' + now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ' ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    }).catch(function () {
+      clearTimeout(t);
+      liveCap.textContent = 'Live check unavailable — snapshot of 11 Sep 2026';
     });
-    // Live refresh. Read-only, unauthenticated, public data; every value goes in as text.
-    if (window.fetch && window.AbortController) {
-      var ctrl = new AbortController(); var t = setTimeout(function () { ctrl.abort(); }, 7000);
-      var opts = { signal: ctrl.signal, headers: { 'Accept': 'application/vnd.github+json' } };
-      Promise.all([
-        fetch('https://api.github.com/repos/' + REPO + '/pulls?state=all&per_page=30&sort=created&direction=desc', opts).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); }),
-        fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=5', opts).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
-      ]).then(function (res) {
-        clearTimeout(t);
-        var pulls = Array.isArray(res[0]) ? res[0] : [], rels = Array.isArray(res[1]) ? res[1] : [];
-        var open = 0, newer = [];
-        pulls.forEach(function (p) {
-          var n = parseInt(p.number, 10); if (!isFinite(n)) return;
-          var st = p.merged_at ? 'merged' : (p.state === 'open' ? 'open' : 'closed');
-          if (st === 'open') open++;
-          if (rows[n]) { rows[n].innerHTML = ''; rows[n].appendChild(badge(st)); }
-          else if (n > 21 && String(p.title || '').length) newer.push({ n: n, title: String(p.title).slice(0, 120), st: st });
-        });
-        newer.sort(function (a, b) { return b.n - a.n; }).reverse().forEach(function (p) {
-          var tr = el('tr'), td1 = el('td'), a = el('a', null, '#' + p.n); a.href = 'https://github.com/' + REPO + '/pull/' + p.n; a.rel = 'noopener';
-          td1.appendChild(a); tr.appendChild(td1); tr.appendChild(el('td', null, 'New since the snapshot · ' + p.title));
-          var td3 = el('td'); td3.appendChild(badge(p.st)); tr.appendChild(td3);
-          tbody.insertBefore(tr, tbody.firstChild);
-        });
-        var latest = rels.filter(function (r) { return r && r.tag_name === 'latest'; })[0] || rels[0];
-        if (latest) {
-          var when = latest.published_at ? new Date(latest.published_at) : null;
-          relLine.textContent = 'Release: ' + String(latest.tag_name || '').slice(0, 40) + (when ? ', published ' + when.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '') + (latest.prerelease ? ', still marked prerelease' : ', no longer marked prerelease');
-        }
-        var now = new Date();
-        liveCap.textContent = 'Checked live · ' + now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ' ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' · ' + open + ' open';
-      }).catch(function () {
-        clearTimeout(t);
-        liveCap.textContent = 'Live check unavailable — showing the snapshot of 11 Sep 2026';
-      });
-    }
   }
 })();
