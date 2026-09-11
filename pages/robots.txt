@@ -1,0 +1,5 @@
+# alexratman.com
+User-agent: *
+Allow: /
+
+Sitemap: https://alexratman.com/sitemap.xml
