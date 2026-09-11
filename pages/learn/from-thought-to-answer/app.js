@@ -6,7 +6,7 @@
 
   /* ---------- today's date in the system-prompt example ---------- */
   var today = $('today');
-  if (today) today.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  if (today) today.textContent = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   /* ---------- reading progress + stage pill ---------- */
   var progress = $('progress'), stageEl = $('stage'), stageNum = $('stage-num'), stageName = $('stage-name');
@@ -24,7 +24,7 @@
     }
     if (stage !== currentStage) {
       currentStage = stage;
-      if (stageNum) stageNum.textContent = stage + ' / ' + stages.length;
+      if (stageNum) stageNum.textContent = Math.max(1, stage - 1) + ' / ' + (stages.length - 1);
       if (stageName) stageName.textContent = name;
       if (stageEl) stageEl.classList.toggle('is-on', stage !== 1);
     }
@@ -77,7 +77,7 @@
   }
   var tokInput = $('tok-input'), tokOut = $('tok-out'), tokCount = $('tok-count');
   function renderTokens() {
-    var toks = tokenize(tokInput.value);
+    var toks = tokenize(tokInput.value.slice(0, 240));
     tokOut.innerHTML = '';
     toks.forEach(function (t, i) {
       var s = document.createElement('span');
@@ -228,11 +228,11 @@
   }
   function streamTick() {
     if (streamIdx < STREAM.length) { streamIdx++; renderStream(); streamTimer = setTimeout(streamTick, STREAM_MS); }
-    else { streamTimer = setTimeout(function () { streamIdx = 0; renderStream(); streamTick(); }, 2600); }
+    else if (!reduceMotion) { streamTimer = setTimeout(function () { streamIdx = 0; renderStream(); streamTick(); }, 2600); }
   }
   if (streamEl) {
-    renderStream();
-    streamTimer = setTimeout(streamTick, 600);
+    if (reduceMotion) { streamIdx = STREAM.length; renderStream(); }
+    else { renderStream(); streamTimer = setTimeout(streamTick, 600); }
     $('stream-replay').addEventListener('click', function () { clearTimeout(streamTimer); streamIdx = 0; renderStream(); streamTimer = setTimeout(streamTick, 200); });
   }
 
@@ -245,12 +245,12 @@
     trainGuess.textContent = g;
     trainNudge.textContent = g === 'mat' ? 'right — still nudge the dials toward mat' : 'nudge the dials toward mat';
   }
-  if (trainSteps.length) { renderTrain(); setInterval(function () { trainStep = (trainStep + 1) % 4; renderTrain(); }, 950); }
+  if (trainSteps.length) { renderTrain(); if (!reduceMotion) setInterval(function () { trainStep = (trainStep + 1) % 4; renderTrain(); }, 950); }
 
   /* ---------- Closing · copy the prompt ---------- */
   var copyBtn = $('copy-prompt');
   if (copyBtn) {
-    var PROMPT = "Summarize the attached report for a 15-minute management meeting in 5 bullet points: key results first, then risks, ending with one recommended next step. Plain language, no jargon — and flag anything the report doesn't clearly support. Think through what leadership needs to decide before you write.";
+    var PROMPT = "Summarise the attached report for a 15-minute management meeting in 5 bullet points: key results first, then risks, ending with one recommended next step. Plain language, no jargon — and flag anything the report doesn't clearly support. Think through what leadership needs to decide before you write.";
     var original = copyBtn.textContent;
     copyBtn.addEventListener('click', function () {
       var done = function () { copyBtn.textContent = '✓ Copied — attach your report, then paste it into any AI'; setTimeout(function () { copyBtn.textContent = original; }, 2400); };
