@@ -1,6 +1,6 @@
 # Alex Ratman
 
-**[alexratman.com](https://alexratman.com)** — interactive explainers on how AI works, shown rather than told.
+**[alexratman.com](https://alexratman.com)** — how things work, shown rather than told. Interactive explainers, experiments and notes; AI is one of the topics, not the only one.
 
 ## 👋 Hi
 
@@ -8,13 +8,13 @@ I'm Alex, a senior fullstack engineer in Prague. For 11+ years I've worked acros
 
 The last few years were about exactly that. At Mews, a hospitality platform used by 15,000 hotels, I built shared services used by every engineering team and started the company's frontend observability practice — a platform, an SDK adopted by 10+ teams, and a recurring programme to make observability a mindset rather than a toolset. In parallel I was the sole engineer at Macromo, a health-tech startup, owning the whole stack: a data model shaped by medical-privacy constraints, the Kubernetes cluster underneath it and the Cloudflare edge in front of it. Before that, Avast, where the web products I worked on served 40M+ people a month.
 
-Lately my work is about AI-powered services and the observability that keeps them honest — which is also why this site exists.
+Lately my work is about AI-powered services and the observability that keeps them honest — which is where this site starts, not where it ends.
 
 I came to engineering sideways. Before writing code for a living I audited EU-funded projects, reporting to OLAF and the European Commission. More than a decade on, I still think like an auditor: I want to know how something actually works before I trust it, and I want to be able to show it.
 
 ## 🧭 What's on the site
 
-A small collection of scroll-through explainers. Each one shows the mechanism, not the vocabulary, with things to play with along the way — five minutes, no prior knowledge needed.
+Pages that show the mechanism, not the vocabulary, with things to play with along the way. Right now that means scroll-through explainers; experiments and notes on whatever I'm taking apart next will join them.
 
 - **[From Thought to Answer](https://alexratman.com/learn/from-thought-to-answer/)** — what happens in the seconds between your question and the AI's answer: tokens, the meaning map, attention, the weighted dice, the loop — and what that means for how you should prompt and verify.
 - More on the way.
