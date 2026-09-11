@@ -279,12 +279,12 @@ img, svg { max-width: 100%; }
 .hero__cue { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 14px; font-weight: 600; color: var(--muted); animation: bounceDown 2.2s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .hero__cue { animation: none; } }
 
-.hero--landing { min-height: 0; align-items: flex-start; text-align: left; padding: 128px var(--gutter) 96px; }
+.hero--landing { min-height: 0; align-items: flex-start; text-align: left; padding: 72px var(--gutter) 80px; }
 .hero--landing .hero__inner { align-items: flex-start; max-width: 980px; gap: 28px; }
 .hero--landing .hero__lead { max-width: 640px; }
 @media (max-width: 720px) {
   .hero { min-height: 0; padding-top: 64px; }
-  .hero--landing { padding: 64px var(--gutter) 56px; }
+  .hero--landing { padding: 40px var(--gutter) 48px; }
   .hero--landing .hero__inner { gap: 20px; }
   .hero--landing .row .btn { width: 100%; }
 }
