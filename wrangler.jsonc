@@ -1,0 +1,8 @@
+{
+	"name": "alexratman",
+	"compatibility_date": "2026-09-11",
+	"assets": {
+		"directory": "./pages",
+		"not_found_handling": "404-page"
+	}
+}
