@@ -97,7 +97,7 @@
       var on = b.getAttribute('aria-pressed') !== 'true';
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
       b.classList.toggle('is-on', on); b.classList.toggle(onClass, on);
-      if (on) g.removeAttribute('hidden'); else g.setAttribute('hidden', '');
+      g.classList.toggle('is-on', on);
     });
   }
   toggle('map-royal', 'map-royal-lines', 'is-on--red');
