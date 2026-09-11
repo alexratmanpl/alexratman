@@ -1,0 +1,40 @@
+/* From Thought to Answer — page-specific styles (shared system lives in /assets/site.css) */
+.map-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.map-toggle { display: inline-flex; align-items: center; min-height: 44px; padding: 9px 14px; border-radius: var(--r-pill); border: 1.5px solid var(--line); background: var(--ground); color: var(--text); font-size: 13.5px; font-weight: 600; transition: all 0.2s; }
+.map-toggle:hover { border-color: var(--ink); }
+.map-toggle.is-on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.map-toggle.is-on--red { background: var(--red); border-color: var(--red); color: #fff; }
+.map svg { width: 100%; height: auto; display: block; }
+.map svg text { font-family: var(--font-body); }
+.att-box { position: relative; padding-top: 76px; }
+.att-box svg { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+.att-words { display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
+.tokens-out { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; min-height: 38px; }
+.cost-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.cost-row__lang { font-size: 13px; font-weight: 600; color: var(--muted); width: 64px; }
+.cost-row__sum { font-size: 13px; color: var(--muted); margin-left: 4px; }
+.roll-word { display: inline-block; min-width: 64px; padding: 2px 10px; border-radius: var(--r-control); background: var(--ground-alt); border: 1.5px solid var(--line); font-weight: 700; color: var(--red); text-align: center; }
+.tally { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; min-height: 34px; }
+.tally__item { padding: 6px 12px; border-radius: var(--r-pill); background: var(--ground-alt); font-size: 14px; font-weight: 600; color: var(--ink); }
+.stream-token { transition: color 0.5s; }
+.stream-token.is-new { color: var(--red); font-weight: 700; }
+.cursor { display: inline-block; width: 9px; height: 19px; background: var(--red); border-radius: 2px; vertical-align: text-bottom; margin-left: 2px; animation: blink 0.9s steps(1) infinite; }
+.train { position: relative; max-width: 340px; height: 300px; margin: 0 auto; }
+.train svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.train__step { position: absolute; transform: translate(-50%, -50%); padding: 10px 18px; border-radius: var(--r-pill); font-size: 15px; font-weight: 700; border: 1.5px solid var(--line); background: var(--ground); color: var(--muted); transition: all 0.35s; }
+.train__step.is-active { background: var(--ink); border-color: var(--ink); color: #fff; scale: 1.08; }
+.train__center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; font-size: 13px; color: var(--muted); font-weight: 600; line-height: 1.5; }
+.card-icon { color: var(--ink); }
+.card-icon--red { color: var(--red); }
+.card-icon--muted { color: var(--muted); }
+.rule-card { display: flex; flex-direction: column; gap: 10px; }
+.rule-card__num { font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: 0.08em; }
+.rule-card p { font-size: 14.5px; line-height: 1.55; color: var(--muted); }
+.rule-card h3 { font-size: 19px; }
+.closing { text-align: center; }
+.closing .row { justify-content: center; }
+.replay-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+.prompt-card { text-align: left; }
+.prompt-card .example__row--weak { color: var(--on-dark-muted); }
+.prompt-card .example__row--better { color: var(--on-dark); background: var(--dark-raised); border: 1px solid var(--dark-line); border-radius: var(--r-control); padding: 14px 16px; font-size: 16px; line-height: 1.65; }
+@media (max-width: 720px) { .bar__label { width: 56px; font-size: 14px; } }

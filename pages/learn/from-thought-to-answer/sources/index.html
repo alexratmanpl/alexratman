@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — From Thought to Answer</title>
+<meta name="description" content="The 38 papers, documentation pages and reports behind From Thought to Answer, grouped by step.">
+<link rel="canonical" href="https://alexratman.com/learn/from-thought-to-answer/sources/">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .src-group { display: flex; flex-direction: column; gap: 12px; padding-block: 28px; border-top: 1px solid var(--line); }
+  .src-group h2 { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); }
+  .src-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .src-group li { font-size: 15.5px; line-height: 1.55; color: var(--text); }
+  .src-group li span { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <a class="site-nav__brand" href="/">Alex Ratman</a>
+  <nav class="site-nav__links" aria-label="Site">
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero hero--landing" style="padding-bottom:48px">
+    <div class="hero__inner">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="label"><a href="/learn/from-thought-to-answer/" style="color:inherit;text-decoration:none">From Thought to Answer</a> · Sources</div>
+      <h1 style="font-size:clamp(36px,6vw,64px)">Sources (38)</h1>
+      <p class="lead hero__lead">The research, documentation and reporting behind each step. Links checked September 2026; help-center and documentation pages change over time.</p>
+    </div>
+  </section>
+  <div class="wrap" style="padding: 0 var(--gutter) 96px; max-width: calc(var(--measure) + 2 * var(--gutter)); margin-inline: 0;">
+    <section class="src-group">
+      <h2>Step 1 · Your prompt</h2>
+      <ul>
+        <li>Anthropic — <a href="https://platform.claude.com/docs/en/release-notes/system-prompts" target="_blank" rel="noopener">System prompts (release notes)</a> <span>(Claude Platform Docs)</span></li>
+        <li>OpenAI — <a href="https://help.openai.com/en/articles/8590148-memory-faq" target="_blank" rel="noopener">Memory FAQ</a> <span>(OpenAI Help Center)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 2 · Tokens</h2>
+      <ul>
+        <li>Petrov, La Malfa, Torr &amp; Bibi — <a href="https://arxiv.org/abs/2305.15425" target="_blank" rel="noopener">Language Model Tokenizers Introduce Unfairness Between Languages</a> <span>(NeurIPS 2023)</span></li>
+        <li>OpenAI — <a href="https://github.com/openai/tiktoken/blob/main/tiktoken/model.py" target="_blank" rel="noopener">tiktoken — GPT-4o uses the o200k_base tokenizer</a> <span>(GitHub)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 3 · The map</h2>
+      <ul>
+        <li>Mikolov, Chen, Corrado &amp; Dean — <a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">Efficient Estimation of Word Representations in Vector Space</a> <span>(arXiv, 2013)</span></li>
+        <li>Nissim, van Noord &amp; van der Goot — <a href="https://aclanthology.org/2020.cl-2.7/" target="_blank" rel="noopener">Fair Is Better than Sensational: Man Is to Doctor as Woman Is to Doctor</a> <span>(Computational Linguistics, 2020)</span></li>
+        <li>Mrkšić et al. — <a href="https://aclanthology.org/N16-1018/" target="_blank" rel="noopener">Counter-fitting Word Vectors to Linguistic Constraints</a> <span>(NAACL 2016)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 4 · Attention</h2>
+      <ul>
+        <li>Vaswani et al. — <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a> <span>(NeurIPS 2017)</span></li>
+        <li>Llama Team, AI @ Meta — <a href="https://arxiv.org/abs/2407.21783" target="_blank" rel="noopener">The Llama 3 Herd of Models</a> <span>(arXiv, 2024 — layer counts; also model sizes and training data in Step 7)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 5 · The dice</h2>
+      <ul>
+        <li>Google — <a href="https://ai.google.dev/gemini-api/docs/prompting-strategies" target="_blank" rel="noopener">Prompt design strategies — temperature</a> <span>(Gemini API docs)</span></li>
+        <li>He &amp; Thinking Machines Lab — <a href="https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/" target="_blank" rel="noopener">Defeating Nondeterminism in LLM Inference</a> <span>(2025)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 6 · The loop</h2>
+      <ul>
+        <li>NASA Space Place — <a href="https://spaceplace.nasa.gov/blue-sky/en/" target="_blank" rel="noopener">Why Is the Sky Blue?</a> <span>(NASA)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 7 · Training</h2>
+      <ul>
+        <li>OpenAI — <a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener">GPT-4 Technical Report</a> <span>(arXiv, 2023 — licensed data)</span></li>
+        <li>Google for Developers — <a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent" target="_blank" rel="noopener">Gradient descent</a> <span>(Machine Learning Crash Course)</span></li>
+        <li>Ouyang et al. — <a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener">Training language models to follow instructions with human feedback</a> <span>(NeurIPS 2022)</span></li>
+        <li>Bai et al. — <a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">Constitutional AI: Harmlessness from AI Feedback</a> <span>(arXiv, 2022)</span></li>
+        <li>DeepSeek-AI — <a href="https://doi.org/10.1038/s41586-025-09422-z" target="_blank" rel="noopener">DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning</a> <span>(Nature, 2025)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 8 · Honest limits</h2>
+      <ul>
+        <li>Kalai, Nachum, Vempala &amp; Zhang — <a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Why Language Models Hallucinate</a> <span>(OpenAI / arXiv, 2025)</span></li>
+        <li>Hong, Troynikov &amp; Huber — <a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener">Context Rot: How Increasing Input Tokens Impacts LLM Performance</a> <span>(Chroma, 2025)</span></li>
+        <li>Anthropic — <a href="https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work" target="_blank" rel="noopener">How do usage and length limits work?</a> <span>(Claude Help Center)</span></li>
+        <li>OpenAI — <a href="https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance" target="_blank" rel="noopener">How your data is used to improve model performance</a> <span>(OpenAI Help Center)</span></li>
+        <li>Anthropic — <a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" target="_blank" rel="noopener">Updates to Consumer Terms and Privacy Policy</a> <span>(2025)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 9 · Prompt rules</h2>
+      <ul>
+        <li>Anthropic — <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">Prompting best practices</a> <span>(Claude Platform Docs)</span></li>
+        <li>OpenAI — <a href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" target="_blank" rel="noopener">Best practices for prompt engineering with the OpenAI API</a> <span>(OpenAI Help Center)</span></li>
+        <li>Liu et al. — <a href="https://aclanthology.org/2024.tacl-1.9/" target="_blank" rel="noopener">Lost in the Middle: How Language Models Use Long Contexts</a> <span>(TACL, 2024)</span></li>
+        <li>Hsieh et al. — <a href="https://aclanthology.org/2024.findings-acl.890/" target="_blank" rel="noopener">Found in the Middle: Calibrating Positional Attention Bias Improves Long Context Utilization</a> <span>(Findings of ACL 2024)</span></li>
+        <li>MacCallum &amp; Lee — <a href="https://developers.openai.com/cookbook/examples/gpt4-1_prompting_guide" target="_blank" rel="noopener">GPT-4.1 Prompting Guide</a> <span>(OpenAI Cookbook, 2025)</span></li>
+        <li>Wei et al. — <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a> <span>(NeurIPS 2022)</span></li>
+        <li>OpenAI — <a href="https://developers.openai.com/api/docs/guides/reasoning-best-practices" target="_blank" rel="noopener">Reasoning best practices</a> <span>(OpenAI API docs)</span></li>
+        <li>Chen et al. — <a href="https://www.anthropic.com/research/reasoning-models-dont-say-think" target="_blank" rel="noopener">Reasoning Models Don&#x27;t Always Say What They Think</a> <span>(Anthropic, 2025)</span></li>
+      </ul>
+    </section>
+    <section class="src-group">
+      <h2>Step 10 · Getting accurate answers</h2>
+      <ul>
+        <li>OpenAI — <a href="https://openai.com/index/learning-to-reason-with-llms/" target="_blank" rel="noopener">Learning to reason with LLMs</a> <span>(2024)</span></li>
+        <li>Farquhar, Kossen, Kuhn &amp; Gal — <a href="https://www.nature.com/articles/s41586-024-07421-0" target="_blank" rel="noopener">Detecting hallucinations in large language models using semantic entropy</a> <span>(Nature, 2024)</span></li>
+        <li>Manakul, Liusie &amp; Gales — <a href="https://arxiv.org/abs/2303.08896" target="_blank" rel="noopener">SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models</a> <span>(EMNLP 2023)</span></li>
+        <li>Anthropic — <a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations" target="_blank" rel="noopener">Reduce hallucinations</a> <span>(Claude Platform Docs)</span></li>
+        <li>Xiong et al. — <a href="https://arxiv.org/abs/2306.13063" target="_blank" rel="noopener">Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs</a> <span>(ICLR 2024)</span></li>
+        <li>Jaźwińska &amp; Chandrasekar — <a href="https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php" target="_blank" rel="noopener">AI Search Has a Citation Problem</a> <span>(Columbia Journalism Review, 2025)</span></li>
+        <li>Sharma et al. — <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Towards Understanding Sycophancy in Language Models</a> <span>(ICLR 2024)</span></li>
+        <li>Kim, Garg, Peng &amp; Garg — <a href="https://proceedings.mlr.press/v267/kim25e.html" target="_blank" rel="noopener">Correlated Errors in Large Language Models</a> <span>(ICML 2025)</span></li>
+      </ul>
+    </section>
+    <p style="padding-top:32px"><a href="/learn/from-thought-to-answer/">← Back to the explainer</a></p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div>© 2026 Alex Ratman</div>
+  <div class="site-footer__links"><a href="https://github.com/alexratmanpl" rel="me">GitHub</a><a href="https://github.com/alexratmanpl/alexratman">Source of this site</a></div>
+</footer>
+
+</body>
+</html>
