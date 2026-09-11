@@ -242,8 +242,11 @@ img, svg { max-width: 100%; }
 .journey__dot--2 { background: var(--ink); }
 .journey__dot--3 { background: var(--faint); }
 .journey__link { width: clamp(16px, 4vw, 36px); height: 2px; background: var(--line); margin-top: 5px; }
-.journey--sm .journey__dot { width: 10px; height: 10px; }
-.journey--sm .journey__link { width: 28px; margin-top: 4px; }
+/* step strip for cards: one segment per step, a fixed 4px tall, never wraps */
+.steps { display: flex; gap: 4px; height: 4px; width: 100%; max-width: 200px; flex: none; }
+.steps__seg { flex: 1 1 0; min-width: 0; border-radius: 2px; background: var(--faint); }
+.steps__seg:nth-child(3n+1) { background: var(--red); }
+.steps__seg:nth-child(3n+2) { background: var(--ink); }
 
 /* ---------- Forms ---------- */
 .input {
