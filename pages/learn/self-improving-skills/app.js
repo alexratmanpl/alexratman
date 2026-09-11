@@ -135,8 +135,8 @@
   var LOOP = [
     ['Use', 'Alex uses a skill during real job research — company-research, role-fit, interview-prep or pay-check — with an agent that has it installed.'],
     ['Notice', 'The skill falls short in some specific way: a question it should have asked, a check it claimed, a section nobody could read.'],
-    ['Capture', 'A 36-line account-level skill, log-finding, writes a dated markdown file into the private repo’s feedback/ folder. It holds no rules of its own; it points at CAPTURE.md, where the rules live.'],
-    ['Summarise', 'A scheduled agent wakes on its own, reads AGENT.md, reads every finding newer than the watermark, and decides what to change.'],
+    ['Capture', 'A 36-line skill writes a dated note into the private repo. It holds no rules of its own; it points at the file where the rules live.'],
+    ['Summarise', 'A scheduled agent wakes on its own, reads its instructions, reads every note newer than the last one it processed, and decides what to change.'],
     ['Pull request', 'It opens a pull request against the public repo — one concern per pull request, never more than one skill — with a description that says what it ran and how many lines the skill gained or lost.'],
     ['Publish', 'GitHub Actions validates every skill and, on merge to master, publishes a rolling latest release with packaged .skill files.'],
     ['Install', 'The improved skill is installed back into the account, and is in play the next time step 1 happens.']
@@ -183,7 +183,7 @@
     none: 'Both pull requests answer the same finding about the company-research skill: material the agent reasoned was sitting next to material it found, in the same register. Both change the same file, and GitHub counts both as +3 −2 lines. Read the two new bullets.',
     one: 'Run 1’s other pull request, #14, bundled two concerns: test the standards interview-prep already sets, and close the domain gap earlier. Run 2 split them into #16 and #18. That is why run 2 opened four pull requests to run 1’s two — and why each was easier to review.',
     claim: 'Run 2 says what it checked and what it did not: “nothing was run except scripts/build_skills.py --check-only, which passes.” Run 1’s description says nothing about checks at all — which leaves the reviewer to assume.',
-    date: 'Both runs happened on 20 August 2026, so both branch names carry the right date; this rule cost nothing here. Its flaw surfaced later: it reads the control repo’s last commit, and two pull requests opened on 4 September sit on branches named claude/2026-08-25-… — see the failures below.',
+    date: 'Both runs happened on 20 August 2026, so both branch names carry the right date; this rule cost nothing here. Its flaw surfaced later: it reads the private repo’s last commit, and two pull requests opened on 4 September sit on branches named claude/2026-08-25-… — see the failures below.',
     cut: 'Run 2 cut a clause, left the confidence bullet alone rather than restate a rule, wrote the new bullet in 56 words instead of 108, and reported the accounting: +1 line and +77 words. Run 1 added 136 words and removed none.'
   };
   var run1 = $('cmp-run1'), run2 = $('cmp-run2'), cmpNote = $('cmp-note');
