@@ -6,6 +6,8 @@
 .map-toggle.is-on--red { background: var(--red); border-color: var(--red); color: #fff; }
 .map svg { width: 100%; height: auto; display: block; }
 .map svg text { font-family: var(--font-body); }
+.map-arrows { display: none; }
+.map-arrows.is-on { display: inline; }
 .att-box { position: relative; padding-top: 76px; }
 .att-box svg { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
 .att-words { display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
