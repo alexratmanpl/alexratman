@@ -22,7 +22,7 @@
     }
     if (stage !== currentStage) {
       currentStage = stage;
-      if (stageNum) stageNum.textContent = stage + ' / ' + stages.length;
+      if (stageNum) stageNum.textContent = Math.max(1, stage - 1) + ' / ' + (stages.length - 1);
       if (stageName) stageName.textContent = name;
       if (stageEl) stageEl.classList.toggle('is-on', stage !== 1);
     }
@@ -213,32 +213,43 @@
 
   /* ---------- Step 7 · where it stands: numbers from the snapshot, then the live API ---------- */
   var REPO = 'alexratmanpl/business-agent-skills';
-  var stPrs = $('st-prs'), stMerged = $('st-merged'), stOpen = $('st-open'), liveCap = $('state-live'), relLine = $('state-release');
+  var SNAPSHOT = { date: new Date('2026-09-11T00:00:00Z'), firstLoopPr: 13 };   // the loop's first pull request; everything before it was set-up by hand
+  var stPrs = $('st-prs'), stMerged = $('st-merged'), stOpen = $('st-open'), liveCap = $('state-live'), relLine = $('state-release'), snapDate = $('snapshot-date');
+  var fmt = function (d, long) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: long ? 'long' : 'short', year: 'numeric' }); };
+  if (snapDate) snapDate.textContent = fmt(SNAPSHOT.date, true);
+  if (liveCap) liveCap.textContent = 'Snapshot of ' + fmt(SNAPSHOT.date);
+  function isLoopPr(p) { return p && parseInt(p.number, 10) >= SNAPSHOT.firstLoopPr && /^claude\/\d{4}-\d{2}-\d{2}-/.test(String(p.head && p.head.ref || '')); }
   if (stPrs && window.fetch && window.AbortController) {
-    // Read-only, unauthenticated, public data; every value goes in as text.
+    // Read-only, unauthenticated, public data; every value goes in as text. Newest first, paged until the loop's first PR is passed.
     var ctrl = new AbortController(); var t = setTimeout(function () { ctrl.abort(); }, 7000);
     var opts = { signal: ctrl.signal, headers: { 'Accept': 'application/vnd.github+json' } };
-    Promise.all([
-      fetch('https://api.github.com/repos/' + REPO + '/pulls?state=all&per_page=100', opts).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); }),
-      fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=5', opts).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
-    ]).then(function (res) {
+    function getJson(url) { return fetch(url, opts).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); }); }
+    function pulls(page, acc) {
+      return getJson('https://api.github.com/repos/' + REPO + '/pulls?state=all&per_page=100&sort=created&direction=desc&page=' + page).then(function (list) {
+        if (!Array.isArray(list)) throw new Error('shape');
+        acc = acc.concat(list);
+        var last = list[list.length - 1];
+        var more = list.length === 100 && last && parseInt(last.number, 10) >= SNAPSHOT.firstLoopPr && page < 5;
+        return more ? pulls(page + 1, acc) : acc;
+      });
+    }
+    Promise.all([pulls(1, []), getJson('https://api.github.com/repos/' + REPO + '/releases?per_page=5')]).then(function (res) {
       clearTimeout(t);
-      var pulls = Array.isArray(res[0]) ? res[0] : [], rels = Array.isArray(res[1]) ? res[1] : [];
-      if (!pulls.length) throw new Error('empty');
-      var open = 0, merged = 0;
-      pulls.forEach(function (p) { if (p && p.merged_at) merged++; else if (p && p.state === 'open') open++; });
-      stPrs.textContent = String(pulls.length); stMerged.textContent = String(merged); stOpen.textContent = String(open);
+      var all = res[0], rels = Array.isArray(res[1]) ? res[1] : [];
+      if (!all.length) throw new Error('empty');
+      var opened = 0, merged = 0, open = 0;
+      all.forEach(function (p) { if (!isLoopPr(p)) return; opened++; if (p.merged_at) merged++; else if (p.state === 'open') open++; });
+      stPrs.textContent = String(opened); stMerged.textContent = String(merged); stOpen.textContent = String(open);
       var latest = rels.filter(function (r) { return r && r.tag_name === 'latest'; })[0] || rels[0];
       if (latest && latest.published_at) {
-        var when = new Date(latest.published_at);
         var assets = Array.isArray(latest.assets) ? latest.assets.length : 0;
-        relLine.textContent = 'Release: ' + String(latest.tag_name || '').slice(0, 40) + (assets ? ' · ' + assets + ' packaged skills' : '') + ' · ' + when.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        relLine.textContent = 'Release: ' + String(latest.tag_name || '').slice(0, 40) + (assets ? ' · ' + assets + ' packaged skills' : '') + ' · ' + fmt(new Date(latest.published_at));
       }
       var now = new Date();
-      liveCap.textContent = 'Checked live · ' + now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ' ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      liveCap.textContent = 'Checked live · ' + fmt(now) + ' ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
     }).catch(function () {
       clearTimeout(t);
-      liveCap.textContent = 'Live check unavailable — snapshot of 11 Sep 2026';
+      liveCap.textContent = 'Live check unavailable — snapshot of ' + fmt(SNAPSHOT.date);
     });
   }
 })();
