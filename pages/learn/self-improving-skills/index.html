@@ -11,6 +11,12 @@
 <meta property="og:description" content="AI skills in a public repo, notes in a private one, a scheduled agent that opens pull requests — and an experiment that shows which instruction mattered.">
 <meta property="og:url" content="https://alexratman.com/learn/self-improving-skills/">
 <meta property="og:site_name" content="Alex Ratman">
+<meta property="og:image" content="https://alexratman.com/assets/og/self-improving-skills.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Skills That Get Better From Being Used — a self-improving loop for AI skills">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alexratman.com/assets/og/self-improving-skills.png">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/fonts.css">
@@ -28,12 +34,12 @@
 </svg>
 
 <div class="progress" aria-hidden="true"><div class="progress__bar" id="progress"></div></div>
-<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 8</span><span id="stage-name">Hello</span></div>
+<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 7</span><span id="stage-name">Hello</span></div>
 
 <header class="site-nav">
   <a class="site-nav__brand" href="/">Alex Ratman</a>
   <nav class="site-nav__links" aria-label="Site">
-    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="/learn/" class="is-active">Learn</a>
     <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
   </nav>
 </header>
@@ -168,7 +174,7 @@ scripts/build_skills.py
       <div class="loop__detail" id="loop-detail"></div>
     </div>
     <p>Two details in that loop are more interesting than they look.</p>
-    <p><strong>Step 3 is deliberately trivial.</strong> The capture skill is 36 lines. It holds none of the rules for writing a note — it points at the file in the private repo where the rules live. The same pattern runs through the whole system:</p>
+    <p><strong>Capture is deliberately trivial.</strong> The capture skill is 36 lines. It holds none of the rules for writing a note — it points at the file in the private repo where the rules live. The same pattern runs through the whole system:</p>
     <div class="card card--stack">
       <div class="label label--sm label--muted">The thin-pointer pattern</div>
       <p class="small">Each rule lives in exactly one place: where it is enforced. Every layer above it points rather than copies.</p>
@@ -179,7 +185,7 @@ scripts/build_skills.py
       </div>
       <p class="small">Copy a rule into a second place and there are two places to update. One of them will be wrong within a month, and it will be the one you forget.</p>
     </div>
-    <p><strong>Step 4 keeps a watermark.</strong> One small state file records the last note it processed, so a run that wakes to nothing new does nothing, and a run that crashes halfway does not reprocess. It is the smallest possible piece of state, and it is what makes the schedule safe to run unattended.</p>
+    <p><strong>Summarise keeps a watermark.</strong> One small state file records the last note it processed, so a run that wakes to nothing new does nothing, and a run that crashes halfway does not reprocess. It is the smallest possible piece of state, and it is what makes the schedule safe to run unattended.</p>
     <p class="caption">One footnote. The summariser's instructions live where the automation can edit them, so in principle it could rewrite its own rules. The invariants are therefore repeated in the scheduled task's own prompt, which it cannot reach. A self-improving system needs at least one thing about itself it cannot improve.</p>
     <div class="takeaway"><div class="label">Takeaway</div><p>Write each rule where it is enforced and point at it from everywhere else.</p></div>
   </div>
@@ -235,7 +241,7 @@ scripts/build_skills.py
       <p>Not from designing the system — from watching it work.</p>
     </div>
     <div class="grid grid--cards">
-      <div class="card card--stack lesson"><div class="label label--sm">Lesson 1</div><h3>The loop finds real bugs, not just wording</h3><p class="small">The third run discovered that the interview-prep record was saving to a storage that does not exist, so nothing survived a reload. It fixed it, then verified the fix in a browser it drove itself — including a browser that refuses storage altogether.</p></div>
+      <div class="card card--stack lesson"><div class="label label--sm">Lesson 1</div><h3>The loop finds real bugs, not just wording</h3><p class="small">The third run discovered that the interview-prep record was saving to a storage that does not exist, so nothing survived a reload. It proposed a fix and verified it in a browser it drove itself — including a browser that refuses storage altogether. The pull request is waiting for a person, as every one does.</p></div>
       <div class="card card--stack lesson"><div class="label label--sm">Lesson 2</div><h3>A source of truth can be stale</h3><p class="small">Dates had drifted, so a rule said: take the date from GitHub. It read the <em>last commit</em> of a quiet repo — and stamped two pull requests ten days late. Take the date from the event itself, not from the last thing that happened nearby.</p></div>
       <div class="card card--stack lesson"><div class="label label--sm">Lesson 3</div><h3>A person stays in the loop on purpose</h3><p class="small">Every pull request is read before it merges. That review is the boundary between private notes and public skills — and it is where the ratings in step 5 come from. A system that improves itself still needs someone to say what <em>better</em> means.</p></div>
     </div>
@@ -249,16 +255,16 @@ scripts/build_skills.py
     <div class="wrap stack" style="margin-inline:0">
       <div class="label">Step 7 · Where it stands</div>
       <h2>The numbers, from the repo itself</h2>
-      <p>The public repository's pull-request list is open, so these figures can check themselves: a snapshot from 11 September 2026, refreshed from the live API whenever GitHub answers.</p>
+      <p>The public repository's pull-request list is open, so these figures can check themselves: a snapshot from <span id="snapshot-date">11 September 2026</span>, refreshed from the live API whenever GitHub answers. Only the loop's own pull requests are counted.</p>
     </div>
     <div class="card" style="padding:0;overflow:hidden">
       <div class="stats">
         <div class="stat"><div class="stat__value stat__value--red" id="st-runs">3</div><div class="stat__label">automated runs</div></div>
-        <div class="stat"><div class="stat__value" id="st-prs">21</div><div class="stat__label">pull requests</div></div>
-        <div class="stat"><div class="stat__value" id="st-merged">14</div><div class="stat__label">merged</div></div>
-        <div class="stat"><div class="stat__value" id="st-open">2</div><div class="stat__label">open right now</div></div>
+        <div class="stat"><div class="stat__value" id="st-prs">8</div><div class="stat__label">pull requests opened by the loop</div></div>
+        <div class="stat"><div class="stat__value" id="st-merged">4</div><div class="stat__label">merged</div></div>
+        <div class="stat"><div class="stat__value" id="st-open">2</div><div class="stat__label">waiting for review</div></div>
       </div>
-      <div class="state__foot"><span id="state-release">Release: <code>latest</code> · 4 packaged skills · 25 Aug 2026</span><span class="caption" id="state-live">Snapshot of 11 Sep 2026</span></div>
+      <div class="state__foot"><span id="state-release">Release: <code>latest</code> · 4 packaged skills · 25 Aug 2026</span><span class="caption" id="state-live">Snapshot</span></div>
     </div>
     <div class="wrap stack" style="margin-inline:0">
       <h3 style="margin-top:12px">What to take from it</h3>
