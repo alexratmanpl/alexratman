@@ -19,10 +19,12 @@ pages/
     index.html              list of explainers
     from-thought-to-answer/
       index.html            the explainer (12 sections)
+      page.css              its page-specific styles
       app.js                its widgets — plain JS, no dependencies
+      sources/index.html    the 38 references, grouped by step
 ```
 
-Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block.
+Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page.
 Nothing is fetched from a third-party host at runtime.
 
 ## Design system (v1)
@@ -40,7 +42,7 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
 
 1. Create `pages/learn/<slug>/index.html` from the existing one: keep the `<head>` links, the nav, the progress bar + stage pill, and the footer.
 2. Mark each section with `data-stage="N"` and `data-stage-name="…"`; add `class="reveal"` to the section's inner wrapper for the scroll-in effect.
-3. Put widget logic in `app.js` next to it.
+3. Put widget logic in `app.js` and page styles in `page.css` next to it.
 4. Add a card for it on `pages/learn/index.html` and `pages/index.html`.
 
 ## Conventions
