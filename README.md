@@ -1,52 +1,36 @@
-# alexratman.com
+# Alex Ratman
 
-Personal site of Alex Ratman — interactive explainers on how AI works.
-Static HTML served by a Cloudflare Worker (Workers Static Assets); auto-deploys from `master` via Workers Builds.
+**[alexratman.com](https://alexratman.com)** — interactive explainers on how AI works, shown rather than told.
 
-## Layout
+## 👋 Hi
 
-```
-wrangler.jsonc              Worker config: name "alexratman", assets from ./pages, 404-page handling
-pages/
-  index.html                landing page
-  404.html                  served for unknown paths
-  favicon.svg
-  assets/
-    site.css                design system: tokens, base styles, shared components
-    fonts.css               @font-face rules for the self-hosted fonts
-    fonts/                  Bricolage Grotesque + Instrument Sans .woff2 subsets (OFL) + licence
-  learn/
-    index.html              list of explainers
-    from-thought-to-answer/
-      index.html            the explainer (12 sections)
-      page.css              its page-specific styles
-      app.js                its widgets — plain JS, no dependencies
-      sources/index.html    the 38 references, grouped by step
-```
+I'm Alex, a senior fullstack engineer in Prague. For 11+ years I've worked across product, backend and infrastructure, and the same thread runs through all of it: I like owning things end-to-end — from the data model and the architecture to what actually runs in production — and I care most about building systems that teams can trust.
 
-Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page.
-Nothing is fetched from a third-party host at runtime.
+The last few years were about exactly that. At Mews, a hospitality platform used by 15,000 hotels, I built shared services used by every engineering team and started the company's frontend observability practice — a platform, an SDK adopted by 10+ teams, and a recurring programme to make observability a mindset rather than a toolset. In parallel I was the sole engineer at Macromo, a health-tech startup, owning the whole stack: a data model shaped by medical-privacy constraints, the Kubernetes cluster underneath it and the Cloudflare edge in front of it. Before that, Avast, where the web products I worked on served 40M+ people a month.
 
-## Design system (v1)
+Lately my work is about AI-powered services and the observability that keeps them honest — which is also why this site exists.
 
-Black, white, greys, and one red. See `assets/site.css` for the tokens.
+I came to engineering sideways. Before writing code for a living I audited EU-funded projects, reporting to OLAF and the European Commission. More than a decade on, I still think like an auditor: I want to know how something actually works before I trust it, and I want to be able to show it.
 
-- Red `#D7202E` **signals** — step labels, the reading-progress bar, hero rules, selected states, link hover. It never fills a button.
-- Ink `#131416` **acts** — buttons, links (underlined), controls. Hover/pressed: `#3C3F44`. On dark surfaces the button is inverted (white).
-- Red as text on dark surfaces uses `#F5474F` for contrast.
-- Greys carry structure; no tints or pastels. Cards use hairline borders, not shadows.
-- Type: Bricolage Grotesque for headings, Instrument Sans for everything else.
-- Radii: 6px controls and chips, 10px cards, pills. Reading measure 680px, card grids 900px, landing 1100px.
+## 🧭 What's on the site
 
-## Adding an explainer
+A small collection of scroll-through explainers. Each one shows the mechanism, not the vocabulary, with things to play with along the way — five minutes, no prior knowledge needed.
 
-1. Create `pages/learn/<slug>/index.html` from the existing one: keep the `<head>` links, the nav, the progress bar + stage pill, and the footer.
-2. Mark each section with `data-stage="N"` and `data-stage-name="…"`; add `class="reveal"` to the section's inner wrapper for the scroll-in effect.
-3. Put widget logic in `app.js` and page styles in `page.css` next to it.
-4. Add a card for it on `pages/learn/index.html` and `pages/index.html`.
+- **[From Thought to Answer](https://alexratman.com/learn/from-thought-to-answer/)** — what happens in the seconds between your question and the AI's answer: tokens, the meaning map, attention, the weighted dice, the loop — and what that means for how you should prompt and verify.
+- More on the way.
 
-## Conventions
+## 🛠️ What I work with
 
-- Icons are inline SVG (stroke, 24px grid) — no emoji.
-- Buttons are real `<button>` elements; every control is at least 44px tall.
-- Reduced-motion preferences are respected (`prefers-reduced-motion`).
+TypeScript and Node.js, Python, React · PostgreSQL and Redis · Azure, Kubernetes and Cloudflare · observability, end-to-end product ownership, AI-powered services, data privacy.
+
+## 🌍 Languages
+
+Polish (native), English and Czech (professional), a little German and Russian.
+
+## 📬 Say hi
+
+[LinkedIn](https://www.linkedin.com/in/alexratman) · [GitHub](https://github.com/alexratmanpl)
+
+---
+
+<sub>How the site is built lives in [DEVELOPING.md](DEVELOPING.md).</sub>
