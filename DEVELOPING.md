@@ -29,6 +29,10 @@ pages/
       index.html            the page (8 stages)
       page.css              its page-specific styles
       app.js                its widgets + the live "where it stands" numbers
+    price-of-a-conversation/
+      index.html            the page (6 steps): token prices, one message taken apart, the re-read, a comparison, eight habits
+      page.css              its page-specific styles
+      app.js                its four widgets — prices and sizes are constants at the top of the file
 ```
 
 Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page.
@@ -50,22 +54,25 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
 - Type: Bricolage Grotesque for headings, Instrument Sans for everything else.
 - Radii: 6px controls and chips, 10px cards, pills.
 - **One column per section: 740px** (`--measure`). Text, cards, tables and diagrams all fill it — nothing in a section is narrower or wider than the paragraphs, and every section shares the same left edge. A widget that does not fit in 740px gets a narrower layout, not a wider column. The landing page uses its own 1100px measure. `--measure-wide` still exists for older markup but equals `--measure` on purpose.
-- Cards on the landing and `/learn` pages open with a `.steps` strip: one 4px segment per step, fixed height, never wraps.
+- Cards on the landing and `/learn` pages open with a `.steps` strip: one 4px segment per step, fixed height, never wraps. Their footer is pinned to the bottom (`margin-top: auto`) so cards in a row end level.
+- Every piece ends with a **"Keep reading" row** (`.related` + `.related__grid` of `.related-card`s in `site.css`): three compact cards — the other pieces plus a dashed "All explainers" card to `/learn/`. Three across on desktop, one column under 720px; `.related__grid--4` exists for four. This row replaces cross-page CTA buttons: when a new piece is added, update the row on every page.
 
 ## Adding a piece
 
 1. Create `pages/learn/<slug>/index.html` from an existing one: keep the `<head>` links (including the `og:image` block — make a 1200×630 card for `assets/og/`), the nav, the progress bar + stage pill, and the footer.
 2. Mark each section with `data-stage="N"` and `data-stage-name="…"` (the hero is stage 1; the pill shows `N−1 / total−1` so it matches the "Step N" labels); add `class="reveal"` to the section's inner wrapper for the scroll-in effect.
 3. Put widget logic in `app.js` and page styles in `page.css` next to it.
-4. Add a card for it on `pages/learn/index.html` and `pages/index.html` (with a `.steps` strip of one segment per step), and a `<url>` to `sitemap.xml`.
+4. Add a card for it on `pages/learn/index.html` and `pages/index.html` (with a `.steps` strip of one segment per step), update the "N so far" count on the landing page, and add a `<url>` to `sitemap.xml`.
+5. Add it to the "Keep reading" row of every other piece, and give the new piece its own row.
+6. Numbers and prices on a page carry a date and a source; anything measured rather than looked up is labelled an estimate.
 
 ## Conventions
 
-- UK English throughout (summarise, neighbour, flavour, maths). Dates as `11 September 2026`.
+- UK English throughout (summarise, neighbour, flavour, maths). Dates as `11 September 2026`. Quoted product strings keep their own spelling.
 - Icons are inline SVG (stroke, 24px grid) — no emoji.
 - Buttons are real `<button>` elements; every control is at least 44px tall. Text inputs carry a `maxlength`.
 - The nav marks the current section with `class="is-active"`; `aria-current="page"` only on the page the link actually points to.
 - Reduced-motion preferences are respected (`prefers-reduced-motion`): no auto-advancing loops, no endless replays, no scroll-in animation.
 - Hide SVG groups with a class, not the `hidden` attribute (browsers ignore it on SVG elements).
 - Anything inserted from outside the page (an API response, a URL parameter) goes in as text, never as HTML.
-- Nothing about private repositories appears on the site — no names, no file layouts. Describe, don't show.
+- Nothing about private repositories or private working setups appears on the site — no names, no file layouts, no mechanisms. Describe, don't show.

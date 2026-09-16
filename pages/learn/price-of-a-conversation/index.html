@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Price of a Conversation — Alex Ratman</title>
+<meta name="description" content="Why long AI chats cost more than short ones, what the model actually reads when you send a message, and eight free habits that keep the meter slow — with numbers from my own usage.">
+<link rel="canonical" href="https://alexratman.com/learn/price-of-a-conversation/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Price of a Conversation">
+<meta property="og:description" content="Why long AI chats cost more than short ones, and eight free habits that keep the meter slow — a 5-minute interactive scroll.">
+<meta property="og:url" content="https://alexratman.com/learn/price-of-a-conversation/">
+<meta property="og:site_name" content="Alex Ratman">
+<meta property="og:image" content="https://alexratman.com/assets/og/price-of-a-conversation.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Price of a Conversation — why long AI chats cost more, and how to keep the meter slow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alexratman.com/assets/og/price-of-a-conversation.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progress"></div></div>
+<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 7</span><span id="stage-name">Hello</span></div>
+
+<header class="site-nav">
+  <a class="site-nav__brand" href="/">Alex Ratman</a>
+  <nav class="site-nav__links" aria-label="Site">
+    <a href="/learn/" class="is-active">Learn</a>
+    <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- 1 · HERO -->
+<section class="hero" id="s1" data-stage="1" data-stage-name="Hello">
+  <div class="hero__inner">
+    <div class="rule" aria-hidden="true"></div>
+    <div class="label">A 5-minute scroll about money</div>
+    <h1>The price of<br>a conversation</h1>
+    <p class="lead hero__lead">Every message you send to an AI costs something — a slice of your usage limit on a subscription, real money on a bill. Most of that cost comes from one mechanism that is rarely explained. It works the same in a chat app and in a coding assistant. Here it is, with numbers from my own usage.</p>
+    <div class="journey" aria-hidden="true">
+      <div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>token</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>message</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>re-read</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>numbers</div></div>
+      <div class="journey__link"></div>
+      <div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>habits</div></div>
+    </div>
+    <div class="hero__cue"><span>Scroll</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chevron-down"/></svg></div>
+  </div>
+</section>
+
+<!-- 2 · TOKENS AND PRICES -->
+<section class="section section--alt" id="s2" data-stage="2" data-stage-name="Tokens">
+  <div class="wrap stack reveal">
+    <div class="label">Step 1 · The unit</div>
+    <h2>A token has a price. Two prices, in fact.</h2>
+    <p>AI models do not read words. They read <strong>tokens</strong> — chunks of text, about three-quarters of a word each in English. A page of dense text is roughly 650 tokens; a 30-page report is about 20,000. (<a href="/learn/from-thought-to-answer/">From Thought to Answer</a> shows how the chopping works.)</p>
+    <p>Providers charge per million tokens, at two rates. One rate is for what the model <strong>reads</strong>: your messages, your documents, the conversation so far. A higher rate is for what it <strong>writes</strong>. On Anthropic's public price list, writing costs five times more than reading, for every model.</p>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="prices">
+        <thead><tr><th>Model</th><th>Reads</th><th>Writes</th></tr></thead>
+        <tbody>
+          <tr><td>Claude Haiku 4.5</td><td>$1</td><td>$5</td></tr>
+          <tr><td>Claude Sonnet 5</td><td>$2</td><td>$10</td></tr>
+          <tr><td>Claude Opus 5</td><td>$5</td><td>$25</td></tr>
+          <tr><td>Claude Fable 5.1</td><td>$10</td><td>$50</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Dollars per million tokens, list prices on 16 September 2026. Other providers use the same structure: a reading rate, a writing rate, and a discount for text the model has just read. Ten times between the cheapest and the dearest model — that matters later.</p>
+    <p>On a subscription — Claude, ChatGPT, or a coding assistant on a plan — you never see a bill. The meter still runs the same way. Anthropic says the limit depends on how long your conversations are, which model you use and how much thinking you ask for. So whatever makes a bill bigger also makes the limit arrive sooner.</p>
+    <div class="takeaway"><div class="label">Takeaway</div><p>Reading is cheap per token and writing costs five times more. The catch is that most of what gets read, you never typed.</p></div>
+  </div>
+</section>
+
+<!-- 3 · ONE MESSAGE, TAKEN APART -->
+<section class="section" id="s3" data-stage="3" data-stage-name="One message">
+  <div class="wrap stack reveal">
+    <div class="label">Step 2 · One message, taken apart</div>
+    <h2>Your message is the smallest thing the model reads</h2>
+    <p>Send a one-line question and the model reads a lot more than one line. The app adds its own instructions first — its rules and personality. Every tool or connector you have switched on adds to what it reads. Any document you attached comes along. And so does the whole conversation so far. Switch things on and watch what the message actually costs.</p>
+    <div class="card">
+      <div class="row" style="gap:10px" id="pa-toggles">
+        <button class="toggle" type="button" data-part="tools" aria-pressed="false">Connectors or tools on</button>
+        <button class="toggle" type="button" data-part="doc" aria-pressed="false">A 30-page document attached</button>
+        <button class="toggle" type="button" data-part="long" aria-pressed="false">40 messages in</button>
+        <button class="toggle" type="button" data-part="think" aria-pressed="false">Extended thinking on</button>
+      </div>
+      <div class="parts" id="parts"></div>
+      <div class="parts__total">
+        <div><span>Reads </span><strong id="parts-read">3,100</strong><span> tokens · writes </span><strong id="parts-written">400</strong></div>
+        <div><span class="parts__big" id="parts-price">$0.010</span> <span class="caption" id="parts-multiple">the plain message</span></div>
+      </div>
+      <p class="caption" id="parts-caption" style="margin-top:12px"></p>
+    </div>
+    <p class="caption">Prices at Claude Sonnet 5 list rates. The sizes are typical, not measured: 3,000 tokens of app instructions, 12,000 for a few connectors, 500 per exchange, 20,000 for a 30-page document, 8,000 for a round of extended thinking. In the Claude app, connectors are the services you link under Customize › Connectors (Google Drive, Slack, and so on); extended thinking is the Thinking setting under the model name, which lets the model reason at length before it answers. Coding assistants have the same two things under the names "tools" and "thinking".</p>
+    <div class="takeaway"><div class="label">Takeaway</div><p>Your hundred tokens are a rounding error. The cost is in the luggage they travel with.</p></div>
+  </div>
+</section>
+
+<!-- 4 · THE RE-READ -->
+<section class="section section--alt" id="s4" data-stage="4" data-stage-name="The re-read">
+  <div class="wrap stack reveal">
+    <div class="label">Step 3 · The re-read</div>
+    <h2>The model has no memory. The app sends everything again.</h2>
+    <p>Between two messages the model remembers nothing. To make a conversation feel continuous, the app sends the <em>entire</em> conversation with every new message. Your first question, its first answer, the document from message three: all of it, every time. So by message 40 the model is reading 39 exchanges of history on top of everything message 1 read — about seven times more, in the example below. The total cost of a chat grows much faster than the number of messages.</p>
+    <p>Drag the slider. The black line is one long conversation; the red line starts a fresh conversation every ten messages.</p>
+    <div class="card">
+      <div class="meter">
+        <div class="meter__controls">
+          <label class="meter__slider" for="turns"><span>Messages</span><input class="range" type="range" id="turns" min="4" max="60" step="1" value="40" aria-label="Number of messages in the conversation"><strong id="turns-label">40 messages</strong></label>
+          <button class="toggle" type="button" id="mb-doc" aria-pressed="false">A 30-page document at the start</button>
+        </div>
+        <div class="meter__chart">
+          <svg id="meter-svg" viewBox="0 0 640 224" role="img" aria-label="Tokens read per message: one long conversation rises steadily; a conversation restarted every ten messages stays low"></svg>
+          <div class="meter__tip" id="meter-tip" aria-hidden="true"></div>
+        </div>
+        <div class="meter__legend"><span><i style="background:#131416"></i>one long conversation</span><span><i style="background:#D7202E"></i>a fresh conversation every 10 messages</span></div>
+        <div class="totals">
+          <div class="total"><div class="total__name"><i style="background:#131416"></i>One long conversation</div><div class="total__value"><span id="tot-long-tokens">0</span> <small>tokens read</small></div><div class="total__sub" id="tot-long-usd"></div></div>
+          <div class="total"><div class="total__name"><i style="background:#D7202E"></i>Fresh every 10</div><div class="total__value"><span id="tot-fresh-tokens">0</span> <small>tokens read</small></div><div class="total__sub" id="tot-fresh-usd"></div><div class="total__delta" id="tot-delta"></div></div>
+        </div>
+        <p class="caption" id="meter-caption"></p>
+      </div>
+    </div>
+    <p>Providers soften this with a <strong>cache</strong>. If the beginning of the conversation has not changed since the last message, the model re-reads it at a discount: a tenth of the reading rate for most models on Anthropic's list, a fortieth for Claude Fable 5.1. The discount only lasts for minutes to an hour after your last message. Come back to a long chat the next morning and the whole history is read at full price once more.</p>
+    <p>Length is not only expensive. As a conversation grows, the model gets worse at finding the one thing in it that matters. Researchers call this <strong>context rot</strong>. So the long chat costs more and answers less well. Two reasons to do the same thing.</p>
+    <div class="takeaway"><div class="label">Takeaway</div><p>Cost is roughly the size of the conversation times the number of messages. Shorten either and the bill drops. Shorten both and it drops a lot.</p></div>
+  </div>
+</section>
+
+<!-- 5 · THE COMPARISON -->
+<section class="section" id="s5" data-stage="5" data-stage-name="The comparison">
+  <div class="wrap stack reveal">
+    <div class="label">Step 4 · The comparison</div>
+    <h2>Same work, two ways of running it</h2>
+    <p>I measured the same kind of work with a coding assistant two ways, two days of each, from my own transcripts. One way: long sessions that run all day, one topic after another. The other: one conversation per task, a ceiling that ends a conversation at a fixed size, and a written handoff note between conversations. Also cheaper models for routine steps, and only the tools the task needs. The same habits work in an ordinary chat window; the measurements just happen to come from code.</p>
+    <div class="card">
+      <div class="cmp" id="exp"></div>
+      <div class="cmp__legend" style="margin-top:16px"><span><i style="background:#8A8F96"></i>long · one session all day</span><span><i style="background:#131416"></i>short · one conversation per task</span></div>
+    </div>
+    <p class="caption">Estimates from my own transcripts, September 2026, with cached reads counted at a tenth. The ratios are reliable; the absolute figures are not an invoice.</p>
+    <p>The daily total is the headline, but the honest number is the first row. The day total mixes cheaper messages with far fewer of them; the per-message figure is the efficiency. Per message, the short way is about 60% cheaper for the same kind of work. One more difference: in the short way, cheaper helper models did about half the work, against a quarter in the long one.</p>
+    <div class="takeaway"><div class="label">Takeaway</div><p>Per message, the short way is 60% cheaper. Same work, same assistant — only what it was asked to read changed.</p></div>
+  </div>
+</section>
+
+<!-- 6 · HABITS -->
+<section class="section section--alt" id="s6" data-stage="6" data-stage-name="Habits">
+  <div class="wrap stack reveal">
+    <div class="label">Step 5 · Eight habits, all free</div>
+    <h2>How to keep the meter slow</h2>
+    <p>Each of these attacks one of the costs above. None of them needs a setting you cannot reach from an ordinary chat window. Each card says where to find it in the Claude app, and what the same thing is called in a coding assistant.</p>
+    <div class="grid habits">
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the re-read</b></div><h3>One conversation per task</h3><p class="small">Start a new chat when the topic changes. Old history costs on every message and helps with none of them.</p><p class="habit__where"><b>Claude app:</b> the New chat button. <b>Coding assistant:</b> clear the session between unrelated jobs.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the re-read</b></div><h3>Bundle small questions</h3><p class="small">Three questions in one message means the history is read once, not three times. If you already know what you want to ask, ask it in one go.</p><p class="habit__where"><b>Claude app:</b> a numbered list in one message. <b>Coding assistant:</b> one prompt with the whole task, not a drip of follow-ups.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the re-read</b></div><h3>Set a ceiling</h3><p class="small">Decide a length at which a conversation ends, and end it. Past that point every message is dearer and the answers are worse.</p><p class="habit__where"><b>Claude app:</b> when Claude starts "organizing its thoughts" in a long chat, it is summarising the history. That is the sign. <b>Coding assistant:</b> a fixed size, checked automatically, so the session ends before it gets expensive.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the re-read</b></div><h3>Hand over a note, not the transcript</h3><p class="small">When you start fresh, give the new conversation a short note: goal, decisions, done, next. Not the old transcript. The toggle below shows the difference.</p><p class="habit__where"><b>Claude app:</b> ask the old chat to "write a handoff note for a new chat", copy it, paste it first. <b>Coding assistant:</b> the same note, saved as a file the next session reads.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the luggage</b></div><h3>Paste the paragraph, not the document</h3><p class="small">Attach what the question needs. A 30-page report attached early is re-read with every message after it.</p><p class="habit__where"><b>Claude app:</b> put reference documents in a Project, so they are stored once instead of re-attached. <b>Coding assistant:</b> read the lines you need, never the whole file.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the rate</b></div><h3>Match the model to the job</h3><p class="small">Routine questions on the cheaper model, judgement calls on the expensive one. The price list above spans ten times.</p><p class="habit__where"><b>Claude app:</b> the model picker at the bottom of the chat. <b>Coding assistant:</b> let helper tasks run on a cheaper model.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>writing</b></div><h3>Ask for the size you need</h3><p class="small">Writing costs five times more than reading, and thinking is writing. Say "in three sentences" when three will do.</p><p class="habit__where"><b>Claude app:</b> the Thinking toggle under the model name. On Fable 5.1 and Opus 5 it cannot be switched off, so lower the Effort level instead. <b>Coding assistant:</b> the same setting, usually called thinking or effort.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the luggage</b></div><h3>Disconnect what you don't use</h3><p class="small">Every connector you switch on adds to what the model reads with every message, used or not. I found one I had not used in weeks.</p><p class="habit__where"><b>Claude app:</b> switch connectors on per chat, when you need them, rather than leaving them all on. <b>Coding assistant:</b> the same, for tools and plug-ins.</p></div>
+    </div>
+    <div class="card card--stack">
+      <div class="label">Habit 4 in practice</div>
+      <div class="row" style="gap:10px">
+        <button class="toggle is-on" type="button" id="ho-transcript" aria-pressed="true">The whole transcript</button>
+        <button class="toggle" type="button" id="ho-note" aria-pressed="false">A handoff note</button>
+      </div>
+      <div class="handoff">
+        <div class="handoff__head" id="handoff-head"></div>
+        <div class="handoff__body" id="handoff-body"></div>
+        <div class="handoff__foot" id="handoff-foot"></div>
+      </div>
+      <p class="caption" style="margin-top:12px">Both sides are invented for this page. The shape of the note is the one I use: five headings, each a sentence or two, written by the conversation that is ending for the one that comes next.</p>
+    </div>
+    <div class="takeaway"><div class="label">Takeaway</div><p>Short conversations, small luggage, the right rate. None of it costs anything. My 60% came from the first group: a smaller conversation means less to re-read.</p></div>
+  </div>
+</section>
+
+<!-- 7 · RECAP -->
+<section class="section closing" id="s7" data-stage="7" data-stage-name="Recap" style="padding-bottom:140px">
+  <div class="wrap stack reveal">
+    <div class="label">Step 6 · What to take from it</div>
+    <h2>The whole page in four lines</h2>
+    <ol class="claims">
+      <li>The model reads the whole conversation with every message. Cost is size times messages.</li>
+      <li>Your message is the smallest part of what it reads; instructions, tools, documents and history are the rest.</li>
+      <li>Writing costs five times more than reading, and extended thinking is writing.</li>
+      <li>Short conversations with a handoff note between them: about 60% cheaper per message, in my own measurements.</li>
+    </ol>
+    <div class="related" style="margin-top:8px">
+      <div class="label">Keep reading</div>
+      <div class="related__grid">
+        <a class="related-card" href="/learn/from-thought-to-answer/">
+          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+          <div class="related-card__title">From Thought to Answer</div>
+          <div class="related-card__desc">How the model reads at all: tokens, attention, and where an answer comes from.</div>
+          <div class="related-card__meta"><span>12 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+        </a>
+        <a class="related-card" href="/learn/self-improving-skills/">
+          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+          <div class="related-card__title">Skills That Get Better From Being Used</div>
+          <div class="related-card__desc">A system built on short conversations: notes in, pull requests out, and the rule that mattered.</div>
+          <div class="related-card__meta"><span>8 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+        </a>
+        <a class="related-card related-card--index" href="/learn/">
+          <div class="related-card__title">All explainers</div>
+          <div class="related-card__desc">Three so far. More on the way.</div>
+          <div class="related-card__meta"><span>Learn</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+        </a>
+      </div>
+    </div>
+    <details class="sources">
+      <summary>Sources (8)</summary>
+      <ul>
+        <li>Anthropic — <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">Pricing</a> <span>(Claude Platform Docs; list prices and the cache multipliers — 0.1× for most models, 0.025× for Fable 5.1 — read 16 September 2026)</span></li>
+        <li>Anthropic — <a href="https://code.claude.com/docs/en/costs" target="_blank" rel="noopener">Manage costs effectively</a> <span>(Claude Code docs — the full conversation is sent with every request; cache lifetime; thinking billed as output; clear between tasks; match the model to the job)</span></li>
+        <li>Anthropic — <a href="https://platform.claude.com/docs/en/build-with-claude/extended-thinking" target="_blank" rel="noopener">Extended thinking</a> <span>(Claude Platform Docs — thinking tokens are billed as output tokens)</span></li>
+        <li>Anthropic — <a href="https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work" target="_blank" rel="noopener">How do usage and length limits work?</a> <span>(Claude Help Center — what the limit depends on; long conversations that trigger summarising use more of it; start a new conversation)</span></li>
+        <li>Anthropic — <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Effective context engineering for AI agents</a> <span>(2025 — the attention budget, compaction, sub-agents with clean context)</span></li>
+        <li>Hong, Troynikov &amp; Huber — <a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener">Context Rot: How Increasing Input Tokens Impacts LLM Performance</a> <span>(Chroma, 2025)</span></li>
+        <li>Liu et al. — <a href="https://aclanthology.org/2024.tacl-1.9/" target="_blank" rel="noopener">Lost in the Middle: How Language Models Use Long Contexts</a> <span>(TACL, 2024)</span></li>
+        <li>Alex Ratman — <span>own transcript measurements, September 2026, two days of each way of working, cached reads counted at a tenth; ratios reliable, absolutes estimated</span></li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div>© 2026 Alex Ratman</div>
+  <div class="site-footer__links"><a href="https://github.com/alexratmanpl" rel="me">GitHub</a><a href="https://github.com/alexratmanpl/alexratman">Source of this site</a></div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
