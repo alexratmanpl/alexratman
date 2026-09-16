@@ -248,6 +248,21 @@ img, svg { max-width: 100%; }
 .steps__seg:nth-child(3n+1) { background: var(--red); }
 .steps__seg:nth-child(3n+2) { background: var(--ink); }
 
+/* related reading — a row of compact cards at the end of every explainer (3–4 across on desktop) */
+.related { display: flex; flex-direction: column; gap: 14px; }
+.related__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.related__grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.related-card { display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1.5px solid var(--line); border-radius: var(--r-card); background: var(--ground); text-decoration: none; color: inherit; transition: border-color 0.15s; }
+.related-card:hover, .related-card:focus-visible { border-color: var(--ink); color: inherit; }
+.related-card .steps { max-width: 110px; }
+.related-card__title { font-family: var(--font-display); font-size: 17px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); text-wrap: balance; }
+.related-card__desc { font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+.related-card__meta { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.related-card__meta svg { flex: none; color: var(--ink); }
+.related-card:hover .related-card__meta svg { color: var(--red); }
+.related-card--index { border-style: dashed; }
+@media (max-width: 720px) { .related__grid, .related__grid--4 { grid-template-columns: minmax(0, 1fr); } }
+
 /* ---------- Forms ---------- */
 .input {
   width: 100%; padding: 12px 14px; border-radius: var(--r-control);

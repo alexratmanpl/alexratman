@@ -27,7 +27,7 @@
   .learn-card:hover { border-color: var(--ink); color: inherit; }
   .learn-card h3 { font-size: 28px; line-height: 1.15; letter-spacing: -0.015em; }
   .learn-card p { font-size: 16px; line-height: 1.6; color: var(--muted); }
-  .learn-card__foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
+  .learn-card__foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
   .learn-card__meta { font-size: 13px; font-weight: 600; color: var(--muted); }
   .learn-card__cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .learn-card:hover .learn-card__cta { color: var(--red); }
@@ -77,11 +77,15 @@
             <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
-        <div class="card card--placeholder learn-card learn-card--soon" aria-label="Next piece: coming soon">
-          <div class="label label--muted">Next</div>
-          <h3>Coming soon</h3>
-          <p>The next piece is still being chosen. This slot will fill in when it's ready.</p>
-        </div>
+        <a class="card learn-card" href="/learn/price-of-a-conversation/">
+          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+          <h3>The Price of a Conversation</h3>
+          <p>Why long AI chats cost more than short ones, what the model actually reads when you send a message, and eight free habits that keep the meter slow — with numbers from my own usage.</p>
+          <div class="learn-card__foot">
+            <span class="learn-card__meta">6 steps · 5-minute scroll · 4 things to play with</span>
+            <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
