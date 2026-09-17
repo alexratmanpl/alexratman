@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="page.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
   <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
@@ -31,7 +32,7 @@
 </svg>
 
 <div class="progress" aria-hidden="true"><div class="progress__bar" id="progress"></div></div>
-<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 7</span><span id="stage-name">Hello</span></div>
+<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 6</span><span id="stage-name">Hello</span></div>
 
 <header class="site-nav">
   <a class="site-nav__brand" href="/">Alex Ratman</a>
@@ -41,7 +42,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main">
 
 <!-- 1 · HERO -->
 <section class="hero" id="s1" data-stage="1" data-stage-name="Hello">
@@ -61,7 +62,7 @@
       <div class="journey__link"></div>
       <div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>habits</div></div>
     </div>
-    <div class="hero__cue"><span>Scroll</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chevron-down"/></svg></div>
+    <div class="hero__cue"><span>Scroll</span><svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chevron-down"/></svg></div>
   </div>
 </section>
 
@@ -103,7 +104,7 @@
         <button class="toggle" type="button" data-part="think" aria-pressed="false">Extended thinking on</button>
       </div>
       <div class="parts" id="parts"></div>
-      <div class="parts__total">
+      <div class="parts__total" aria-live="polite">
         <div><span>Reads </span><strong id="parts-read">3,100</strong><span> tokens · writes </span><strong id="parts-written">400</strong></div>
         <div><span class="parts__big" id="parts-price">$0.010</span> <span class="caption" id="parts-multiple">the plain message</span></div>
       </div>
@@ -132,7 +133,7 @@
           <div class="meter__tip" id="meter-tip" aria-hidden="true"></div>
         </div>
         <div class="meter__legend"><span><i style="background:#131416"></i>one long conversation</span><span><i style="background:#D7202E"></i>a fresh conversation every 10 messages</span></div>
-        <div class="totals">
+        <div class="totals" aria-live="polite">
           <div class="total"><div class="total__name"><i style="background:#131416"></i>One long conversation</div><div class="total__value"><span id="tot-long-tokens">0</span> <small>tokens read</small></div><div class="total__sub" id="tot-long-usd"></div></div>
           <div class="total"><div class="total__name"><i style="background:#D7202E"></i>Fresh every 10</div><div class="total__value"><span id="tot-fresh-tokens">0</span> <small>tokens read</small></div><div class="total__sub" id="tot-fresh-usd"></div><div class="total__delta" id="tot-delta"></div></div>
         </div>
@@ -157,7 +158,7 @@
     </div>
     <p class="caption">Estimates from my own transcripts, September 2026, with cached reads counted at a tenth. The ratios are reliable; the absolute figures are not an invoice.</p>
     <p>The daily total is the headline, but the honest number is the first row. The day total mixes cheaper messages with far fewer of them; the per-message figure is the efficiency. Per message, the short way is about 60% cheaper for the same kind of work. One more difference: in the short way, cheaper helper models did about half the work, against a quarter in the long one.</p>
-    <div class="takeaway"><div class="label">Takeaway</div><p>Per message, the short way is 60% cheaper. Same work, same assistant — only what it was asked to read changed.</p></div>
+    <div class="takeaway"><div class="label">Takeaway</div><p>Per message, the short way is about 60% cheaper. Same work, same assistant — only what it was asked to read changed.</p></div>
   </div>
 </section>
 
@@ -174,7 +175,7 @@
       <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the re-read</b></div><h3>Hand over a note, not the transcript</h3><p class="small">When you start fresh, give the new conversation a short note: goal, decisions, done, next. Not the old transcript. The toggle below shows the difference.</p><p class="habit__where"><b>Claude app:</b> ask the old chat to "write a handoff note for a new chat", copy it, paste it first. <b>Coding assistant:</b> the same note, saved as a file the next session reads.</p></div>
       <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the luggage</b></div><h3>Paste the paragraph, not the document</h3><p class="small">Attach what the question needs. A 30-page report attached early is re-read with every message after it.</p><p class="habit__where"><b>Claude app:</b> put reference documents in a Project, so they are stored once instead of re-attached. <b>Coding assistant:</b> read the lines you need, never the whole file.</p></div>
       <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the rate</b></div><h3>Match the model to the job</h3><p class="small">Routine questions on the cheaper model, judgement calls on the expensive one. The price list above spans ten times.</p><p class="habit__where"><b>Claude app:</b> the model picker at the bottom of the chat. <b>Coding assistant:</b> let helper tasks run on a cheaper model.</p></div>
-      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>writing</b></div><h3>Ask for the size you need</h3><p class="small">Writing costs five times more than reading, and thinking is writing. Say "in three sentences" when three will do.</p><p class="habit__where"><b>Claude app:</b> the Thinking toggle under the model name. On Fable 5.1 and Opus 5 it cannot be switched off, so lower the Effort level instead. <b>Coding assistant:</b> the same setting, usually called thinking or effort.</p></div>
+      <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>writing</b></div><h3>Ask for the size you need</h3><p class="small">Writing costs five times more than reading, and thinking is writing. Say "in three sentences" when three will do.</p><p class="habit__where"><b>Claude app:</b> the Thinking toggle under the model name, in the Effort menu. On Fable 5.1 and Opus 5 it cannot be switched off, so lower the Effort level instead. <b>Coding assistant:</b> the same setting, usually called thinking or effort.</p></div>
       <div class="card card--stack habit"><div class="habit__fixes">Fixes <b>the luggage</b></div><h3>Disconnect what you don't use</h3><p class="small">Every connector you switch on adds to what the model reads with every message, used or not. I found one I had not used in weeks.</p><p class="habit__where"><b>Claude app:</b> switch connectors on per chat, when you need them, rather than leaving them all on. <b>Coding assistant:</b> the same, for tools and plug-ins.</p></div>
     </div>
     <div class="card card--stack">
@@ -209,16 +210,16 @@
       <div class="label">Keep reading</div>
       <div class="related__grid">
         <a class="related-card" href="/learn/from-thought-to-answer/">
-          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
           <div class="related-card__title">From Thought to Answer</div>
           <div class="related-card__desc">How the model reads at all: tokens, attention, and where an answer comes from.</div>
-          <div class="related-card__meta"><span>12 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          <div class="related-card__meta"><span>11 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
         </a>
         <a class="related-card" href="/learn/self-improving-skills/">
-          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
           <div class="related-card__title">Skills That Get Better From Being Used</div>
           <div class="related-card__desc">A system built on short conversations: notes in, pull requests out, and the rule that mattered.</div>
-          <div class="related-card__meta"><span>8 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          <div class="related-card__meta"><span>7 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
         </a>
         <a class="related-card related-card--index" href="/learn/">
           <div class="related-card__title">All explainers</div>
@@ -228,12 +229,13 @@
       </div>
     </div>
     <details class="sources">
-      <summary>Sources (8)</summary>
+      <summary>Sources (9)</summary>
       <ul>
         <li>Anthropic — <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">Pricing</a> <span>(Claude Platform Docs; list prices and the cache multipliers — 0.1× for most models, 0.025× for Fable 5.1 — read 16 September 2026)</span></li>
         <li>Anthropic — <a href="https://code.claude.com/docs/en/costs" target="_blank" rel="noopener">Manage costs effectively</a> <span>(Claude Code docs — the full conversation is sent with every request; cache lifetime; thinking billed as output; clear between tasks; match the model to the job)</span></li>
         <li>Anthropic — <a href="https://platform.claude.com/docs/en/build-with-claude/extended-thinking" target="_blank" rel="noopener">Extended thinking</a> <span>(Claude Platform Docs — thinking tokens are billed as output tokens)</span></li>
         <li>Anthropic — <a href="https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work" target="_blank" rel="noopener">How do usage and length limits work?</a> <span>(Claude Help Center — what the limit depends on; long conversations that trigger summarising use more of it; start a new conversation)</span></li>
+        <li>Anthropic — <a href="https://support.claude.com/en/articles/10574485-using-extended-thinking" target="_blank" rel="noopener">Change the model, effort, and thinking settings</a> <span>(Claude Help Center — where the Thinking toggle lives; thinking cannot be turned off on Claude Fable 5.1 or Claude Opus 5)</span></li>
         <li>Anthropic — <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Effective context engineering for AI agents</a> <span>(2025 — the attention budget, compaction, sub-agents with clean context)</span></li>
         <li>Hong, Troynikov &amp; Huber — <a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener">Context Rot: How Increasing Input Tokens Impacts LLM Performance</a> <span>(Chroma, 2025)</span></li>
         <li>Liu et al. — <a href="https://aclanthology.org/2024.tacl-1.9/" target="_blank" rel="noopener">Lost in the Middle: How Language Models Use Long Contexts</a> <span>(TACL, 2024)</span></li>
