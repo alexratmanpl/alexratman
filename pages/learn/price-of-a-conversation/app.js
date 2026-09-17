@@ -121,7 +121,15 @@
   var meterState = { doc: false };
   if (turnsEl) {
     var W = 640, H = 224, PADL = 54, PADR = 22, PADT = 24, PADB = 30, SVGNS = 'http://www.w3.org/2000/svg';
-    function sizeChart() { var narrow = meterSvg.getBoundingClientRect().width < 480; W = narrow ? 360 : 640; H = narrow ? 210 : 224; PADL = narrow ? 42 : 54; PADR = narrow ? 16 : 22; meterSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); }
+    var FS_AXIS = 11, FS_LAB = 11.5, FS_CAP = 10.5;
+    function sizeChart() {
+      var narrow = meterSvg.getBoundingClientRect().width < 480;
+      W = narrow ? 360 : 640; H = narrow ? 210 : 224; PADL = narrow ? 42 : 54; PADR = narrow ? 16 : 22;
+      // the drawing is scaled down to fit, so the text is scaled up to land near 11px on screen
+      var k = narrow ? (W / Math.max(1, meterSvg.getBoundingClientRect().width)) : 1;
+      FS_AXIS = 11 * k; FS_LAB = 11.5 * k; FS_CAP = 10.5 * k;
+      meterSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    }
     function node(tag, attrs, text) { var e = document.createElementNS(SVGNS, tag); Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); }); if (text != null) e.textContent = text; return e; }
     var lastSeries = null;
     function renderMeter() {
@@ -138,10 +146,10 @@
       [0, 0.5, 1].forEach(function (f) {
         var v = f * maxRead / 1.08, yy = y(v);
         meterSvg.appendChild(node('line', { x1: PADL, x2: W - PADR, y1: yy, y2: yy, stroke: '#E3E4E6', 'stroke-width': 1 }));
-        meterSvg.appendChild(node('text', { x: PADL - 8, y: yy + 4, 'text-anchor': 'end', 'font-size': 11, fill: '#8A8F96' }, f === 0 ? '0' : Math.round(v / 1000) + 'k'));
+        meterSvg.appendChild(node('text', { x: PADL - 8, y: yy + 4, 'text-anchor': 'end', 'font-size': FS_AXIS, fill: '#5F6368' }, f === 0 ? '0' : Math.round(v / 1000) + 'k'));
       });
-      [[1, 'start'], [Math.round(n / 2), 'middle'], [n, 'end']].forEach(function (d) { meterSvg.appendChild(node('text', { x: x(d[0]), y: H - 10, 'text-anchor': d[1], 'font-size': 11, fill: '#8A8F96' }, 'message ' + d[0])); });
-      meterSvg.appendChild(node('text', { x: 2, y: 10, 'text-anchor': 'start', 'font-size': 10.5, fill: '#8A8F96' }, 'tokens read per message'));
+      [[1, 'start'], [Math.round(n / 2), 'middle'], [n, 'end']].forEach(function (d) { meterSvg.appendChild(node('text', { x: x(d[0]), y: H - 10, 'text-anchor': d[1], 'font-size': FS_AXIS, fill: '#5F6368' }, 'message ' + d[0])); });
+      meterSvg.appendChild(node('text', { x: 2, y: 10, 'text-anchor': 'start', 'font-size': FS_CAP, fill: '#5F6368' }, 'tokens read per message'));
       var path = function (S, color) {
         var d = S.map(function (p, i) { return (i ? 'L' : 'M') + x(i + 1).toFixed(1) + ' ' + y(p.read).toFixed(1); }).join(' ');
         meterSvg.appendChild(node('path', { d: d, fill: 'none', stroke: color, 'stroke-width': 2.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
@@ -151,7 +159,7 @@
       var aEnd = A[n - 1], bEnd = B[n - 1];
       meterSvg.appendChild(node('circle', { cx: x(n), cy: y(aEnd.read), r: 4, fill: '#131416' }));
       meterSvg.appendChild(node('circle', { cx: x(n), cy: y(bEnd.read), r: 4, fill: '#D7202E' }));
-      var halo = { 'text-anchor': 'end', 'font-size': 11.5, 'font-weight': 700, 'paint-order': 'stroke', stroke: '#fff', 'stroke-width': 4, 'stroke-linejoin': 'round' };
+      var halo = { 'text-anchor': 'end', 'font-size': FS_LAB, 'font-weight': 700, 'paint-order': 'stroke', stroke: '#fff', 'stroke-width': 4, 'stroke-linejoin': 'round' };
       var lab = function (attrs, text) { var a = {}; Object.keys(halo).forEach(function (k) { a[k] = halo[k]; }); Object.keys(attrs).forEach(function (k) { a[k] = attrs[k]; }); meterSvg.appendChild(node('text', a, text)); };
       lab({ x: x(n) - 8, y: y(aEnd.read) - 9, fill: '#131416' }, 'one long chat · ' + fmt(aEnd.read));
       var lowest = 0; for (var k = Math.max(0, n - FRESH_EVERY); k < n; k++) lowest = Math.max(lowest, y(B[k].read));
