@@ -50,12 +50,13 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
 - Red `#D7202E` **signals** — step labels, the reading-progress bar, hero rules, selected states, link hover. It never fills a button.
 - Ink `#131416` **acts** — buttons, links (underlined), controls. Hover/pressed: `#3C3F44`. On dark surfaces the button is inverted (white).
 - Red as text on dark surfaces uses `#F5474F` for contrast.
-- Greys carry structure; no tints or pastels. Cards use hairline borders, not shadows. `--faint` is decorative only — never for small text.
+- Greys carry structure; no tints or pastels. Cards use hairline borders, not shadows. **`--faint` `#8A8F96` is decorative only — bars, swatches, arrowheads, step segments. It never colours text, including SVG labels: on white it reaches only 3.26:1, under the 4.5:1 that small text needs. Use `--muted` `#5F6368` (6.05:1) for any text.**
 - Type: Bricolage Grotesque for headings, Instrument Sans for everything else.
 - Radii: 6px controls and chips, 10px cards, pills.
 - **One column per section: 740px** (`--measure`). Text, cards, tables and diagrams all fill it — nothing in a section is narrower or wider than the paragraphs, and every section shares the same left edge. A widget that does not fit in 740px gets a narrower layout, not a wider column. The landing page uses its own 1100px measure. `--measure-wide` still exists for older markup but equals `--measure` on purpose.
 - Cards on the landing and `/learn` pages open with a `.steps` strip: one 4px segment per step, fixed height, never wraps. Their footer is pinned to the bottom (`margin-top: auto`) so cards in a row end level.
-- Every piece ends with a **"Keep reading" row** (`.related` + `.related__grid` of `.related-card`s in `site.css`): three compact cards — the other pieces plus a dashed "All explainers" card to `/learn/`. Three across on desktop, one column under 720px; `.related__grid--4` exists for four. This row replaces cross-page CTA buttons: when a new piece is added, update the row on every page.
+- **Counting steps: the hero does not count, every section after it does.** So steps = `[data-stage]` sections − 1 = the pill total = the highest "Step N" label = the number on the cards = the number of `.steps` segments. Every section after the hero carries a "Step N · …" label, the closing recap included. The number appears in five places per piece (landing card, `/learn` card, the Keep reading row on each of the other pieces, and the strip beside each) — change them together.
+- Every piece ends with a **"Keep reading" row** (`.related` + `.related__grid` of `.related-card`s in `site.css`): three compact cards — the other pieces plus a dashed "All explainers" card to `/learn/`. Three across on desktop, one column under 720px; `.related__grid--4` exists for four. This row replaces cross-page CTA buttons: when a new piece is added, update the row on every page. It is the last *navigation* block; a sources list or a closing caption may follow it, because those are the piece's own footnotes.
 
 ## Adding a piece
 
@@ -72,7 +73,12 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
 - Icons are inline SVG (stroke, 24px grid) — no emoji.
 - Buttons are real `<button>` elements; every control is at least 44px tall. Text inputs carry a `maxlength`.
 - The nav marks the current section with `class="is-active"`; `aria-current="page"` only on the page the link actually points to.
-- Reduced-motion preferences are respected (`prefers-reduced-motion`): no auto-advancing loops, no endless replays, no scroll-in animation.
+- Reduced-motion preferences are respected (`prefers-reduced-motion`): no auto-advancing loops, no endless replays, no scroll-in animation. Anything that still moves by itself for more than five seconds also carries a pause control.
+- Every page opens with a "Skip to content" link (`.skip-link` in `site.css`) pointing at `<main id="main">`.
+- A control that stays selected says so: `aria-pressed` on the button, kept in step with the class that colours it. The result of using a control sits in an `aria-live="polite"` region, so it is announced.
+- An icon that carries meaning gets a name or a hidden text label beside it (`.visually-hidden`); an icon repeating text next to it gets `aria-hidden="true"`. Nothing is distinguished by colour alone.
+- Controls in the site chrome — nav links, the brand, footer links, disclosure summaries, widget buttons — are at least 44px tall. Links inside a sentence are exempt: WCAG 2.5.8 allows them, and padding them would break the line.
+- A drawing that cannot shrink without its labels dropping under 8px keeps its natural width inside an `overflow-x: auto` box with `tabindex="0"` and a label, rather than scaling down. The meaning map on From Thought to Answer works this way below 720px.
 - Hide SVG groups with a class, not the `hidden` attribute (browsers ignore it on SVG elements).
 - Anything inserted from outside the page (an API response, a URL parameter) goes in as text, never as HTML.
 - Nothing about private repositories or private working setups appears on the site — no names, no file layouts, no mechanisms. Describe, don't show.
