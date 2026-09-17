@@ -92,7 +92,7 @@
     });
     function runRoute(id) {
       routeTimers.forEach(clearTimeout); routeTimers = [];
-      document.querySelectorAll('#route-btns .toggle').forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-route') === id); });
+      document.querySelectorAll('#route-btns .toggle').forEach(function (b) { var on = b.getAttribute('data-route') === id; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
       document.querySelectorAll('.route').forEach(function (row) {
         row.classList.toggle('is-active', row.getAttribute('data-route') === id);
         row.querySelectorAll('.node').forEach(function (n) { n.className = 'node'; });
@@ -146,14 +146,14 @@
     }
     LOOP.forEach(function (s, i) {
       var a = angle(i);
-      var b = el('button', 'loop__step', (i + 1) + ' · ' + s[0]); b.type = 'button';
+      var b = el('button', 'loop__step', (i + 1) + ' · ' + s[0]); b.type = 'button'; b.setAttribute('aria-pressed', 'false');
       b.style.left = (50 + RX * Math.cos(a)) + '%'; b.style.top = (50 + RY * Math.sin(a)) + '%';
       b.addEventListener('click', function () { clearInterval(loopTimer); loopTimer = null; showLoop(i); });
       loopSteps.appendChild(b); loopEls.push(b);
     });
     function showLoop(i) {
       loopIdx = i;
-      loopEls.forEach(function (b, k) { b.classList.toggle('is-active', k === i); });
+      loopEls.forEach(function (b, k) { b.classList.toggle('is-active', k === i); b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
       loopDetail.innerHTML = '';
       loopDetail.appendChild(el('strong', null, (i + 1) + ' · ' + LOOP[i][0]));
       loopDetail.appendChild(document.createTextNode(LOOP[i][1]));
@@ -213,10 +213,10 @@
 
   /* ---------- Step 7 · where it stands: numbers from the snapshot, then the live API ---------- */
   var REPO = 'alexratmanpl/business-agent-skills';
-  var SNAPSHOT = { date: new Date('2026-09-11T00:00:00Z'), firstLoopPr: 13 };   // the loop's first pull request; everything before it was set-up by hand
+  var SNAPSHOT = { date: new Date('2026-09-17T00:00:00Z'), firstLoopPr: 13 };   // the loop's first pull request; everything before it was set-up by hand
   var stPrs = $('st-prs'), stMerged = $('st-merged'), stOpen = $('st-open'), liveCap = $('state-live'), relLine = $('state-release'), snapDate = $('snapshot-date');
-  var fmt = function (d, long) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: long ? 'long' : 'short', year: 'numeric' }); };
-  if (snapDate) snapDate.textContent = fmt(SNAPSHOT.date, true);
+  var fmt = function (d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); };
+  if (snapDate) snapDate.textContent = fmt(SNAPSHOT.date);
   if (liveCap) liveCap.textContent = 'Snapshot of ' + fmt(SNAPSHOT.date);
   function isLoopPr(p) { return p && parseInt(p.number, 10) >= SNAPSHOT.firstLoopPr && /^claude\/\d{4}-\d{2}-\d{2}-/.test(String(p.head && p.head.ref || '')); }
   if (stPrs && window.fetch && window.AbortController) {
