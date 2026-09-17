@@ -25,7 +25,7 @@
   .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
   .learn-card { display: flex; flex-direction: column; gap: 18px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
   .learn-card:hover { border-color: var(--ink); color: inherit; }
-  .learn-card h3 { font-size: 28px; line-height: 1.15; letter-spacing: -0.015em; }
+  .learn-card h2 { font-size: 28px; line-height: 1.15; letter-spacing: -0.015em; }
   .learn-card p { font-size: 16px; line-height: 1.6; color: var(--muted); }
   .learn-card__foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
   .learn-card__meta { font-size: 13px; font-weight: 600; color: var(--muted); }
@@ -33,10 +33,11 @@
   .learn-card:hover .learn-card__cta { color: var(--red); }
   .learn-card--soon { justify-content: center; color: var(--muted); }
   .learn-card--soon h3 { color: var(--muted); }
-  @media (max-width: 720px) { .learn-card h3 { font-size: 24px; } }
+  @media (max-width: 720px) { .learn-card h2 { font-size: 24px; } }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-nav">
   <a class="site-nav__brand" href="/">Alex Ratman</a>
@@ -46,7 +47,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main">
   <section class="hero hero--landing" style="padding-bottom:64px">
     <div class="hero__inner">
       <div class="rule" aria-hidden="true"></div>
@@ -60,26 +61,26 @@
     <div class="wrap wrap--landing" style="margin-inline:0">
       <div class="learn-grid">
         <a class="card learn-card" href="/learn/from-thought-to-answer/">
-          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
-          <h3>From Thought to Answer</h3>
+          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+          <h2>From Thought to Answer</h2>
           <p>What happens in the seconds between your question and the AI's answer — tokens, the meaning map, attention, the weighted dice, the loop — and what that means for how you should prompt and verify.</p>
           <div class="learn-card__foot">
-            <span class="learn-card__meta">12 steps · 5-minute scroll · 7 things to play with</span>
+            <span class="learn-card__meta">11 steps · 5-minute scroll · 7 things to play with</span>
             <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
         <a class="card learn-card" href="/learn/self-improving-skills/">
-          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
-          <h3>Skills That Get Better From Being Used</h3>
+          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+          <h2>Skills That Get Better From Being Used</h2>
           <p>AI skills in a public repo, notes in a private one, a scheduled agent that turns the notes into pull requests — and an experiment that changed the instructions, not the inputs, and shows which rule mattered.</p>
           <div class="learn-card__foot">
-            <span class="learn-card__meta">8 steps · 5-minute scroll · 4 things to play with</span>
+            <span class="learn-card__meta">7 steps · 5-minute scroll · 4 things to play with</span>
             <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
         <a class="card learn-card" href="/learn/price-of-a-conversation/">
           <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
-          <h3>The Price of a Conversation</h3>
+          <h2>The Price of a Conversation</h2>
           <p>Why long AI chats cost more than short ones, what the model actually reads when you send a message, and eight free habits that keep the meter slow — with numbers from my own usage.</p>
           <div class="learn-card__foot">
             <span class="learn-card__meta">6 steps · 5-minute scroll · 4 things to play with</span>
