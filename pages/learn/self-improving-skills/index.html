@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="page.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
   <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
@@ -44,7 +45,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main">
 
 <!-- 1 · HERO -->
 <section class="hero" id="s1" data-stage="1" data-stage-name="Hello">
@@ -66,7 +67,7 @@
       <div class="journey__link"></div>
       <div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>publish</div></div>
     </div>
-    <div class="hero__cue"><span>Scroll</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chevron-down"/></svg></div>
+    <div class="hero__cue"><span>Scroll</span><svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chevron-down"/></svg></div>
   </div>
 </section>
 
@@ -145,12 +146,12 @@ scripts/build_skills.py
     </div>
     <div class="card">
       <div class="row" style="gap:10px" id="route-btns">
-        <button class="toggle" type="button" data-route="push">git push</button>
-        <button class="toggle" type="button" data-route="curl">curl api.github.com</button>
-        <button class="toggle" type="button" data-route="mcp">GitHub connector</button>
+        <button class="toggle" type="button" data-route="push" aria-pressed="false">git push</button>
+        <button class="toggle" type="button" data-route="curl" aria-pressed="false">curl api.github.com</button>
+        <button class="toggle" type="button" data-route="mcp" aria-pressed="false">GitHub connector</button>
       </div>
       <div class="routes" id="routes"></div>
-      <p class="caption" id="route-caption">Three ways out of the container. Two of them are walls.</p>
+      <p class="caption" id="route-caption" aria-live="polite">Three ways out of the container. Two of them are walls.</p>
     </div>
     <div class="wrap stack" style="margin-inline:0">
       <p>The way around it was not to fight the proxy. The GitHub connector does not use the session's network at all: its traffic takes a different road and arrives at GitHub's API bounded by what the account has granted — a chosen set of repositories, pull requests only, nothing merged without a person.</p>
@@ -171,7 +172,7 @@ scripts/build_skills.py
         <svg viewBox="0 0 400 300" id="loop-ring" aria-hidden="true"></svg>
         <div id="loop-steps"></div>
       </div>
-      <div class="loop__detail" id="loop-detail"></div>
+      <div class="loop__detail" id="loop-detail" aria-live="polite"></div>
     </div>
     <p>Two details in that loop are more interesting than they look.</p>
     <p><strong>Capture is deliberately trivial.</strong> The capture skill is 36 lines. It holds none of the rules for writing a note — it points at the file in the private repo where the rules live. The same pattern runs through the whole system:</p>
@@ -255,16 +256,15 @@ scripts/build_skills.py
     <div class="wrap stack" style="margin-inline:0">
       <div class="label">Step 7 · Where it stands</div>
       <h2>The numbers, from the repo itself</h2>
-      <p>The public repository's pull-request list is open, so these figures can check themselves: a snapshot from <span id="snapshot-date">11 September 2026</span>, refreshed from the live API whenever GitHub answers. Only the loop's own pull requests are counted.</p>
+      <p>The public repository's pull-request list is open, so these figures can check themselves: a snapshot from <span id="snapshot-date">17 September 2026</span>, refreshed from the live API whenever GitHub answers. Only the loop's own pull requests are counted.</p>
     </div>
     <div class="card" style="padding:0;overflow:hidden">
       <div class="stats">
-        <div class="stat"><div class="stat__value stat__value--red" id="st-runs">3</div><div class="stat__label">automated runs</div></div>
-        <div class="stat"><div class="stat__value" id="st-prs">8</div><div class="stat__label">pull requests opened by the loop</div></div>
-        <div class="stat"><div class="stat__value" id="st-merged">4</div><div class="stat__label">merged</div></div>
-        <div class="stat"><div class="stat__value" id="st-open">2</div><div class="stat__label">waiting for review</div></div>
+        <div class="stat"><div class="stat__value stat__value--red" id="st-prs">14</div><div class="stat__label">pull requests opened by the loop</div></div>
+        <div class="stat"><div class="stat__value" id="st-merged">12</div><div class="stat__label">merged</div></div>
+        <div class="stat"><div class="stat__value" id="st-open">0</div><div class="stat__label">waiting for review</div></div>
       </div>
-      <div class="state__foot"><span id="state-release">Release: <code>latest</code> · 4 packaged skills · 25 Aug 2026</span><span class="caption" id="state-live">Snapshot</span></div>
+      <div class="state__foot"><span id="state-release">Release: <code>latest</code> · 4 packaged skills · 13 September 2026</span><span class="caption" id="state-live">Snapshot</span></div>
     </div>
     <div class="wrap stack" style="margin-inline:0">
       <h3 style="margin-top:12px">What to take from it</h3>
@@ -288,10 +288,10 @@ scripts/build_skills.py
             <div class="related-card__meta"><span>6 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
           </a>
           <a class="related-card" href="/learn/from-thought-to-answer/">
-            <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
+            <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
             <div class="related-card__title">From Thought to Answer</div>
             <div class="related-card__desc">How the model reads at all: tokens, attention, and where an answer comes from.</div>
-            <div class="related-card__meta"><span>12 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+            <div class="related-card__meta"><span>11 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
           </a>
           <a class="related-card related-card--index" href="/learn/">
             <div class="related-card__title">All explainers</div>
