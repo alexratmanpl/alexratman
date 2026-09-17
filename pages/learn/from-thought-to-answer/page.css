@@ -4,7 +4,13 @@
 .map-toggle:hover { border-color: var(--ink); }
 .map-toggle.is-on { background: var(--ink); border-color: var(--ink); color: #fff; }
 .map-toggle.is-on--red { background: var(--red); border-color: var(--red); color: #fff; }
+.map__scroll { overflow-x: auto; overscroll-behavior-x: contain; }
+.map__scroll:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
 .map svg { width: 100%; height: auto; display: block; }
+@media (max-width: 720px) {
+  /* below this width the labels would shrink under 8px, so keep the drawing at full size and let it scroll */
+  .map svg { min-width: 600px; }
+}
 .map svg text { font-family: var(--font-body); }
 .map-arrows { display: none; }
 .map-arrows.is-on { display: inline; }
