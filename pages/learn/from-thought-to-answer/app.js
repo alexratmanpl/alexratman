@@ -189,7 +189,7 @@
       .sort(function (a, b) { return b.count - a.count; })
       .forEach(function (c) { var s = document.createElement('span'); s.className = 'tally__item'; s.textContent = c.word + ' × ' + c.count; tallyEl.appendChild(s); });
     rollCaption.textContent = rollCount > 0
-      ? rollCount + ' rolls so far. Same odds, different outcomes — that\'s the whole trick.'
+      ? rollCount + (rollCount === 1 ? ' roll' : ' rolls') + ' so far. Same odds, different outcomes — that\'s the whole trick.'
       : 'Drag the temperature, then roll — low temp almost always lands on "mat"; high temp gets adventurous.';
   }
   function doRoll(n) {
@@ -245,7 +245,20 @@
     trainGuess.textContent = g;
     trainNudge.textContent = g === 'mat' ? 'right — still nudge the dials toward mat' : 'nudge the dials toward mat';
   }
-  if (trainSteps.length) { renderTrain(); if (!reduceMotion) setInterval(function () { trainStep = (trainStep + 1) % 4; renderTrain(); }, 950); }
+  var trainTimer = null, trainToggle = $('train-toggle');
+  function trainStart() { if (trainTimer) return; trainTimer = setInterval(function () { trainStep = (trainStep + 1) % 4; renderTrain(); }, 950); }
+  function trainStop() { clearInterval(trainTimer); trainTimer = null; }
+  if (trainSteps.length) {
+    renderTrain();
+    if (!reduceMotion) trainStart();
+    if (trainToggle) {
+      if (reduceMotion) { trainToggle.textContent = 'Play the loop'; trainToggle.setAttribute('aria-pressed', 'true'); }
+      trainToggle.addEventListener('click', function () {
+        if (trainTimer) { trainStop(); trainToggle.textContent = 'Play the loop'; trainToggle.setAttribute('aria-pressed', 'true'); }
+        else { trainStart(); trainToggle.textContent = 'Pause the loop'; trainToggle.setAttribute('aria-pressed', 'false'); }
+      });
+    }
+  }
 
   /* ---------- Closing · copy the prompt ---------- */
   var copyBtn = $('copy-prompt');
