@@ -259,6 +259,22 @@ img, svg { max-width: 100%; }
 .steps__seg:nth-child(3n+1) { background: var(--red); }
 .steps__seg:nth-child(3n+2) { background: var(--ink); }
 
+/* content tags — what a piece is, and how it was made. Labels, not controls: nothing here is
+   clickable, so the 44px rule does not apply. `data-tag` on each chip and `data-tags` on the card
+   or on <main> carry the slugs, so a filter or a search can read them later without the wording
+   having to stay machine-friendly. */
+.tags { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 6px; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: var(--r-pill);
+  border: 1px solid var(--line); background: var(--ground);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.5;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
+}
+/* the disclosure tag carries the one red dot — red signals, and this is the thing to notice */
+.tag--made::before { content: ""; flex: none; width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
+.hero .tags { justify-content: center; }
+
 /* related reading — a row of compact cards at the end of every explainer (3–4 across on desktop) */
 .related { display: flex; flex-direction: column; gap: 14px; }
 .related__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
