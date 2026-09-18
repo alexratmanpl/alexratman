@@ -59,7 +59,13 @@
 
   <section class="section section--alt section--landing">
     <div class="wrap wrap--landing" style="margin-inline:0">
-      <div class="learn-grid">
+      <div class="row" id="filters" hidden role="group" aria-label="Filter the list by format">
+        <button class="chip-outline is-selected" type="button" data-filter="all" data-name="everything" aria-pressed="true">All <span class="filter__n"></span></button>
+        <button class="chip-outline" type="button" data-filter="explainer" data-name="Explainer" aria-pressed="false">Explainers <span class="filter__n"></span></button>
+        <button class="chip-outline" type="button" data-filter="case-study" data-name="Case study" aria-pressed="false">Case studies <span class="filter__n"></span></button>
+      </div>
+      <p class="caption" id="filter-status" aria-live="polite" style="margin:2px 0 4px"></p>
+      <div class="learn-grid" id="learn-grid">
         <a class="card learn-card" href="/learn/from-thought-to-answer/" data-tags="made-with-ai explainer ai">
           <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
           <div class="tags"><span class="tag tag--made" data-tag="made-with-ai">Made with AI</span><span class="tag" data-tag="explainer">Explainer</span><span class="tag" data-tag="ai">AI</span></div>
@@ -99,6 +105,8 @@
   <div>© 2026 Alex Ratman</div>
   <div class="site-footer__links"><a href="https://github.com/alexratmanpl" rel="me">GitHub</a><a href="https://github.com/alexratmanpl/alexratman">Source of this site</a></div>
 </footer>
+
+<script src="app.js" defer></script>
 
 </body>
 </html>
