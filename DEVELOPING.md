@@ -17,7 +17,7 @@ pages/
     site.css                design system: tokens, base styles, shared components
     fonts.css               @font-face rules for the self-hosted fonts
     fonts/                  Bricolage Grotesque + Instrument Sans .woff2 subsets (OFL) + licence
-    og/                     1200×630 social cards, one per page (PNG — upload via the GitHub web UI)
+    og/                     README.txt (the manifest) + 1200×630 social cards, one per page (PNG — upload via the GitHub web UI)
   learn/
     index.html              list of pieces
     from-thought-to-answer/
@@ -57,15 +57,20 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
 - Cards on the landing and `/learn` pages open with a `.steps` strip: one 4px segment per step, fixed height, never wraps. Their footer is pinned to the bottom (`margin-top: auto`) so cards in a row end level.
 - **Counting steps: the hero does not count, every section after it does.** So steps = `[data-stage]` sections − 1 = the pill total = the highest "Step N" label = the number on the cards = the number of `.steps` segments. Every section after the hero carries a "Step N · …" label, the closing recap included. The number appears in five places per piece (landing card, `/learn` card, the Keep reading row on each of the other pieces, and the strip beside each) — change them together.
 - Every piece ends with a **"Keep reading" row** (`.related` + `.related__grid` of `.related-card`s in `site.css`): three compact cards — the other pieces plus a dashed "All explainers" card to `/learn/`. Three across on desktop, one column under 720px; `.related__grid--4` exists for four. This row replaces cross-page CTA buttons: when a new piece is added, update the row on every page. It is the last *navigation* block; a sources list or a closing caption may follow it, because those are the piece's own footnotes.
+- Every piece, and every card that links to one, carries a **tag row** (`.tags` + `.tag` in `site.css`): the AI disclosure first, then the format, then the topic — `Made with AI · Explainer · AI`. Only the disclosure takes the red dot (`.tag--made`), because red signals and that is the thing to notice. They are labels, not controls, so the 44px rule does not apply to them.
+  - **Three axes, one chip each.** Disclosure: `Made with AI`, on everything, never a filter — it is a statement, not a category. Format: `Explainer` for how something works, `Case study` for a real system and what happened when it ran (`Article`, `Note` are reserved for the blog). Topic: `AI` today, more as the subjects widen. One format tag and at least one topic tag per piece — add a new topic rather than stretching an existing one.
+  - **The slug is the contract, the wording is not.** Each chip carries `data-tag="<slug>"`; each card link and each piece's `<main>` carries `data-tags="<slug> <slug> <slug>"`. Anything that filters or searches reads the slugs, so a label can be reworded without breaking it.
+  - A topic that every piece carries cannot filter anything. Do not offer such a tag as a filter control until at least one piece does not have it.
 
 ## Adding a piece
 
-1. Create `pages/learn/<slug>/index.html` from an existing one: keep the `<head>` links (including the `og:image` block — make a 1200×630 card for `assets/og/`), the nav, the progress bar + stage pill, and the footer.
+1. Create `pages/learn/<slug>/index.html` from an existing one: keep the `<head>` links (including the `og:image` block — make a 1200×630 card for `assets/og/` and list it in that folder's `README.txt`), the nav, the progress bar + stage pill, and the footer.
 2. Mark each section with `data-stage="N"` and `data-stage-name="…"` (the hero is stage 1; the pill shows `N−1 / total−1` so it matches the "Step N" labels); add `class="reveal"` to the section's inner wrapper for the scroll-in effect.
-3. Put widget logic in `app.js` and page styles in `page.css` next to it.
-4. Add a card for it on `pages/learn/index.html` and `pages/index.html` (with a `.steps` strip of one segment per step), update the "N so far" count on the landing page, and add a `<url>` to `sitemap.xml`.
-5. Add it to the "Keep reading" row of every other piece, and give the new piece its own row.
-6. Numbers and prices on a page carry a date and a source; anything measured rather than looked up is labelled an estimate.
+3. Add the tag row to the hero, under the lead, and put the slugs on `<main data-tags="…">`. Use the vocabulary above: one disclosure, one format, at least one topic.
+4. Put widget logic in `app.js` and page styles in `page.css` next to it.
+5. Add a card for it on `pages/learn/index.html` and `pages/index.html` (with a `.steps` strip of one segment per step and the same tag row), update the "N so far" count on the landing page, and add a `<url>` to `sitemap.xml`. **Bump `<lastmod>` for every page you changed, in the same commit** — not as a follow-up.
+6. Add it to the "Keep reading" row of every other piece, and give the new piece its own row.
+7. Numbers and prices on a page carry a date and a source; anything measured rather than looked up is labelled an estimate.
 
 ## Conventions
 
