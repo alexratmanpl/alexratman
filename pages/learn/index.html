@@ -31,8 +31,9 @@
   .learn-card__meta { font-size: 13px; font-weight: 600; color: var(--muted); }
   .learn-card__cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .learn-card:hover .learn-card__cta { color: var(--red); }
-  .learn-card--soon { justify-content: center; color: var(--muted); }
-  .learn-card--soon h3 { color: var(--muted); }
+  .learn-card--soon { align-items: center; justify-content: center; text-align: center; gap: 8px; color: var(--muted); }
+  .learn-card--soon__t { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--muted); }
+  .learn-card--soon__d { font-size: 13.5px; line-height: 1.5; color: var(--faint); max-width: 22ch; }
   @media (max-width: 720px) { .learn-card h2 { font-size: 24px; } }
 </style>
 </head>
@@ -59,12 +60,12 @@
 
   <section class="section section--alt section--landing">
     <div class="wrap wrap--landing" style="margin-inline:0">
-      <div class="row" id="filters" hidden role="group" aria-label="Filter the list by format">
+      <div class="row" id="filters" hidden role="group" aria-label="Filter the list by format" style="margin-bottom:24px">
         <button class="chip-outline is-selected" type="button" data-filter="all" data-name="everything" aria-pressed="true">All <span class="filter__n"></span></button>
         <button class="chip-outline" type="button" data-filter="explainer" data-name="Explainer" aria-pressed="false">Explainers <span class="filter__n"></span></button>
         <button class="chip-outline" type="button" data-filter="case-study" data-name="Case study" aria-pressed="false">Case studies <span class="filter__n"></span></button>
       </div>
-      <p class="caption" id="filter-status" aria-live="polite" style="margin:2px 0 4px"></p>
+      <p class="visually-hidden" id="filter-status" aria-live="polite"></p>
       <div class="learn-grid" id="learn-grid">
         <a class="card learn-card" href="/learn/from-thought-to-answer/" data-tags="made-with-ai explainer ai">
           <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>

@@ -11,6 +11,30 @@
 
   var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-tags]'));
   var btns = Array.prototype.slice.call(bar.querySelectorAll('[data-filter]'));
+  var current = 'all';
+
+  /* Fill the rest of the row with placeholders so a filtered grid keeps the
+     shape of a full one — one card must not stretch across the whole section. */
+  function columns() {
+    var t = getComputedStyle(grid).gridTemplateColumns;
+    return t && t !== 'none' ? t.split(' ').filter(Boolean).length : 1;
+  }
+  function filler() {
+    var d = document.createElement('div');
+    d.className = 'card card--placeholder learn-card learn-card--soon is-filler';
+    d.setAttribute('aria-hidden', 'true');
+    var t = document.createElement('div'); t.className = 'learn-card--soon__t'; t.textContent = 'More coming soon';
+    var s = document.createElement('div'); s.className = 'learn-card--soon__d'; s.textContent = 'The next one is being written.';
+    d.appendChild(t); d.appendChild(s);
+    return d;
+  }
+  function topUp(shown) {
+    Array.prototype.slice.call(grid.querySelectorAll('.is-filler')).forEach(function (n) { n.remove(); });
+    var cols = columns();
+    if (shown === 0 || cols < 2) return;          // one column: no dead cards on a phone
+    var gap = shown % cols === 0 ? 0 : cols - (shown % cols);
+    for (var i = 0; i < gap; i++) grid.appendChild(filler());
+  }
   var known = {};
   btns.forEach(function (b) { known[b.getAttribute('data-filter')] = true; });
 
@@ -35,6 +59,8 @@
       b.setAttribute('aria-pressed', sel ? 'true' : 'false');
       if (sel) name = b.getAttribute('data-name') || '';
     });
+    current = tag;
+    topUp(shown);
     status.textContent = tag === 'all'
       ? 'Showing all ' + pieces(shown) + '.'
       : 'Showing ' + pieces(shown) + ' tagged ' + name + '.';
@@ -55,4 +81,11 @@
   var q = '';
   try { q = (new URLSearchParams(location.search).get('tag') || '').toLowerCase(); } catch (e) { q = ''; }
   apply(q || 'all', false);
+
+  // the column count changes with the viewport, so the top-up has to follow it
+  var rz = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(rz);
+    rz = setTimeout(function () { apply(current, false); }, 120);
+  });
 })();
