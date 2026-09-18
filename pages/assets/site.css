@@ -92,6 +92,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 input, textarea, button { font-family: inherit; font-size: inherit; }
 button { cursor: pointer; }
 img, svg { max-width: 100%; }
+[hidden] { display: none !important; }   /* an author display rule would otherwise beat it */
 ::selection { background: var(--ink); color: #fff; }
 
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -223,6 +224,8 @@ img, svg { max-width: 100%; }
 .chip-outline:hover { border-color: var(--ink); }
 .chip-outline.is-selected { background: var(--ink); border-color: var(--ink); color: #fff; }
 .chip-outline.is-target { border: 2px solid var(--red); color: var(--ink); padding: 9px 13px; }
+.filter__n { margin-left: 3px; font-variant-numeric: tabular-nums; color: var(--muted); }
+.chip-outline.is-selected .filter__n { color: rgba(255,255,255,0.72); }
 
 .pill {
   display: inline-flex; align-items: center; gap: 8px;
