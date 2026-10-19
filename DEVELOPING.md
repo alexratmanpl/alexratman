@@ -78,7 +78,8 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
 4. Put widget logic in `app.js` and page styles in `page.css` next to it.
 5. Add a card for it on `pages/learn/index.html` (with a `.steps` strip of one segment per step and the same tag row) and on `pages/index.html` (the strip, no tag row), update the "N so far" count on the landing page and on the dashed "The full list" card in every blog post's Learn row, and add a `<url>` to `sitemap.xml`. **Bump `<lastmod>` for every page you changed, in the same commit** — not as a follow-up.
 6. Add it to the "Keep reading" row of every other piece and to the "Keep reading in Learn" row of every blog post, and give the new piece its own "Keep reading" row.
-7. Numbers and prices on a page carry a date and a source; anything measured rather than looked up is labelled an estimate.
+7. Add it to the Learn list under "What's on the site" in `README.md`, with the card's title, link and description.
+8. Numbers and prices on a page carry a date and a source; anything measured rather than looked up is labelled an estimate.
 
 ## Adding a blog post
 
@@ -88,9 +89,11 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
 4. Add a card on `pages/blog/index.html` and in the Blog section of `pages/index.html`, and update the "N so far" line in that section.
 5. Add it to the "Keep reading on the blog" row of every other post — create that row on a post the first time a second post exists. Give the new post its own two rows: "Keep reading on the blog" for the other posts (leave it out while there are none) and "Keep reading in Learn" for the Explainers, with a `.related-card__tie` line only where the two pages really overlap. The Explainers do not link to posts (decided 19 October 2026).
 6. Add a `<url>` to `sitemap.xml` and **bump `<lastmod>` for every page you changed, in the same commit.**
+7. Add it to the Blog list under "What's on the site" in `README.md`, with the card's title, link and description.
 
 Some facts are written on more than one page, and nothing updates them for you. Change them together:
 
+- A card's title and description: on `/learn/` or `/blog/`, on the landing page, and in the "What's on the site" list in `README.md`. Reword one and you reword all three.
 - A post's reading time and number of sources: in its hero label and its "Sources (N)" heading, on its card on `/blog/` and on the landing page.
 - The "N so far" lines: the landing page's Blog section and every "All posts" card, and the landing page's Learn section and every "The full list" card.
 - Each Explainer's step count and strip, on the post's "Keep reading in Learn" row.

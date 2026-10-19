@@ -14,10 +14,23 @@ I came to engineering sideways. Before writing code for a living I audited EU-fu
 
 ## 🧭 What's on the site
 
-Pages that show the mechanism, not the vocabulary, with things to play with along the way. Right now that means scroll-through explainers; experiments and notes on whatever I'm taking apart next will join them.
+Pages that show the mechanism, not the vocabulary. There are two sections so far, Learn and Blog; experiments and notes on whatever I'm taking apart next will join them.
+
+### [Learn](https://alexratman.com/learn/)
+
+Interactive explainers. Each one is a scroll-through page with things to play with along the way. Five minutes, no prior knowledge needed.
 
 - **[From Thought to Answer](https://alexratman.com/learn/from-thought-to-answer/)** — what happens in the seconds between your question and the AI's answer: tokens, the meaning map, attention, the weighted dice, the loop — and what that means for how you should prompt and verify.
-- More on the way.
+- **[Skills That Get Better From Being Used](https://alexratman.com/learn/self-improving-skills/)** — AI skills in a public repo, notes in a private one, a scheduled agent that turns the notes into pull requests — and an experiment that changed the instructions, not the inputs, and shows which rule mattered.
+- **[The Price of a Conversation](https://alexratman.com/learn/price-of-a-conversation/)** — why long AI chats cost more than short ones, what the model actually reads when you send a message, and eight free habits that keep the meter slow — with numbers from my own usage.
+
+### [Blog](https://alexratman.com/blog/)
+
+Practical advice on learning and using AI. Short, well-sourced posts you can read in minutes and try today.
+
+- **[Five mistakes I see when I help people learn AI](https://alexratman.com/blog/five-mistakes-learning-ai/)** — five common mistakes people make with AI tools, from privacy and security to long chats. Each one comes with short advice and linked sources.
+
+More on the way.
 
 ## 🛠️ What I work with
 
