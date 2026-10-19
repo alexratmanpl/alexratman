@@ -6,8 +6,7 @@ Social cards (1200x630 PNG), one per page. Referenced by each page's og:image / 
   self-improving-skills.png      /learn/self-improving-skills/
   price-of-a-conversation.png    /learn/price-of-a-conversation/
   blog.png                       /blog/
-  five-mistakes-i-see-when-i-help-people-learn-ai.png
-                                 /blog/five-mistakes-i-see-when-i-help-people-learn-ai/
+  five-mistakes-learning-ai.png  /blog/five-mistakes-learning-ai/
 
 The file name matches the page's folder, so a new piece needs a card of the same name.
 Binary files cannot be committed through the connector, so they are uploaded here via the GitHub web UI.
