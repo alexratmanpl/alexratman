@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — Alex Ratman</title>
+<meta name="description" content="Short reads in plain English. Each post links its sources and says when I read them.">
+<link rel="canonical" href="https://alexratman.com/blog/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog — Alex Ratman">
+<meta property="og:description" content="Short reads in plain English. Each post links its sources and says when I read them.">
+<meta property="og:url" content="https://alexratman.com/blog/">
+<meta property="og:site_name" content="Alex Ratman">
+<meta property="og:image" content="https://alexratman.com/assets/og/blog.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Blog — short reads in plain English by Alex Ratman">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alexratman.com/assets/og/blog.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .learn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr)); gap: 20px; }
+  .learn-card { display: flex; flex-direction: column; gap: 18px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
+  .learn-card:hover { border-color: var(--ink); color: inherit; }
+  .learn-card h2 { font-size: 28px; line-height: 1.15; letter-spacing: -0.015em; }
+  .learn-card p { font-size: 16px; line-height: 1.6; color: var(--muted); }
+  .learn-card__foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
+  .learn-card__meta { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .learn-card__cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .learn-card:hover .learn-card__cta { color: var(--red); }
+  @media (max-width: 720px) { .learn-card h2 { font-size: 24px; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-nav">
+  <a class="site-nav__brand" href="/">Alex Ratman</a>
+  <nav class="site-nav__links" aria-label="Site">
+    <a href="/learn/">Learn</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+    <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero hero--landing" style="padding-bottom:64px">
+    <div class="hero__inner">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="label">Blog</div>
+      <h1 style="font-size:clamp(36px,6vw,64px)">Short reads, in plain English</h1>
+      <p class="lead hero__lead">Each post links its sources and says when I read them.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt section--landing">
+    <div class="wrap wrap--landing" style="margin-inline:0">
+      <div class="learn-grid" id="blog-grid">
+        <a class="card learn-card" href="/blog/five-mistakes-i-see-when-i-help-people-learn-ai/" data-tags="made-with-ai article ai">
+          <div class="tags"><span class="tag tag--made" data-tag="made-with-ai">Made with AI</span><span class="tag" data-tag="article">Article</span><span class="tag" data-tag="ai">AI</span></div>
+          <h2>Five mistakes I see when I help people learn AI</h2>
+          <p>Five common mistakes people make with AI tools, from privacy and security to long chats. Each one comes with short advice and linked sources.</p>
+          <div class="learn-card__foot">
+            <span class="learn-card__meta">7-minute read · 19 sources</span>
+            <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div>© 2026 Alex Ratman</div>
+  <div class="site-footer__links"><a href="https://github.com/alexratmanpl" rel="me">GitHub</a><a href="https://github.com/alexratmanpl/alexratman">Source of this site</a></div>
+</footer>
+
+</body>
+</html>
