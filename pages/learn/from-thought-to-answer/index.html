@@ -51,6 +51,7 @@
   <a class="site-nav__brand" href="/">Alex Ratman</a>
   <nav class="site-nav__links" aria-label="Site">
     <a href="/learn/" class="is-active">Learn</a>
+    <a href="/blog/">Blog</a>
     <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
   </nav>
 </header>
@@ -452,8 +453,8 @@
       <div class="example__row example__row--better"><svg aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><span class="visually-hidden">Better prompt: </span><span>"Summarise the attached report for a 15-minute management meeting in 5 bullet points: key results first, then risks, ending with one recommended next step. Plain language, no jargon — and flag anything the report doesn't clearly support. Think through what leadership needs to decide before you write."</span></div>
       <div><button class="btn btn--inverse" type="button" id="copy-prompt">Copy this prompt</button></div>
     </div>
-    <div class="related" style="width:100%;text-align:left;margin-top:16px">
-      <div class="label">Keep reading</div>
+    <div class="related" role="group" aria-labelledby="keep-learn" style="width:100%;text-align:left;margin-top:16px">
+      <div class="label" id="keep-learn">Keep reading in Learn</div>
       <div class="related__grid">
         <a class="related-card" href="/learn/price-of-a-conversation/">
           <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
@@ -471,6 +472,22 @@
           <div class="related-card__title">The full list</div>
           <div class="related-card__desc">Three so far. More on the way.</div>
           <div class="related-card__meta"><span>Learn</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+        </a>
+      </div>
+    </div>
+    <div class="related" role="group" aria-labelledby="keep-blog" style="width:100%;text-align:left;margin-top:16px">
+      <div class="label" id="keep-blog">Keep reading on the blog</div>
+      <div class="related__grid related__grid--2">
+        <a class="related-card" href="/blog/five-mistakes-i-see-when-i-help-people-learn-ai/">
+          <div class="related-card__title">Five mistakes I see when I help people learn AI</div>
+          <div class="related-card__desc">Five common mistakes people make with AI tools, from privacy to long chats.</div>
+          <div class="related-card__tie">Short advice on checking answers and telling the AI what you need.</div>
+          <div class="related-card__meta"><span>7-minute read</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+        </a>
+        <a class="related-card related-card--index" href="/blog/">
+          <div class="related-card__title">All posts</div>
+          <div class="related-card__desc">One so far. More on the way.</div>
+          <div class="related-card__meta"><span>Blog</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
         </a>
       </div>
     </div>
