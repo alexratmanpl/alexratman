@@ -1,0 +1,32 @@
+/* five-mistakes-learning-ai · page.css
+   A reading page: one column, no scroll stages, no scripts. Colours, type, tags, the
+   Keep-reading row and the Sources list all come from site.css. This file only sets
+   the article's spacing and the smaller headings that long titles need. */
+
+.post__head { padding: 72px var(--gutter) 0; }
+.post__head h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.08; }
+
+.post__body { padding: 48px var(--gutter) var(--section-y); }
+
+/* .stack already puts 20px between blocks, so cancel the extra 12px that `p + p` adds */
+.post .stack > p + p { margin-top: 0; }
+
+.post__intro { font-size: 19px; line-height: 1.65; }
+
+/* each mistake: a hairline, room above and below, and a heading small enough for a long title */
+.mistake { margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--line); }
+.mistake h2 { font-size: clamp(26px, 4vw, 34px); line-height: 1.18; }
+.mistake__n { color: var(--red); }
+
+/* the end of the article: Keep reading, then Sources, on the grey band */
+.post__foot { background: var(--ground-alt); padding: var(--section-y) var(--gutter); }
+.post__foot details.sources { border-top-color: var(--line-strong); }
+/* the Sources summary is a control: site.css leaves it a fraction under the 44px minimum */
+.post__foot details.sources summary { min-height: 44px; }
+
+@media (max-width: 720px) {
+  .post__head { padding-top: 40px; }
+  .post__body { padding-top: 32px; }
+  .post__intro { font-size: 18px; }
+  .mistake { margin-top: 44px; padding-top: 44px; }
+}

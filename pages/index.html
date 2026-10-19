@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/assets/site.css">
 <style>
   .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .learn-grid--blog { grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr)); }
   .learn-card { display: flex; flex-direction: column; gap: 18px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
   .learn-card:hover { border-color: var(--ink); color: inherit; }
   .learn-card h3 { font-size: 28px; line-height: 1.15; letter-spacing: -0.015em; }
@@ -44,6 +45,7 @@
   <a class="site-nav__brand" href="/">Alex Ratman</a>
   <nav class="site-nav__links" aria-label="Site">
     <a href="/learn/">Learn</a>
+    <a href="/blog/">Blog</a>
     <a href="https://github.com/alexratmanpl" rel="me">GitHub</a>
   </nav>
 </header>
@@ -94,6 +96,25 @@
           <p>Why long AI chats cost more than short ones, what the model actually reads when you send a message, and eight free habits that keep the meter slow — with numbers from my own usage.</p>
           <div class="learn-card__foot">
             <span class="learn-card__meta">6 steps · 5-minute scroll · 4 things to play with</span>
+            <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--landing" id="blog">
+    <div class="wrap wrap--landing stack" style="gap:32px;margin-inline:0">
+      <div class="stack stack--tight">
+        <div class="label">Blog</div>
+        <h2>One so far. More on the way.</h2>
+      </div>
+      <div class="learn-grid learn-grid--blog">
+        <a class="card learn-card" href="/blog/five-mistakes-learning-ai/">
+          <h3>Five mistakes I see when I help people learn AI</h3>
+          <p>Five common mistakes people make with AI tools, from privacy and security to long chats. Each one comes with short advice and linked sources.</p>
+          <div class="learn-card__foot">
+            <span class="learn-card__meta">7-minute read · 19 sources</span>
             <span class="learn-card__cta">Read <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
