@@ -1,0 +1,97 @@
+/* Parts the how-to guides share (spec and design): numbered lines, tabs with one panel and the words to paste, the scorecard,
+   the sub-sections of the last step, the skills list, avoid-and-check, and a small three-row table. The questions live in play.css. */
+/* the spec, as plain numbered lines (step 1, step 3 questions, step 7 booking page) */
+.spec__lines { list-style: none; margin: 14px 0 0; padding: 0; counter-reset: spec; display: flex; flex-direction: column; }
+.spec__lines li { counter-increment: spec; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 11px 0; border-top: 1px solid var(--line); font-size: 17px; line-height: 1.5; color: var(--ink); }
+.spec__lines li:first-child { border-top: 0; padding-top: 2px; }
+.spec__lines li::before { content: counter(spec); font-weight: 700; color: var(--red); font-variant-numeric: tabular-nums; }
+
+/* steps 2 and 7: a row of tabs, and one panel that never changes height */
+.stepper__tabs { gap: 8px; margin-top: 12px; }
+.stepper__n { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; margin-right: 8px; border-radius: 50%; background: var(--ground-alt); color: var(--ink); font-size: 12px; font-weight: 700; flex: none; }
+.toggle.is-on .stepper__n { background: #fff; color: var(--ink); }
+.stepper__stack { display: grid; margin-top: 16px; border: 1px solid var(--line); border-radius: var(--r-control); overflow: hidden; }
+.stepper__stack > * { grid-area: 1 / 1; min-width: 0; display: flex; flex-direction: column; }
+.stepper__ghost { visibility: hidden; pointer-events: none; }
+.stepper__who { margin: 0; padding: 12px 16px; font-size: 15.5px; line-height: 1.5; color: var(--ink); background: var(--ground); border-bottom: 1px solid var(--line); }
+.stepper__who b { margin-right: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.stepper__cols { flex: 1 1 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stepper__col { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; background: var(--ground-alt); }
+.stepper__col + .stepper__col { border-left: 1px solid var(--line); background: var(--ground); }
+.stepper__col p { font-size: 16px; line-height: 1.55; color: var(--ink); }
+.stepper__col .stepper__eg { margin-top: 4px; padding-left: 12px; border-left: 3px solid var(--line-strong); font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+.stepper__eg span { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 600px) { .stepper__cols { grid-template-columns: minmax(0, 1fr); } .stepper__col + .stepper__col { border-left: 0; border-top: 1px solid var(--line); } }
+
+/* step 7: the words to paste */
+/* a link in the text jumps to this card (#recipe): keep its top clear of the stage pill that sits at the top left of the window */
+.recipe { scroll-margin-top: 72px; }
+.recipe__say { padding: 14px 16px; background: var(--ground-alt); }
+.recipe__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+.recipe__copy { min-height: 44px; padding: 8px 18px; font-size: 14px; }
+.recipe__copy.is-done { border-color: var(--ink); }
+/* the button is as wide as its longest short label, so "Copy" and "Copied" never push the words beside it onto another line */
+.recipe__copy span { display: block; text-align: center; }
+.recipe__copy span::after { content: "Copied"; display: block; height: 0; overflow: hidden; visibility: hidden; }
+.prompt { white-space: pre-line; margin: 6px 0 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r-control); background: var(--ground); font-size: 15.5px; line-height: 1.55; color: var(--ink); }
+.recipe__then { flex: 1 1 auto; padding: 14px 16px; background: var(--ground); border-top: 1px solid var(--line); }
+.recipe__then p { margin-top: 6px; font-size: 16px; line-height: 1.55; color: var(--ink); }
+.recipe .stepper__cols { flex: 0 0 auto; border-bottom: 1px solid var(--line); }
+
+/* step 6: the scorecard */
+.score { display: flex; flex-direction: column; gap: 14px; }
+.score__head { margin-top: 6px; }
+.score__list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--ground); }
+.score__item { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 16px; padding: 18px 20px; }
+.score__item + .score__item { border-top: 1px solid var(--line); }
+.score__mark { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; color: #fff; font-size: 18px; font-weight: 700; line-height: 1; }
+.score__mark--for { background: var(--ink); }
+.score__mark--against { background: var(--red); }
+.score__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.score__body h3, .score__body h4 { font-size: 18px; line-height: 1.3; }
+.score__body p { font-size: 16px; line-height: 1.55; color: var(--text); }
+.score__body p + p { margin-top: 0; }
+@media (max-width: 720px) { .score__item { padding: 16px; gap: 12px; } }
+
+/* step 7: four subsections, and the one card that holds the size picker and the six parts */
+.sub { display: flex; flex-direction: column; gap: 20px; }
+.sub + .sub { margin-top: 24px; padding-top: 36px; border-top: 1px solid var(--line-strong); }
+.sub > h3 { font-size: clamp(24px, 3.6vw, 30px); line-height: 1.2; letter-spacing: -0.01em; }
+.guide__part { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+.guide__how { margin-top: 10px; font-size: 16px; line-height: 1.55; color: var(--ink); }
+.guide__how + .guide__how { margin-top: 8px; }
+
+.skills__list { list-style: none; margin: 12px 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--r-control); overflow: hidden; }
+.skills__item { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 16px; align-items: start; padding: 12px 16px; }
+.skills__item + .skills__item { border-top: 1px solid var(--line); }
+.skills__name { display: flex; flex-direction: column; gap: 2px; font-weight: 700; color: var(--ink); }
+.skills__name small { font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--muted); }
+.skills__item p { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+.skills__item p strong { font-weight: 700; color: var(--ink); }
+@media (max-width: 600px) { .skills__item { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+/* step 7: what to avoid, what to check */
+.rules__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; border: 1px solid var(--line); border-radius: var(--r-control); overflow: hidden; }
+.rules__col { padding: 14px 16px; background: var(--ground); }
+.rules__col + .rules__col { border-left: 1px solid var(--line); }
+.rules__col--avoid { background: var(--ground-alt); }
+.rules__col ul { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.rules__col li { position: relative; padding-left: 26px; font-size: 16px; line-height: 1.5; color: var(--ink); }
+.rules__col li::before { content: ""; position: absolute; left: 0; top: 4px; width: 15px; height: 15px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 3px; }
+.rules__col--avoid li::before { border: 0; border-radius: 0; background: linear-gradient(45deg, transparent 41%, var(--red) 41% 59%, transparent 59%), linear-gradient(-45deg, transparent 41%, var(--red) 41% 59%, transparent 59%); }
+@media (max-width: 600px) { .rules__cols { grid-template-columns: minmax(0, 1fr); } .rules__col + .rules__col { border-left: 0; border-top: 1px solid var(--line); } }
+
+.moment p { margin-top: 6px; font-size: 17px; line-height: 1.6; color: var(--ink); }
+
+/* a small table, three rows (what you lose, what helps, can you get it back) */
+.plain-table { width: 100%; border-collapse: collapse; border: 1px solid var(--line); background: var(--ground); }
+.plain-table th, .plain-table td { padding: 12px 16px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); font-size: 15.5px; line-height: 1.45; color: var(--ink); }
+.plain-table thead th { border-top: 0; background: var(--ground-alt); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.plain-table tbody th { font-weight: 700; }
+.plain-table tbody th small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--muted); }
+.plain-table .is-no td:last-child { color: var(--red); font-weight: 700; }
+@media (max-width: 600px) { .plain-table th, .plain-table td { padding: 10px 10px; font-size: 14.5px; } .plain-table thead th { font-size: 10.5px; letter-spacing: 0.06em; } .plain-table tbody th small { font-size: 12.5px; } }
+
+.closing { text-align: left; }
+
+/* a short note that stays closed until the reader wants it */
