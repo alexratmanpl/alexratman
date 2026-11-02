@@ -134,7 +134,7 @@
     return node;
   }
   /* a label that already ends in . ! or ? must not get a second full stop when a sentence follows it */
-  function stop(text) { var t = String(text); return /[.!?]["”’')\]]*$/.test(t) ? t : t + '.'; }
+  function stop(text) { var t = String(text); return /[.!?]["\u201d\u2019')\]]*$/.test(t) ? t : t + '.'; }
   function plain(text) { return String(text).replace(MARK, function (m, b, c, l) { return b != null ? b : (c != null ? c : l); }); }
   function rp(cls, text) { return rich(el('p', cls), text); }   /* a paragraph from markup-lite */
 

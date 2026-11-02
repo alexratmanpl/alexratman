@@ -1,0 +1,125 @@
+/* Write It Down Before You Build It — styles that only this page needs (the checks run and the example chat). Shared parts: /assets/guide.css and /assets/play.css. */
+/* step 5: the checks, run */
+.checks__list { list-style: none; margin: 14px 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--r-control); overflow: hidden; }
+.check { display: grid; grid-template-columns: 56px minmax(0, 1fr) 92px; gap: 12px; align-items: start; padding: 12px 14px; font-size: 15px; line-height: 1.45; transition: background 0.2s; }
+.check + .check { border-top: 1px solid var(--line); }
+.check[data-state="fail"] { background: var(--ground-alt); }
+.check__line { padding-top: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.check__what { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 4px 8px; align-items: baseline; }
+.check__k { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.check__v { color: var(--ink); }
+.check__v--spec { color: var(--muted); }
+.check__note { display: block; margin-top: 4px; font-weight: 600; color: var(--red); visibility: hidden; }
+.check[data-state="fail"] .check__note { visibility: visible; }
+.check__res { display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; padding-top: 2px; font-size: 13px; font-weight: 700; white-space: nowrap; color: var(--muted); }
+.check[data-state="pass"] .check__res { color: var(--ink); }
+.check[data-state="fail"] .check__res { color: var(--red); }
+.checks__bar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 14px; }
+.checks__bar .btn { min-width: 184px; }
+.checks__sumwrap { flex: 1 1 220px; min-width: 0; }
+.checks__sum { font-size: 15px; color: var(--muted); }
+.checks__sum strong { color: var(--ink); }
+@media (max-width: 600px) { .check { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; } .check__line { grid-column: 1; grid-row: 1; } .check__res { grid-column: 2; grid-row: 1; padding-top: 0; } .check__what { grid-column: 1 / -1; grid-row: 2; } }
+
+/* step 7: the example chat. A scripted conversation in a box of fixed size: the log scrolls inside it, the buttons and the table keep their space, so nothing moves when you press a message */
+.chat__log { position: relative; display: flex; flex-direction: column; gap: 12px; height: clamp(280px, 64vh, 544px); height: clamp(280px, 64svh, 544px); margin-top: 14px; padding: 16px; overflow-y: auto; border: 1px solid var(--line); border-radius: var(--r-control); background: var(--ground); }
+.chat__log > :first-child { margin-top: auto; }
+.chat__empty { margin: auto; padding: 0 12px; max-width: 420px; text-align: center; font-family: var(--font-display); font-size: 26px; font-weight: 600; line-height: 1.25; color: var(--muted); text-wrap: balance; }
+.chat__log:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.chat .bubble { flex: none; max-width: min(100%, 520px); padding: 12px 16px; font-size: 16px; line-height: 1.55; }
+.chat .bubble--user { align-self: flex-end; font-size: 15.5px; }
+.chat .bubble--assistant { align-self: flex-start; max-width: min(100%, 600px); min-height: 0; font-size: 16px; line-height: 1.55; }
+.chat .bubble p + p { margin-top: 8px; }
+.chat .bubble--user ::selection { background: var(--red); color: #fff; }
+.chat .bubble .chat__after { margin-top: 10px; }
+.chat__spec { list-style: none; margin: 10px 0 0; padding: 0; counter-reset: cs; }
+.chat__spec li { counter-increment: cs; display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; padding: 7px 0; border-top: 1px solid rgba(255, 255, 255, 0.2); font-size: 15px; line-height: 1.45; }
+.chat__spec li::before { content: counter(cs); font-weight: 700; color: rgba(255, 255, 255, 0.72); font-variant-numeric: tabular-nums; }
+.chat__plan { list-style: none; margin: 10px 0 0; padding: 0; counter-reset: cp; }
+.chat__plan li { counter-increment: cp; display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 0 8px; padding: 7px 0; border-top: 1px solid var(--line-strong); font-size: 15.5px; line-height: 1.45; }
+.chat__plan li::before { content: counter(cp); grid-row: 1 / span 2; font-weight: 700; color: var(--red); font-variant-numeric: tabular-nums; }
+.chat__plan b { grid-column: 2; font-weight: 700; color: var(--ink); }
+.chat__plan span { grid-column: 2; color: var(--muted); }
+.chat__typing { display: inline-flex; align-items: center; gap: 5px; width: fit-content; padding: 16px 18px; }
+.chat__typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: pulse 1.1s ease-in-out infinite; }
+.chat__typing i:nth-child(2) { animation-delay: 0.15s; }
+.chat__typing i:nth-child(3) { animation-delay: 0.3s; }
+.chat__note { flex: none; align-self: stretch; padding: 10px 14px; border: 1px dashed var(--line-strong); border-radius: var(--r-control); font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.chat__note p { margin: 0; }
+.chat__note .chat__notehead { margin-bottom: 6px; font-weight: 600; }
+.chat__note .chat__notetext { white-space: pre-line; }
+.chat__composer { margin-top: 14px; }
+.chat__choices-host { margin-top: 8px; }
+.chat__choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-content: start; align-self: start; }
+.chat__choices .chat__end { grid-column: 1 / -1; }
+.chat__choice { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 48px; padding: 10px 14px; border: 1.5px solid var(--line-strong); border-radius: var(--r-control); background: var(--ground); color: var(--ink); font-size: 15.5px; font-weight: 600; line-height: 1.35; text-align: left; transition: border-color 0.2s, background 0.2s; }
+.chat__choice:hover { border-color: var(--ink); background: var(--ground-alt); }
+.chat__choice svg { flex: none; color: var(--red); }
+.chat__end { margin: 0; padding: 12px 14px; border: 1px dashed var(--line-strong); border-radius: var(--r-control); font-size: 15px; line-height: 1.45; color: var(--muted); }
+.chat__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; margin-top: 14px; }
+.chat__foot .caption { flex: 1 1 240px; margin: 0; }
+.chat__tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.chat__tools .btn { min-height: 44px; padding: 10px 16px; font-size: 14px; }
+.chat__tools .btn.is-done { border-color: var(--ink); }
+/* the label changes to "Copied" for a moment; the hidden copy of the longer label keeps the button the same width, so nothing wraps differently */
+.chat__copy span { display: block; text-align: center; white-space: nowrap; }
+.chat__copy span::after { content: "Copy the spec"; display: block; height: 0; overflow: hidden; visibility: hidden; }
+.chat__choice, #chat-reset { scroll-margin-block: 24px; }
+.chat__fx { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.chat__table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.chat__table th, .chat__table td { padding: 10px 8px; border-top: 1px solid var(--line); text-align: left; vertical-align: middle; }
+.chat__table thead th { padding-top: 0; border-top: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.chat__table thead th:first-child { width: 40%; }   /* with table-layout: fixed, only the first row sets the column widths */
+.chat__table tbody th { font-size: 15px; font-weight: 500; line-height: 1.4; color: var(--ink); }
+.chat__table td { font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.2; color: var(--muted); }
+.chat__table td[data-k="who"] { font-size: 17px; }
+.chat__table td.is-set { color: var(--ink); background: var(--ground-alt); }
+.chat__sum { margin: 12px 0 0; font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+.chat__static { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.chat__static p { margin: 0; font-size: 16px; line-height: 1.5; }
+.chat__static ol { margin: 0 0 4px 22px; padding: 0; font-size: 15.5px; line-height: 1.45; }
+.chat__static .label { margin-top: 10px; }
+.moment p { margin-top: 6px; font-size: 17px; line-height: 1.6; color: var(--ink); }
+@media (max-width: 720px) { .chat__log { height: clamp(300px, 66vh, 580px); height: clamp(300px, 66svh, 580px); } .chat__choices { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) {
+  .chat__log { padding: 12px; }
+  .chat .bubble { padding: 11px 14px; }
+  .chat__table tbody th { font-size: 14.5px; }
+  .chat__table td { font-size: 20px; }
+  .chat__table td[data-k="who"] { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) { .check, .chat__choice { transition: none; } .chat__typing i { animation: none; } }
+
+/* step 7, third subsection: a small tree that shows which line of the spec needs which (a nested list, so it reads the same without the lines) */
+.dep__tree, .dep__tree ul { list-style: none; margin: 0; padding: 0; }
+.dep__tree { margin-top: 6px; }
+.dep__tree ul { margin-left: 22px; }
+.dep__tree li { position: relative; padding-top: 12px; }
+.dep__tree ul > li { padding-left: 30px; }
+.dep__tree ul > li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; border-left: 2px solid var(--muted); }
+.dep__tree ul > li:last-child::before { bottom: auto; height: 31px; }
+.dep__tree ul > li::after { content: ""; position: absolute; left: 0; top: 30px; width: 22px; border-top: 2px solid var(--muted); }
+.dep__box { position: relative; display: block; width: fit-content; max-width: 100%; box-sizing: border-box; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: var(--r-control); background: var(--ground); font-size: 15.5px; line-height: 1.4; color: var(--ink); }
+.dep__box b { margin-right: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.dep__tree ul .dep__box::before { content: ""; position: absolute; left: -9px; top: 13px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid var(--muted); }
+.dep .caption { margin-top: 14px; }
+
+/* the "Your turn" block about keeping or rewriting a line (step 1). It opens with the idea behind the test, so its dark header holds
+   three short paragraphs, not one line. They are set as reading text, and the last line, the instruction, keeps the size of a title. The line breaks in the
+   data (a blank line between paragraphs) show as breaks. The site makes every <strong> ink-coloured, which is invisible on the dark header. */
+#pl-keep .pl__title, #pl-keep.pl--turn > .pl-static > .pl__title { font-family: var(--font-body); font-size: 17px; font-weight: 400; line-height: 1.55; letter-spacing: 0; white-space: pre-line; text-wrap: pretty; }
+#pl-keep .pl__title strong { font-weight: 700; color: inherit; }
+#pl-keep .pl__title > strong:last-child { font-family: var(--font-display); font-size: clamp(20px, 3vw, 24px); line-height: 1.25; letter-spacing: -0.01em; }
+
+/* the table of skills in the three apps: on a phone each row stacks into one block, with the small label of each cell above it */
+@media (max-width: 600px) {
+  .plain-table--stack thead { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .plain-table--stack, .plain-table--stack tbody, .plain-table--stack tr, .plain-table--stack th, .plain-table--stack td { display: block; }
+  .plain-table--stack tbody tr + tr { border-top: 1px solid var(--line); }
+  .plain-table--stack tbody th, .plain-table--stack td { border-top: 0; }
+  .plain-table--stack tbody th { padding: 12px 14px 2px; font-size: 16px; }
+  .plain-table--stack tbody th small { display: inline; margin: 0 0 0 8px; }
+  .plain-table--stack td { padding: 6px 14px 10px; font-size: 15px; }
+  .plain-table--stack td::before { content: attr(data-label); display: block; margin-bottom: 2px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+}
