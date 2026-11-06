@@ -131,7 +131,7 @@ img, svg { max-width: 100%; }
 
 .grid { display: grid; gap: 16px; }
 .grid--cards { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.grid--rules { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid--rules { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
 
 /* ---------- Site chrome ---------- */
 .site-nav {
@@ -348,6 +348,10 @@ img, svg { max-width: 100%; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+/* Scripts off: nothing ever adds .is-visible, so show the content. Same rule as in play.css. */
+@media (scripting: none) { .reveal { opacity: 1; transform: none; } }
+/* Printing: nothing has scrolled into view, so show the content, and leave out the fixed bar and pill. */
+@media print { .reveal { opacity: 1; transform: none; transition: none; } .progress, .stage { display: none; } }
 
 /* ---------- Motion ---------- */
 @keyframes blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
