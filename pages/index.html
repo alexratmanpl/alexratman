@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,10 +19,11 @@
 <meta name="twitter:image" content="https://alexratman.com/assets/og/home.png">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="/assets/site.css">
 <style>
-  .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px; }
   .learn-grid--blog { grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr)); }
   .learn-card { display: flex; flex-direction: column; gap: 18px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
   .learn-card:hover { border-color: var(--ink); color: inherit; }
