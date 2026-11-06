@@ -56,7 +56,7 @@ pages/
 
 Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page. The three guide pages also link `/assets/play.css` and load `/assets/play.js`; the two longer ones link `/assets/guide.css` as well.
 
-The site has two sections, **Learn** (`/learn/`, interactive pieces) and **Blog** (`/blog/`, reading pages). Every page carries the same nav: Learn, Blog, GitHub.
+The site has two sections, **Learn** (`/learn/`, interactive pieces) and **Blog** (`/blog/`, reading pages). Every page carries the same nav: Learn, Blog, GitHub, LinkedIn. Below 400px wide the nav drops LinkedIn, because a fourth link does not fit. The footer of every page keeps GitHub and LinkedIn at every width.
 
 Nothing is fetched from a third-party host at runtime, with one deliberate exception: `/learn/self-improving-skills/` makes a read-only, unauthenticated request to GitHub's public REST API (`api.github.com/repos/alexratmanpl/business-agent-skills/pulls`, paged newest-first, and `/releases`) to refresh its "where it stands" numbers. Only the loop's own pull requests are counted (number ≥ 13 on a `claude/YYYY-MM-DD-…` branch). No token is sent, every returned value is inserted with `textContent`, the request aborts after 7 s, and on any failure the page shows its dated snapshot instead. It does mean each visitor's browser makes one request to GitHub. Rate limit for unauthenticated calls is 60/hour per visitor IP, which is plenty for a page.
 
@@ -122,7 +122,7 @@ Some facts are written on more than one page, and nothing updates them for you. 
 - Icons are inline SVG (stroke, 24px grid) — no emoji.
 - Buttons are real `<button>` elements; every control is at least 44px tall. Text inputs carry a `maxlength`.
 - The nav marks the current section with `class="is-active"`; `aria-current="page"` only on the page the link actually points to.
-- The nav is the brand and three links (Learn, Blog, GitHub). They fit on one line at 320px with little room to spare (about 16px between the brand and the links), so check the nav at that width before adding a link or lengthening a label.
+- The nav is the brand and four links (Learn, Blog, GitHub, LinkedIn). Three links fit on one line at 320px with little room to spare (about 16px between the brand and the links). LinkedIn carries `.site-nav__extra` and shows from 400px, where the gap is about 21px. Check the nav at 320px and at 400px before adding a link or lengthening a label.
 - Reduced-motion preferences are respected (`prefers-reduced-motion`): no auto-advancing loops, no endless replays, no scroll-in animation. Anything that still moves by itself for more than five seconds also carries a pause control.
 - Every page opens with a "Skip to content" link (`.skip-link` in `site.css`) pointing at `<main id="main">`.
 - A control that stays selected says so: `aria-pressed` on the button, kept in step with the class that colours it. The result of using a control sits in an `aria-live="polite"` region, so it is announced.
