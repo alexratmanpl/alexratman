@@ -5,6 +5,9 @@ Social cards (1200x630 PNG), one per page. Referenced by each page's og:image / 
   from-thought-to-answer.png     /learn/from-thought-to-answer/
   self-improving-skills.png      /learn/self-improving-skills/
   price-of-a-conversation.png    /learn/price-of-a-conversation/
+  ask-write-or-draw.png          /learn/ask-write-or-draw/
+  spec-driven-development.png    /learn/spec-driven-development/
+  design-first.png               /learn/design-first/
   blog.png                       /blog/
   five-mistakes-learning-ai.png  /blog/five-mistakes-learning-ai/
 

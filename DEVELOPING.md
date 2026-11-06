@@ -15,6 +15,9 @@ pages/
   favicon.svg
   assets/
     site.css                design system: tokens, base styles, shared components
+    guide.css               parts the two how-to guides share (Write It Down…, Draw It…)
+    play.css                styles for the question and demo blocks
+    play.js                 the question kit: builds the blocks from JSON in the page, plus the progress bar and stage pill
     fonts.css               @font-face rules for the self-hosted fonts
     fonts/                  Bricolage Grotesque + Instrument Sans .woff2 subsets (OFL) + licence
     og/                     README.txt (the manifest) + 1200×630 social cards, one per page (PNG — upload via the GitHub web UI)
@@ -34,6 +37,16 @@ pages/
       index.html            the page (6 steps): token prices, one message taken apart, the re-read, a comparison, eight habits
       page.css              its page-specific styles
       app.js                its four widgets — prices and sizes are constants at the top of the file
+    ask-write-or-draw/
+      index.html            the page (3 steps): three ways to start a job with an AI, five short jobs, a guide for a job of your own. Uses play.css and play.js; no script of its own
+    spec-driven-development/
+      index.html            the page (7 steps): write the rules down before an AI builds, one small example, questions along the way
+      page.css              its page-specific styles
+      app.js                its own demos: the four stages, the checks, the example chat
+    design-first/
+      index.html            the page (7 steps): compare rough drawings before an AI builds, with a pretend bakery
+      page.css              its page-specific styles
+      app.js                its own demos: the rough boards, the pick-comment-redraw-freeze loop, the tick list
   blog/
     index.html              list of posts
     five-mistakes-learning-ai/
@@ -41,7 +54,7 @@ pages/
       page.css              its page-specific styles
 ```
 
-Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page.
+Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page. The three guide pages also link `/assets/play.css` and load `/assets/play.js`; the two longer ones link `/assets/guide.css` as well.
 
 The site has two sections, **Learn** (`/learn/`, interactive pieces) and **Blog** (`/blog/`, reading pages). Every page carries the same nav: Learn, Blog, GitHub.
 
@@ -69,6 +82,10 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
   - **Three axes, one chip each.** Disclosure: `Made with AI`, on everything, never a filter — it is a statement, not a category. A piece may say what the AI did: the first blog post's chip reads `Researched with AI`, because the words are the author's. The slug stays `made-with-ai`, so the tag vocabulary does not change. Format: `Explainer` for how something works, `Case study` for a real system and what happened when it ran, `Article` for a reading page on the blog (`Note` is still reserved for the blog). Topic: `AI` today, more as the subjects widen. One format tag and at least one topic tag per piece — add a new topic rather than stretching an existing one.
   - **The slug is the contract, the wording is not.** Each chip carries `data-tag="<slug>"`; each card link and each piece's `<main>` carries `data-tags="<slug> <slug> <slug>"`. Anything that filters or searches reads the slugs, so a label can be reworded without breaking it.
   - A topic that every piece carries cannot filter anything. Do not offer such a tag as a filter control until at least one piece does not have it.
+
+## The question kit
+
+The three guide pages ask the reader questions with five kinds of block: `quiz` (pick an answer, then a reason), `rows` (decide each line), `dial` (turn a dial to a setting), `explorer` (press tabs to compare side by side) and `flow` (answer up to three questions to reach a result). A block is an element with `data-pl="<kind>"`. It holds its content as JSON in `<script type="application/json" class="pl-data">` and a readable copy in `.pl-static`. `play.js` hides the copy and builds the live block from the JSON, so a reader without script still gets the content as plain text. The JSON is data, not code, so `script-src 'self'` does not apply to it. The words the kit says itself ("Check my answer", "Try again") sit in one object at the top of `play.js`.
 
 ## Adding a piece
 

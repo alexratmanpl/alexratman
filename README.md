@@ -18,11 +18,14 @@ Pages that show the mechanism, not the vocabulary. There are two sections so far
 
 ### [Learn](https://alexratman.com/learn/)
 
-Interactive explainers. Each one is a scroll-through page with things to play with along the way. Five minutes, no prior knowledge needed.
+Interactive explainers. Each one is a scroll-through page with things to play with along the way. Five to ten minutes, no prior knowledge needed.
 
 - **[From Thought to Answer](https://alexratman.com/learn/from-thought-to-answer/)** — what happens in the seconds between your question and the AI's answer: tokens, the meaning map, attention, the weighted dice, the loop — and what that means for how you should prompt and verify.
 - **[Skills That Get Better From Being Used](https://alexratman.com/learn/self-improving-skills/)** — AI skills in a public repo, notes in a private one, a scheduled agent that turns the notes into pull requests — and an experiment that changed the instructions, not the inputs, and shows which rule mattered.
 - **[The Price of a Conversation](https://alexratman.com/learn/price-of-a-conversation/)** — why long AI chats cost more than short ones, what the model actually reads when you send a message, and eight free habits that keep the meter slow — with numbers from my own usage.
+- **[Ask, Write or Draw?](https://alexratman.com/learn/ask-write-or-draw/)** — three ways to start a job with an AI, and how to pick. Five short jobs to try, then a three-question guide for your own job.
+- **[Write It Down Before You Build It](https://alexratman.com/learn/spec-driven-development/)** — write down what you want before an AI builds it. One small example, short questions along the way, and a demo of two ways to ask.
+- **[Draw It Before You Build It](https://alexratman.com/learn/design-first/)** — look at rough drawings before an AI builds anything. A pretend bakery, short questions along the way, and a demo of the whole loop.
 
 ### [Blog](https://alexratman.com/blog/)
 
