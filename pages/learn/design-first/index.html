@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Draw It Before You Build It — Alex Ratman</title>
-<meta name="description" content="Look at rough drawings before an AI builds anything. A pretend bakery, short questions to test yourself, the good and the bad, and a demo to try.">
+<meta name="description" content="Look at rough drawings before an AI builds anything. A pretend bakery, three boards to compare, a quick check of AI replies and a small demo of the whole loop.">
 <link rel="canonical" href="https://alexratman.com/learn/design-first/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Draw It Before You Build It">
-<meta property="og:description" content="Look at rough drawings before an AI builds anything. A pretend bakery, short questions along the way, and a demo of the whole loop — a 10-minute interactive scroll.">
+<meta property="og:description" content="Look at rough drawings before an AI builds anything. A pretend bakery, three boards to compare and a demo of the whole loop — a 10-minute interactive scroll.">
 <meta property="og:url" content="https://alexratman.com/learn/design-first/">
 <meta property="og:site_name" content="Alex Ratman">
 <meta property="og:image" content="https://alexratman.com/assets/og/design-first.png">
@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="/assets/guide.css">
 <link rel="stylesheet" href="/assets/play.css">
 <link rel="stylesheet" href="page.css">
+<link rel="stylesheet" href="/assets/bands.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -38,7 +39,7 @@
 </svg>
 
 <div class="progress" aria-hidden="true"><div class="progress__bar" id="progress"></div></div>
-<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 7</span><span id="stage-name">Hello</span></div>
+<div class="stage pill" id="stage" aria-live="polite"><span class="pill__num" id="stage-num">1 / 8</span><span id="stage-name">Hello</span></div>
 
 <header class="site-nav">
   <a class="site-nav__brand" href="/">Alex Ratman</a>
@@ -51,119 +52,106 @@
 </header>
 
 <main id="main" data-tags="made-with-ai explainer ai">
-
-<!-- 1 · HERO -->
 <section class="hero" id="s1" data-stage="1" data-stage-name="Hello">
-  <div class="hero__inner">
-    <div class="rule" aria-hidden="true"></div>
-    <div class="label">A 10-minute scroll about design-first work with AI</div>
-    <h1>Draw it<br>before you build it</h1>
-    <p class="lead hero__lead">Some things are hard to say in words: how a page looks, where the buttons go, what comes first. "Design-first" means you look at rough drawings, pick one, change it, and only then let an AI build it. This page follows a pretend bakery. Short questions along the way let you try each idea. <a href="#s8">Want to try it right away? Go to step 7.</a> Not sure a drawing suits your job? <a href="/learn/ask-write-or-draw/">Check the quick guide first.</a></p>
-    <div class="tags"><span class="tag tag--made" data-tag="made-with-ai">Made with AI</span><span class="tag" data-tag="explainer">Explainer</span><span class="tag" data-tag="ai">AI</span></div>
-    <div class="journey" aria-hidden="true">
-      <div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>the problem</div></div>
-      <div class="journey__link"></div>
-      <div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>limits</div></div>
-      <div class="journey__link"></div>
-      <div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>directions</div></div>
-      <div class="journey__link"></div>
-      <div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>refine</div></div>
-      <div class="journey__link"></div>
-      <div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>freeze</div></div>
-      <div class="journey__link"></div>
-      <div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>good and bad</div></div>
-      <div class="journey__link"></div>
-      <div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>try it</div></div>
-    </div>
-    <div class="hero__cue"><span>Scroll</span><svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chevron-down"/></svg></div>
-  </div>
+<div class="hero__inner">
+<div class="rule" aria-hidden="true"></div>
+<div class="label">A 10-minute scroll about design-first work with AI</div>
+<h1>Draw it<br>before you build it</h1>
+<p class="lead hero__lead">Some things are hard to say in words: how a screen looks, where the buttons go, what comes first. Design-first means you look at rough drawings, pick one, change it, and only then let an AI build it. This page follows a pretend bakery.</p>
+<p class="hero__small">Try it right away in <a href="#s8">step 7</a>. If you're not sure a drawing suits your job, read <a href="/learn/ask-write-or-draw/">Ask, Write or Draw?</a> first.</p>
+<div class="tags"><span class="tag tag--made">Made with AI</span><span class="tag">Explainer</span><span class="tag">AI</span></div>
+<div class="journey" aria-hidden="true"><div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>what it is</div></div><div class="journey__link"></div><div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>the loop</div></div><div class="journey__link"></div><div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>the brief</div></div><div class="journey__link"></div><div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>directions</div></div><div class="journey__link"></div><div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>refine</div></div><div class="journey__link"></div><div class="journey__stop"><div class="journey__dot journey__dot--3"></div><div>test</div></div><div class="journey__link"></div><div class="journey__stop"><div class="journey__dot journey__dot--1"></div><div>try it</div></div><div class="journey__link"></div><div class="journey__stop"><div class="journey__dot journey__dot--2"></div><div>after</div></div></div>
+<div class="hero__cue"><span>Scroll</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
+</div>
 </section>
-
-<!-- 2 · WHAT IT IS -->
 <section class="section section--alt" id="s2" data-stage="2" data-stage-name="What it is">
-  <div class="wrap stack reveal">
-    <div class="label">Step 1 · What it is</div>
-    <h2>Words fit many pages. A drawing fits one.</h2>
-    <p>Picture a baker who says: "Friendly and clean, with the loaf of the week on top." Ten designers would draw ten different pages. An AI would draw an eleventh.</p>
-    <p>For things you can count, words work well. "The total shows cents" is easy to check. "Friendly" is not. The AI fills that gap with its own taste, and you see the result only after the whole page is built.</p>
-    <p>An architect works the other way round. Nobody asks for a house in one sentence and then waits for the walls. You look at sketches, say "bigger kitchen", and only then do the builders start. Moving a line on paper takes a minute. Moving a wall takes weeks.</p>
-    <p>Design-first is that habit for software. Before anything is built, you look at rough drawings of a screen. Each one is a <b>board</b>: boxes and plain text, with no finished look. Boards are quick to change. <a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank" rel="noopener">Nielsen Norman Group</a>, a usability research firm, adds that people may feel freer to criticise them.</p>
-    <p>People also find it easier to recognise what they want than to describe it from nothing. <a href="https://www.nngroup.com/articles/recognition-and-recall/" target="_blank" rel="noopener">Nielsen Norman Group</a> states a general rule: recognising something is easier than recalling it, because what you see gives your memory more clues. Its article is about screens and menus. Applying it to drawings is my own reading.</p>
-    <p>Here are three boards for the sentence above, for a pretend bakery called Crumb &amp; Co. Each board is a different <b>direction</b>: a different idea of what the page leads with. Press A, B and C to look at each one. Every name, price and photo on this page is invented.</p>
-  </div>
-  <div class="cc-demo" data-cc="boards" data-cc-basic="true">
-    <noscript><p class="cc-noscript">This demo needs JavaScript, the code that makes a web page interactive, to draw the three rough boards. With it turned off, the text around the demo still explains the idea.</p></noscript>
-    <div class="cc-controls cc-js">
-      <div class="cc-group" role="group" aria-label="Direction">
-        <span class="label label--muted" aria-hidden="true">Direction</span>
-        <div class="cc-btns">
-          <button type="button" class="toggle is-on" data-cc-dir="A" aria-pressed="true"><span class="cc-key">A</span> Photo first</button>
-          <button type="button" class="toggle" data-cc-dir="B" aria-pressed="false"><span class="cc-key">B</span> Order first</button>
-          <button type="button" class="toggle" data-cc-dir="C" aria-pressed="false"><span class="cc-key">C</span> Story first</button>
-          <button type="button" class="toggle" data-cc-dir="all" aria-pressed="false" hidden>Side by side</button>
-        </div>
-      </div>
-    </div>
-    <p class="hint cc-js" data-cc-part="hint" hidden></p>
-    <div class="cc-stage cc-js" data-cc-part="stage"></div>
-  </div>
-  <div class="wrap stack reveal">
-    <div class="pl pl--quiz pl--turn card" id="pl-sentences" data-pl="quiz" role="group" aria-label="Three sentences: draw it, or write it down?">
-<script type="application/json" class="pl-data">{"kind":"quiz","name":"Three sentences: draw it, or write it down?","label":"Your turn","title":"Read each sentence. Pick what you do with it, then pick why.","unit":"Sentence","factsHead":"What you know","parts":[{"head":"What do you do?","pick":"a move","name":"move","layout":"list","sayHead":"What happens","bestHead":"The better move"},{"head":"Why?","pick":"a reason","name":"reason","layout":"list","sayHead":"About your reason","bestHead":"The reason that fits"}],"jobs":[{"id":"friendly","title":"Friendly and clean","text":"You tell the AI: \"Friendly and clean, with the loaf of the week on top.\" Boards A, B and C above all follow that sentence.","facts":["The three boards look very different.","The sentence does not say which one you want.","Nothing is built yet."],"answers":[{"right":"draw","options":[{"id":"build","label":"Ask for the finished page.","says":"The AI picks one of the many pages that fit. You see it only when it is built, and a change now costs more."},{"id":"draw","label":"Ask for a few rough drawings that differ, then pick one.","says":"You see real choices. Picking is often easier than describing, and a change is cheap while it is still a drawing."},{"id":"longer","label":"Write a longer sentence.","says":"It narrows the choice a little, but you still cannot see the page. Words such as \"friendly\" stay open to taste."}]},{"right":"many","options":[{"id":"knows","label":"The AI already knows what you mean by \"friendly\".","says":"It knows what many people mean, not what you mean. Boards A, B and C are all friendly to someone."},{"id":"faster","label":"Drawings are always quicker than writing.","says":"Not always. A sentence is quicker to type. The gain is that you can judge a drawing at a glance."},{"id":"many","label":"Words fit many pages. A drawing shows one you can judge.","says":"A sentence can be true for pages that feel very different. A drawing lets you judge at a glance."}]}],"chipHead":"What you could send","chip":"Draw three really different directions for the bakery home page. They must differ in what comes first. Draw them as rough boards."},{"id":"decimals","title":"A rule you can check","text":"You also want this on the page: \"Prices always show two decimals, like 4.50.\"","facts":["You can check it with one look at any price.","It holds, or it does not.","It does not depend on how the page looks."],"answers":[{"right":"rule","options":[{"id":"three","label":"Ask for three drawings of it.","says":"Three drawings of one rule are three copies of the same thing. There is nothing to choose between."},{"id":"wait","label":"Wait and see what the AI does.","says":"It may show 4.5, or 4.50, or something else. You find out only when the page is built."},{"id":"rule","label":"Write it down as a rule, and let every drawing follow it.","says":"A rule you can check belongs in words. Every board then shows prices the same way."}]},{"right":"exact","options":[{"id":"exact","label":"You can say it exactly, so there is nothing to choose.","says":"A sentence is the shortest way to say it, and a check is easy."},{"id":"cannot","label":"Seeing a price on a board tells you more than a rule.","says":"A board shows one price. The rule covers every price, and one look at the page checks it."},{"id":"rules","label":"Rules belong to the builders, not to the design.","says":"A board with wrong prices promises something the shop cannot supply. Say the rule before anything is drawn."}]}],"chipHead":"What you could send","chip":"Rule: prices always show two decimals, like 4.50. Every board must follow it."},{"id":"easy","title":"Easy to order","text":"You write: \"Ordering must be easy.\"","facts":["Easy for a regular, or for a new visitor?","The sentence does not say where the button goes.","It does not say how big it is."],"answers":[{"right":"draw","options":[{"id":"draw","label":"Ask for drawings that put ordering in different places.","says":"You see where the button could sit, and you can tell at a glance which place feels easy."},{"id":"easy","label":"Ask the AI to make it easy.","says":"\"Easy\" is a feeling. The AI picks a place, and you see it only when it is built."},{"id":"pixels","label":"Write down a button size in pixels.","says":"A minimum size is a good rule to write down. But \"easy to order\" is also about where the button sits, and a number cannot show that. A board can."}]},{"right":"look","options":[{"id":"words","label":"Words can describe a button well enough.","says":"You can describe a button exactly, but \"easy to order\" is a feeling. A board shows you at a glance whether it feels easy."},{"id":"look","label":"Where something sits, and how it feels, is judged by looking.","says":"That is what a board is for. You look, say what works, and the AI redraws."},{"id":"cannotdraw","label":"A drawing of a button is too rough to judge.","says":"A rough box with a label is enough to judge where the button sits and how easy it is to find. Fine detail can wait."}]}],"chipHead":"What you could send","chip":"Draw three boards. In each one, ordering sits somewhere different. Say in one line what each choice puts first."}],"summary":{"head":"The rule of thumb","text":"Draw what people will judge by looking. Write down what you can check in words. Most jobs need both."}}</script>
-<div class="pl-static"><p class="pl__sech">Your turn</p><p class="pl__title">Read each sentence. Pick what you do with it, then pick why.</p><ol><li><p><strong>Friendly and clean</strong></p><p>You tell the AI: "Friendly and clean, with the loaf of the week on top." Boards A, B and C above all follow that sentence.</p><ul><li>The three boards look very different.</li><li>The sentence does not say which one you want.</li><li>Nothing is built yet.</li></ul><p><strong>What do you do?</strong> Best answer: Ask for a few rough drawings that differ, then pick one. You see real choices. Picking is often easier than describing, and a change is cheap while it is still a drawing.</p><ul><li><strong>Ask for the finished page.</strong> The AI picks one of the many pages that fit. You see it only when it is built, and a change now costs more.</li><li><strong>Write a longer sentence.</strong> It narrows the choice a little, but you still cannot see the page. Words such as "friendly" stay open to taste.</li></ul><p><strong>Why?</strong> Best answer: Words fit many pages. A drawing shows one you can judge. A sentence can be true for pages that feel very different. A drawing lets you judge at a glance.</p><ul><li><strong>The AI already knows what you mean by "friendly".</strong> It knows what many people mean, not what you mean. Boards A, B and C are all friendly to someone.</li><li><strong>Drawings are always quicker than writing.</strong> Not always. A sentence is quicker to type. The gain is that you can judge a drawing at a glance.</li></ul><p><strong>What you could send</strong> Draw three really different directions for the bakery home page. They must differ in what comes first. Draw them as rough boards.</p></li><li><p><strong>A rule you can check</strong></p><p>You also want this on the page: "Prices always show two decimals, like 4.50."</p><ul><li>You can check it with one look at any price.</li><li>It holds, or it does not.</li><li>It does not depend on how the page looks.</li></ul><p><strong>What do you do?</strong> Best answer: Write it down as a rule, and let every drawing follow it. A rule you can check belongs in words. Every board then shows prices the same way.</p><ul><li><strong>Ask for three drawings of it.</strong> Three drawings of one rule are three copies of the same thing. There is nothing to choose between.</li><li><strong>Wait and see what the AI does.</strong> It may show 4.5, or 4.50, or something else. You find out only when the page is built.</li></ul><p><strong>Why?</strong> Best answer: You can say it exactly, so there is nothing to choose. A sentence is the shortest way to say it, and a check is easy.</p><ul><li><strong>Seeing a price on a board tells you more than a rule.</strong> A board shows one price. The rule covers every price, and one look at the page checks it.</li><li><strong>Rules belong to the builders, not to the design.</strong> A board with wrong prices promises something the shop cannot supply. Say the rule before anything is drawn.</li></ul><p><strong>What you could send</strong> Rule: prices always show two decimals, like 4.50. Every board must follow it.</p></li><li><p><strong>Easy to order</strong></p><p>You write: "Ordering must be easy."</p><ul><li>Easy for a regular, or for a new visitor?</li><li>The sentence does not say where the button goes.</li><li>It does not say how big it is.</li></ul><p><strong>What do you do?</strong> Best answer: Ask for drawings that put ordering in different places. You see where the button could sit, and you can tell at a glance which place feels easy.</p><ul><li><strong>Ask the AI to make it easy.</strong> "Easy" is a feeling. The AI picks a place, and you see it only when it is built.</li><li><strong>Write down a button size in pixels.</strong> A minimum size is a good rule to write down. But "easy to order" is also about where the button sits, and a number cannot show that. A board can.</li></ul><p><strong>Why?</strong> Best answer: Where something sits, and how it feels, is judged by looking. That is what a board is for. You look, say what works, and the AI redraws.</p><ul><li><strong>Words can describe a button well enough.</strong> You can describe a button exactly, but "easy to order" is a feeling. A board shows you at a glance whether it feels easy.</li><li><strong>A drawing of a button is too rough to judge.</strong> A rough box with a label is enough to judge where the button sits and how easy it is to find. Fine detail can wait.</li></ul><p><strong>What you could send</strong> Draw three boards. In each one, ordering sits somewhere different. Say in one line what each choice puts first.</p></li></ol><p><strong>The rule of thumb</strong> Draw what people will judge by looking. Write down what you can check in words. Most jobs need both.</p></div>
+<div class="wrap stack reveal">
+<div class="label">Step 1 &middot; What it is</div>
+<h2>Words fit many pages. A drawing fits one.</h2>
+<p>Picture a baker who says: "Friendly and clean, with the loaf of the week on top." Ten designers would draw ten different pages. An AI would draw an eleventh. "Friendly" is not something you can check, so the AI fills the gap with its own taste. You see the result only after the whole thing is built.</p>
+
+<div class="card card--visual wd" role="group" aria-label="Words fit many pages. A drawing shows one page you can judge before it is built.">
+<div class="label label--sm label--muted">The baker's sentence &middot; a made-up example</div>
+<div class="wd__row">
+<p class="wd__tag">Words</p>
+<div class="wd__flow">
+<p class="wd__quote">"Friendly and clean, with the loaf of the week on top."</p>
+<svg class="wd__arrow" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+<div class="wd__outs">
+<div class="wd__sketches" role="img" aria-label="Four different rough page layouts"><svg class="wd__sk" viewBox="0 0 64 88" width="64" height="88" aria-hidden="true" focusable="false"><rect class="wd__pg" x="0.75" y="0.75" width="62.5" height="86.5" rx="4"/><rect class="wd__bk" x="8" y="8" width="48" height="32" rx="2"/><rect class="wd__bk" x="8" y="46" width="36" height="5" rx="2"/><rect class="wd__bk" x="8" y="56" width="24" height="5" rx="2"/><rect class="wd__bk wd__bk--red" x="8" y="68" width="48" height="10" rx="2"/></svg><svg class="wd__sk" viewBox="0 0 64 88" width="64" height="88" aria-hidden="true" focusable="false"><rect class="wd__pg" x="0.75" y="0.75" width="62.5" height="86.5" rx="4"/><rect class="wd__bk" x="8" y="8" width="16" height="16" rx="2"/><rect class="wd__bk" x="28" y="10" width="28" height="4" rx="2"/><rect class="wd__bk" x="28" y="17" width="20" height="4" rx="2"/><rect class="wd__bk" x="8" y="32" width="10" height="10" rx="2"/><rect class="wd__bk" x="22" y="35" width="34" height="4" rx="2"/><rect class="wd__bk" x="8" y="46" width="10" height="10" rx="2"/><rect class="wd__bk" x="22" y="49" width="34" height="4" rx="2"/><rect class="wd__bk" x="8" y="60" width="10" height="10" rx="2"/><rect class="wd__bk" x="22" y="63" width="34" height="4" rx="2"/><rect class="wd__bk wd__bk--red" x="8" y="76" width="48" height="6" rx="2"/></svg><svg class="wd__sk" viewBox="0 0 64 88" width="64" height="88" aria-hidden="true" focusable="false"><rect class="wd__pg" x="0.75" y="0.75" width="62.5" height="86.5" rx="4"/><rect class="wd__bk" x="8" y="8" width="22" height="36" rx="2"/><rect class="wd__bk" x="34" y="10" width="22" height="4" rx="2"/><rect class="wd__bk" x="34" y="18" width="18" height="4" rx="2"/><rect class="wd__bk" x="34" y="26" width="22" height="4" rx="2"/><rect class="wd__bk" x="34" y="34" width="14" height="4" rx="2"/><rect class="wd__bk" x="8" y="52" width="48" height="4" rx="2"/><rect class="wd__bk" x="8" y="60" width="36" height="4" rx="2"/><rect class="wd__bk wd__bk--red" x="8" y="70" width="20" height="6" rx="2"/></svg><svg class="wd__sk" viewBox="0 0 64 88" width="64" height="88" aria-hidden="true" focusable="false"><rect class="wd__pg" x="0.75" y="0.75" width="62.5" height="86.5" rx="4"/><rect class="wd__bk" x="16" y="8" width="32" height="26" rx="2"/><rect class="wd__bk" x="20" y="38" width="24" height="5" rx="2"/><rect class="wd__bk" x="8" y="48" width="22" height="16" rx="2"/><rect class="wd__bk" x="34" y="48" width="22" height="16" rx="2"/><rect class="wd__bk wd__bk--red" x="8" y="70" width="48" height="8" rx="2"/></svg></div>
+<span class="wd__more">and many more</span>
 </div>
-    <p class="caption">One word, two meanings. In some spec tools, such as <a href="https://kiro.dev/docs/specs/" target="_blank" rel="noopener">Kiro</a>, "design" is a technical plan written in text. Here it means what people see and touch: the screens.</p>
-  </div>
+</div>
+<p class="wd__verdict">Many pages fit these words.</p>
+</div>
+<div class="wd__row">
+<p class="wd__tag">A drawing</p>
+<div class="wd__solo" role="img" aria-label="One rough page layout"><svg class="wd__sk wd__sk--ink" viewBox="0 0 64 88" width="64" height="88" aria-hidden="true" focusable="false"><rect class="wd__pg" x="0.75" y="0.75" width="62.5" height="86.5" rx="4"/><rect class="wd__bk" x="8" y="8" width="48" height="32" rx="2"/><rect class="wd__bk" x="8" y="46" width="36" height="5" rx="2"/><rect class="wd__bk" x="8" y="56" width="24" height="5" rx="2"/><rect class="wd__bk wd__bk--red" x="8" y="68" width="48" height="10" rx="2"/></svg></div>
+<p class="wd__verdict">A drawing shows you one page you can judge before it is built.</p>
+</div>
+<p class="caption">A rough drawing of a page, with boxes and simple text, is called a <strong>board</strong>.</p>
+</div>
+<div class="takeaway"><div class="label">Takeaway</div><p>Draw what people will judge by looking. Write down what you can check in words. Most jobs need both.</p></div>
+</div>
 </section>
+<section class="section" id="s3" data-stage="3" data-stage-name="The loop">
+<div class="wrap stack reveal">
+<div class="label">Step 2 &middot; The loop</div>
+<h2>One loop with a stop sign</h2>
+<p>The whole method is one loop. You set the limits, the AI draws three directions, and you pick one and refine it. Only when you freeze the result does anything get built.</p>
 
-<!-- 3 · LIMITS -->
-<section class="section" id="s3" data-stage="3" data-stage-name="Limits">
-  <div class="wrap stack reveal">
-    <div class="label">Step 2 · Set the limits</div>
-    <h2>First, say what is fixed and what is open</h2>
-    <p>The whole method is one loop with a stop sign. The three red stations repeat for as long as you like. Then you freeze the result, and only then does anything get built.</p>
-    <div class="card" role="group" aria-label="The design-first loop, seven stations">
-      <div class="label label--muted">The design-first loop</div>
-      <ol class="loop">
-        <li class="loop__i"><b class="loop__n">1</b> <div class="loop__t"><strong>Starting brief</strong> <span>You say what the page is for, what is fixed and what is open.</span></div></li>
-        <li class="loop__i loop__i--in"><b class="loop__n">2</b> <div class="loop__t"><strong>Directions</strong> <span>The AI draws three really different directions as rough boards.</span></div></li>
-        <li class="loop__i loop__i--in"><b class="loop__n">3</b> <div class="loop__t"><strong>Pick</strong> <span>You choose one, in your own words.</span></div></li>
-        <li class="loop__i loop__i--in"><b class="loop__n">4</b> <div class="loop__t"><strong>Refine</strong> <span>You comment on spots. The AI redraws as version 2, 3, and so on.</span></div></li>
-        <li class="loop__i"><b class="loop__n">5</b> <div class="loop__t"><strong>Freeze</strong> <span>You say "this is it". The AI writes a build brief from the final boards.</span></div></li>
-        <li class="loop__i"><b class="loop__n">6</b> <div class="loop__t"><strong>Build</strong> <span>The real thing is built from the build brief.</span></div></li>
-        <li class="loop__i"><b class="loop__n">7</b> <div class="loop__t"><strong>Check</strong> <span>You, or an AI, verify the result against the build brief and the boards. A person decides whether it goes live.</span></div></li>
-      </ol>
-      <p class="loop__again">Red stations 2 to 4 repeat until you are happy.</p>
-    </div>
-    <p>Station 1 sets the limits. Try it on the pretend bakery.</p>
-    <div class="pl pl--rows pl--turn card" id="pl-limits" data-pl="rows" role="group" aria-label="Fixed or open? Six items for the bakery">
-<script type="application/json" class="pl-data">{"kind":"rows","name":"Fixed or open? Six items for the bakery","label":"Your turn","title":"Your first message is the **starting brief**. It splits the job in two. **Fixed** is what the AI must not touch: approved words, the brand colour, the pages that must exist. **Open** is what you want to see different ideas for: layout, order, mood.\n\nWithout that split, the AI may redesign what you wanted left alone. If everything is fixed, you get three near-identical drawings.\n\n**Read each item for the bakery. Is it fixed, or open?**","choices":[{"id":"fixed","label":"Fixed"},{"id":"open","label":"Open"}],"rows":[{"text":"The shop name, Crumb \u0026 Co., and its red logo","right":"fixed","says":"It is approved. A new drawing should keep it as it is."},{"text":"What sits at the top of the home page","right":"open","says":"This is the kind of choice you want to see different ideas for."},{"text":"The words \"Order by Thursday\"","right":"fixed","says":"These are approved words. A redraw should keep them word for word."},{"text":"How busy or calm the page feels","right":"open","says":"The mood is something you judge by looking."},{"text":"Prices always show two decimals, like 4.50","right":"fixed","says":"It is a rule you can check. Every drawing should follow it."},{"text":"Whether ordering is a big button, a bar or a link","right":"open","says":"Where and how people order is something you want different ideas for."}],"summary":"A quick test: what is already decided, or can be checked against a rule, is usually fixed. What you judge by looking is usually open."}</script>
-<div class="pl-static"><p class="pl__sech">Your turn</p><p class="pl__title">Your first message is the <strong>starting brief</strong>. It splits the job in two. <strong>Fixed</strong> is what the AI must not touch: approved words, the brand colour, the pages that must exist. <strong>Open</strong> is what you want to see different ideas for: layout, order, mood.
-
-Without that split, the AI may redesign what you wanted left alone. If everything is fixed, you get three near-identical drawings.
-
-<strong>Read each item for the bakery. Is it fixed, or open?</strong></p><ol><li>The shop name, Crumb &amp; Co., and its red logo <strong>Fixed.</strong> It is approved. A new drawing should keep it as it is.</li><li>What sits at the top of the home page <strong>Open.</strong> This is the kind of choice you want to see different ideas for.</li><li>The words "Order by Thursday" <strong>Fixed.</strong> These are approved words. A redraw should keep them word for word.</li><li>How busy or calm the page feels <strong>Open.</strong> The mood is something you judge by looking.</li><li>Prices always show two decimals, like 4.50 <strong>Fixed.</strong> It is a rule you can check. Every drawing should follow it.</li><li>Whether ordering is a big button, a bar or a link <strong>Open.</strong> Where and how people order is something you want different ideas for.</li></ol><p>A quick test: what is already decided, or can be checked against a rule, is usually fixed. What you judge by looking is usually open.</p></div>
+<div class="card card--visual" role="group" aria-label="The design-first loop, seven stations">
+<div class="label label--sm label--muted">The design-first loop</div>
+<ol class="loop">
+<li class="loop__i"><b class="loop__n">1</b><div class="loop__t"><strong>Starting brief</strong><span>You say what the page is for, what is fixed and what is open.</span></div></li>
+<li class="loop__i loop__i--in"><b class="loop__n">2</b><div class="loop__t"><strong>Directions</strong><span>The AI draws three really different directions as rough boards.</span></div></li>
+<li class="loop__i loop__i--in"><b class="loop__n">3</b><div class="loop__t"><strong>Pick</strong><span>You choose one, in your own words.</span></div></li>
+<li class="loop__i loop__i--in"><b class="loop__n">4</b><div class="loop__t"><strong>Refine</strong><span>You comment on spots. The AI redraws as version 2, 3, and so on.</span></div></li>
+<li class="loop__i"><b class="loop__n">5</b><div class="loop__t"><strong>Freeze</strong><span>You say "this is it". The AI writes a build brief from the final boards.</span></div></li>
+<li class="loop__i"><b class="loop__n">6</b><div class="loop__t"><strong>Build</strong><span>The real thing is built from the build brief.</span></div></li>
+<li class="loop__i"><b class="loop__n">7</b><div class="loop__t"><strong>Check</strong><span>You, or an AI, check the result against the build brief and the boards. A person decides whether it goes live.</span></div></li>
+</ol>
 </div>
-    <p>Two more things go in the starting brief. The first is what one item of content looks like, so a drawing stays honest. A loaf has a name, a price and maybe a photo, but no nutrition table. The second is any rules ("prices always show two decimals") and words the page must never use, such as claims you cannot prove.</p>
-    <p>You may not know what you want until you are asked. So let the AI interview you. One rule makes it work: one question at a time, each with its reason. "I don't know yet, show me options" is a good answer. Twenty questions at once tend to get twenty shallow answers.</p>
-  </div>
+<div class="takeaway"><div class="label">Takeaway</div><p>Stations 2 to 4 repeat until you are happy. Nothing is built before the freeze.</p></div>
+</div>
 </section>
+<section class="section section--alt" id="s4" data-stage="4" data-stage-name="The brief">
+<div class="wrap stack reveal">
+<div class="label">Step 3 &middot; The starting brief</div>
+<h2>Say what is fixed and what is open</h2>
+<p>Your first message splits the job in two. Fixed is what the AI must not touch: approved words, the brand colour, the pages that must exist. Open is what you want different ideas for: layout, order, mood. If you're not sure yet, let the AI interview you: one question at a time, each with its reason.</p>
 
-<!-- 4 · DIRECTIONS -->
-<section class="section section--alt" id="s4" data-stage="4" data-stage-name="Directions">
-  <div class="wrap stack reveal">
-    <div class="label">Step 3 · Directions</div>
-    <h2>Ask for three really different directions</h2>
-    <p>Ask for three directions that differ in what comes first, not three colour schemes of one layout. For the bakery, try these three. <b>Photo first</b> has a big photo with the loaf name on top. <b>Order first</b> is a compact list, with an order bar that stays on screen. <b>Story first</b> has no photo, big letters and a lot of white space.</p>
-    <p>Draw them as rough boards at phone size first, then check a larger screen. Keep the boards rough: fine detail can pull the talk towards colours and away from structure.</p>
-    <div class="pl pl--quiz pl--turn card" id="pl-requests" data-pl="quiz" role="group" aria-label="Three jobs: which message gets three real directions?">
-<script type="application/json" class="pl-data">{"kind":"quiz","name":"Three jobs: which message gets three real directions?","label":"Your turn","title":"Read each job. Pick the message that gets three really different directions.","unit":"Job","factsHead":"What you know","parts":[{"head":"Which message do you send?","pick":"a message","name":"message","layout":"list","sayHead":"What you get","bestHead":"The better message"}],"jobs":[{"id":"bakery","title":"The bakery home page","text":"You want different ideas for the bakery home page. The name and logo are fixed. The AI will draw rough boards at phone size.","facts":["You want to compare ideas, not only colours.","Nothing is built yet."],"answers":[{"right":"first","options":[{"id":"colours","label":"Show me three colour schemes for this page.","says":"You get one layout in three colours. You cannot compare ideas, and colour is the easy part to change later."},{"id":"best","label":"Draw the best page you can.","says":"You get one page. You can say yes or no, but you never see the other ways."},{"id":"first","label":"Draw three directions. Each must put something different first on the page.","says":"You get boards that differ in structure: perhaps one led by the photo, one by the order button and one by the story."}]}],"chipHead":"What you could send","chip":"Draw three really different directions, not three colour schemes. They must differ in what comes first on the page."},{"id":"booking","title":"A booking page","text":"A dental clinic wants a page where patients book a visit.","facts":["Patients might start from the date, the dentist or the treatment.","The clinic cannot tell which suits its patients."],"answers":[{"right":"starts","options":[{"id":"starts","label":"Draw three booking pages. One starts with the date, one with the dentist, one with the treatment.","says":"Each board asks the patient something different first. Now you can see which order feels natural."},{"id":"fonts","label":"Draw three versions with different fonts.","says":"Fonts change the look, not what comes first. The three pages work the same way."},{"id":"copy","label":"Draw one booking page, then draw it twice more.","says":"The second and third drawings copy the first. You get three look-alikes."}]}],"chipHead":"What you could send","chip":"Draw three booking pages. One starts with the date, one with the dentist and one with the treatment. Keep them rough."},{"id":"lookalike","title":"Two look-alikes","text":"The AI drew three boards for the bakery. Boards A and B differ only in colour.","facts":["Board C is different.","You wanted three real directions."],"answers":[{"right":"redo","options":[{"id":"nice","label":"Pick the one with the nicest colours.","says":"You choose between paint jobs, and the structure stays the same."},{"id":"redo","label":"Say: \"A and B only differ in colour. Redo B so something else leads.\"","says":"The AI knows what is wrong and what to change. You get a new direction for B."},{"id":"vague","label":"Say: \"Make them more different.\"","says":"It is not clear what to change. The AI may change the wrong thing."}]}],"chipHead":"What you could send","chip":"A and B only differ in colour. Redo B so something else leads on the page."}],"summary":{"head":"The rule of thumb","text":"Ask for directions that differ in what comes first, not in colour. If two look alike, say which two and what should change."}}</script>
-<div class="pl-static"><p class="pl__sech">Your turn</p><p class="pl__title">Read each job. Pick the message that gets three really different directions.</p><ol><li><p><strong>The bakery home page</strong></p><p>You want different ideas for the bakery home page. The name and logo are fixed. The AI will draw rough boards at phone size.</p><ul><li>You want to compare ideas, not only colours.</li><li>Nothing is built yet.</li></ul><p><strong>Which message do you send?</strong> Best answer: Draw three directions. Each must put something different first on the page. You get boards that differ in structure: perhaps one led by the photo, one by the order button and one by the story.</p><ul><li><strong>Show me three colour schemes for this page.</strong> You get one layout in three colours. You cannot compare ideas, and colour is the easy part to change later.</li><li><strong>Draw the best page you can.</strong> You get one page. You can say yes or no, but you never see the other ways.</li></ul><p><strong>What you could send</strong> Draw three really different directions, not three colour schemes. They must differ in what comes first on the page.</p></li><li><p><strong>A booking page</strong></p><p>A dental clinic wants a page where patients book a visit.</p><ul><li>Patients might start from the date, the dentist or the treatment.</li><li>The clinic cannot tell which suits its patients.</li></ul><p><strong>Which message do you send?</strong> Best answer: Draw three booking pages. One starts with the date, one with the dentist, one with the treatment. Each board asks the patient something different first. Now you can see which order feels natural.</p><ul><li><strong>Draw three versions with different fonts.</strong> Fonts change the look, not what comes first. The three pages work the same way.</li><li><strong>Draw one booking page, then draw it twice more.</strong> The second and third drawings copy the first. You get three look-alikes.</li></ul><p><strong>What you could send</strong> Draw three booking pages. One starts with the date, one with the dentist and one with the treatment. Keep them rough.</p></li><li><p><strong>Two look-alikes</strong></p><p>The AI drew three boards for the bakery. Boards A and B differ only in colour.</p><ul><li>Board C is different.</li><li>You wanted three real directions.</li></ul><p><strong>Which message do you send?</strong> Best answer: Say: "A and B only differ in colour. Redo B so something else leads." The AI knows what is wrong and what to change. You get a new direction for B.</p><ul><li><strong>Pick the one with the nicest colours.</strong> You choose between paint jobs, and the structure stays the same.</li><li><strong>Say: "Make them more different."</strong> It is not clear what to change. The AI may change the wrong thing.</li></ul><p><strong>What you could send</strong> A and B only differ in colour. Redo B so something else leads on the page.</p></li></ol><p><strong>The rule of thumb</strong> Ask for directions that differ in what comes first, not in colour. If two look alike, say which two and what should change.</p></div>
+<div class="card card--visual" role="group" aria-label="Fixed and open: what the AI must not touch, and what it may redraw">
+<div class="label label--sm label--muted">The bakery's starting brief &middot; a made-up example</div>
+<div class="cols2 cols2--bar">
+<div class="cols2__col"><p class="cols2__head">Fixed</p>
+<ul>
+<li>The shop name, Crumb &amp; Co., and its red logo.</li>
+<li>The words "Order by Thursday".</li>
+<li>Prices always show two decimals, like 4.50.</li>
+<li>What one loaf has: a name, a price, maybe a photo. No nutrition table.</li>
+</ul></div>
+<div class="cols2__col"><p class="cols2__head">Open</p>
+<ul>
+<li>What sits at the top of the home page.</li>
+<li>How busy or calm the page feels.</li>
+<li>Whether ordering is a big button, a bar or a link.</li>
+</ul></div>
 </div>
-    <p>Three is a good number. <a href="https://www.nngroup.com/articles/parallel-and-iterative-design/" target="_blank" rel="noopener">Nielsen Norman Group</a> suggests making about three to five quick, rough alternatives, then combining their best parts. In <a href="https://www.cs.cmu.edu/~spdow/files/PrototypingParallel-TOCHI10.pdf" target="_blank" rel="noopener">one lab study</a>, 33 people designed banner ads. Some made several designs before they got any feedback. Others made one design at a time, with feedback after each one. Experts rated the ads of the first group higher.</p>
-    <p>A drawing can promise anything. So ask for three marks on every board, and a legend that explains them. No tag means it works today. LATER means it needs something new first. Square brackets mean the text is a placeholder, not a fact. The boards below use these marks. Look at the LATER items on each one.</p>
-  </div>
-  <div class="cc-demo" data-cc="boards">
+<p class="caption">A quick test: what is already decided, or can be checked against a rule, is usually fixed. What you judge by looking is usually open.</p>
+</div>
+<div class="takeaway"><div class="label">Takeaway</div><p>Without the split, the AI may redesign what you wanted left alone. With everything fixed, you get three near-identical drawings.</p></div>
+</div>
+</section>
+<section class="section" id="s5" data-stage="5" data-stage-name="Directions">
+<div class="wrap stack reveal">
+<div class="label">Step 4 &middot; Directions</div>
+<h2>Ask for three really different directions</h2>
+<p>Ask for three directions that differ in what comes first, not three colour schemes of one layout. Draw them as rough boards, at phone size first. A drawing can promise anything, so ask the AI to tag what is not real yet. No tag means it works today. LATER means it needs something new first. Square brackets mean a placeholder.</p>
+
+<div class="card card--visual">
+<div class="label label--sm label--muted">Try it &middot; the same bakery, three directions</div>
+<div class="cc-demo" data-cc="boards">
     <noscript><p class="cc-noscript">This demo needs JavaScript, the code that makes a web page interactive, to draw the three rough boards. With it turned off, the text around the demo still explains each direction.</p></noscript>
     <div class="cc-controls cc-js">
       <div class="cc-group" role="group" aria-label="Direction">
@@ -189,13 +177,12 @@ Without that split, the AI may redesign what you wanted left alone. If everythin
           <button type="button" class="toggle" data-cc-size="desktop" aria-pressed="false">Desktop</button>
         </div>
       </div>
-      <details class="cc-tweaks">
-        <summary>Tweaks</summary>
-        <div class="cc-tweaks__body">
+      <div class="cc-tweaks">
+        <div class="cc-tweaks__body" role="group" aria-label="Tweaks">
           <button type="button" class="cc-switch" data-cc-opt="tags" aria-pressed="true"><span class="cc-switch__track" aria-hidden="true"></span>Show tags</button>
           <button type="button" class="cc-switch" data-cc-opt="later" aria-pressed="false"><span class="cc-switch__track" aria-hidden="true"></span>Hide LATER items</button>
         </div>
-      </details>
+      </div>
     </div>
     <ul class="cc-legend cc-js" aria-label="How to read the drawings">
       <li><span class="cc-legend__plain">no tag</span> works today</li>
@@ -205,125 +192,51 @@ Without that split, the AI may redesign what you wanted left alone. If everythin
     <p class="hint cc-js" data-cc-part="hint" hidden></p>
     <div class="cc-stage cc-js" data-cc-part="stage"></div>
   </div>
-  <div class="wrap stack reveal">
-    <p>References help too. Words like "warm" mean little; sites you can point at mean a lot. Ask the AI for about six reference sites. Choose up to three and say what you like about each, such as "the colours". Name one or two "not like this". Ask which sites it opened, because an AI may describe a site from memory. Copy qualities, not pages.</p>
-  </div>
-</section>
-
-<!-- 5 · REFINE -->
-<section class="section" id="s5" data-stage="5" data-stage-name="Refine">
-  <div class="wrap stack reveal">
-    <div class="label">Step 4 · Pick and refine</div>
-    <h2>Pick in your own words, then change it in batches</h2>
-    <p>Do not answer "B". Say why: "B, because the order button is the first thing I see. But I like A's big photo." You may mix: "B's top, A's cards". Your reasons are what the AI works from.</p>
-    <p>When you ask "what do you think?", a good AI gives two or three options and a recommendation. You can then agree or push back, instead of inventing an answer. Before you choose, check the LATER tags. The prettiest board may promise what the content cannot supply.</p>
-    <p>Now the loop turns. Many design tools let you pin a comment to a spot, like a sticky note on a drawing. Leave all your comments first. Then say "that's all", so the AI redraws once for the whole batch. Without pinned comments, write them as one numbered list.</p>
-    <p>Ask the AI to save each redraw as a new version, so you can go back. Some tools do not keep versions for you. Ask for a short decision log too: one line per decision, with the reason.</p>
-    <div class="pl pl--quiz pl--turn card" id="pl-replies" data-pl="quiz" role="group" aria-label="Three jobs: which reply helps the AI most?">
-<script type="application/json" class="pl-data">{"kind":"quiz","name":"Three jobs: which reply helps the AI most?","label":"Your turn","title":"Read each job. Pick the reply that helps the AI most.","unit":"Job","factsHead":"What you know","parts":[{"head":"Which reply do you send?","pick":"a reply","name":"reply","layout":"list","sayHead":"What happens","bestHead":"The better reply"}],"jobs":[{"id":"pick","title":"Picking a direction","text":"Three boards are on screen. You like the order button on B and the big photo on A.","facts":["The AI is waiting for your pick.","Your reasons are what it works from."],"answers":[{"right":"why","options":[{"id":"b","label":"B.","says":"It tells the AI which board, but not why. It cannot tell what you liked about B."},{"id":"why","label":"B, because the order button is the first thing I see. But I like A's big photo.","says":"Now the AI knows what to keep and what to borrow. It can mix B's top with A's photo."},{"id":"nicer","label":"Make it nicer.","says":"\"Nicer\" means different things to different people. The AI has to guess."}]}],"chipHead":"What you could send","chip":"B, because the order button is the first thing I see. But I like A's big photo."},{"id":"five","title":"Five changes","text":"You want five changes to board B: bigger type, a photo on top, calmer colours, a row of tags and shorter text.","facts":["The AI redraws each time you ask.","Each redraw is one round of asking and checking."],"answers":[{"right":"batch","options":[{"id":"each","label":"Send each change as its own message, and wait for each redraw.","says":"That is five rounds. Each round takes time, and a later change can undo an earlier one."},{"id":"improve","label":"Say \"improve the design\" and see what happens.","says":"You give up control of what changes. The AI decides."},{"id":"batch","label":"Write all five comments first. Then say \"that's all\", so the AI redraws once.","says":"One round and one new version, and the AI can fit the changes together."}]}],"chipHead":"What you could send","chip":"My comments on B: 1. Bigger type. 2. A photo on top. 3. Calmer colours. 4. A row of tags. 5. Shorter text. That's all. Please redraw once, as a new version."},{"id":"surprise","title":"A surprise in version 3","text":"Version 3 looks different from version 2 in a place you did not mention. You are not sure what changed.","facts":["You approved the top of the page in version 2.","The AI did not say what it changed."],"answers":[{"right":"list","options":[{"id":"list","label":"Ask: \"List everything that changed in this version.\"","says":"The AI lists each change, and you can say which ones to undo."},{"id":"quiet","label":"Say nothing. It looks fine.","says":"A redraw can quietly change something you had approved. If you do not ask, you may never notice."},{"id":"again","label":"Start again from the first board.","says":"You throw away work that was fine. Ask what changed first."}]}],"chipHead":"What you could send","chip":"List everything that changed in version 3. Tell me which of my approved choices moved."}],"summary":{"head":"The rule of thumb","text":"Give reasons when you pick. Collect your comments and send them together. After each redraw, ask what changed."}}</script>
-<div class="pl-static"><p class="pl__sech">Your turn</p><p class="pl__title">Read each job. Pick the reply that helps the AI most.</p><ol><li><p><strong>Picking a direction</strong></p><p>Three boards are on screen. You like the order button on B and the big photo on A.</p><ul><li>The AI is waiting for your pick.</li><li>Your reasons are what it works from.</li></ul><p><strong>Which reply do you send?</strong> Best answer: B, because the order button is the first thing I see. But I like A's big photo. Now the AI knows what to keep and what to borrow. It can mix B's top with A's photo.</p><ul><li><strong>B.</strong> It tells the AI which board, but not why. It cannot tell what you liked about B.</li><li><strong>Make it nicer.</strong> "Nicer" means different things to different people. The AI has to guess.</li></ul><p><strong>What you could send</strong> B, because the order button is the first thing I see. But I like A's big photo.</p></li><li><p><strong>Five changes</strong></p><p>You want five changes to board B: bigger type, a photo on top, calmer colours, a row of tags and shorter text.</p><ul><li>The AI redraws each time you ask.</li><li>Each redraw is one round of asking and checking.</li></ul><p><strong>Which reply do you send?</strong> Best answer: Write all five comments first. Then say "that's all", so the AI redraws once. One round and one new version, and the AI can fit the changes together.</p><ul><li><strong>Send each change as its own message, and wait for each redraw.</strong> That is five rounds. Each round takes time, and a later change can undo an earlier one.</li><li><strong>Say "improve the design" and see what happens.</strong> You give up control of what changes. The AI decides.</li></ul><p><strong>What you could send</strong> My comments on B: 1. Bigger type. 2. A photo on top. 3. Calmer colours. 4. A row of tags. 5. Shorter text. That's all. Please redraw once, as a new version.</p></li><li><p><strong>A surprise in version 3</strong></p><p>Version 3 looks different from version 2 in a place you did not mention. You are not sure what changed.</p><ul><li>You approved the top of the page in version 2.</li><li>The AI did not say what it changed.</li></ul><p><strong>Which reply do you send?</strong> Best answer: Ask: "List everything that changed in this version." The AI lists each change, and you can say which ones to undo.</p><ul><li><strong>Say nothing. It looks fine.</strong> A redraw can quietly change something you had approved. If you do not ask, you may never notice.</li><li><strong>Start again from the first board.</strong> You throw away work that was fine. Ask what changed first.</li></ul><p><strong>What you could send</strong> List everything that changed in version 3. Tell me which of my approved choices moved.</p></li></ol><p><strong>The rule of thumb</strong> Give reasons when you pick. Collect your comments and send them together. After each redraw, ask what changed.</p></div>
+<p class="caption">Three is a good number. Nielsen Norman Group suggests making about three to five quick, rough alternatives, then combining their best parts.</p>
 </div>
-  </div>
-</section>
-
-<!-- 6 · TEST AND FREEZE -->
-<section class="section section--alt" id="s6" data-stage="6" data-stage-name="Freeze">
-  <div class="wrap stack reveal">
-    <div class="label">Step 5 · Test, then freeze</div>
-    <h2>Look at it rendered, then freeze it</h2>
-    <p>"Looks right in the code" is not "looks right". Boards are made of code, the instructions a browser follows to draw a page. An AI can read that code and believe the page is fine without ever drawing it. So look at the boards <b>rendered</b>: drawn on a screen, the way a visitor sees them.</p>
-    <p>Start on a phone, then check a desktop. Ask for the awkward cases too: no photo, a very long name, nothing found, an error. Then ask: "Did you look at this rendered, or did you reason about it? Show me the evidence." Some chat tools only write code and cannot show a screenshot. If yours is one, open the file in your own browser and look yourself.</p>
-    <div class="pl pl--quiz pl--turn card" id="pl-evidence" data-pl="quiz" role="group" aria-label="Three replies: did the AI look, or only reason?">
-<script type="application/json" class="pl-data">{"kind":"quiz","name":"Three replies: did the AI look, or only reason?","label":"Your turn","title":"Read what the AI says. Pick what it did, then pick what you do next.","unit":"Reply","factsHead":"What you know","parts":[{"head":"What did the AI do?","pick":"what it did","name":"did","layout":"segs","sayHead":"What happens","bestHead":"What it did"},{"head":"What do you do next?","pick":"a move","name":"move","layout":"list","sayHead":"About your move","bestHead":"The move that fits"}],"jobs":[{"id":"good","title":"Looks good","text":"The AI says: \"I checked all three boards. They look good at phone size and at desktop size.\"","facts":["It names no screenshot or width.","It does not say whether it opened the boards."],"answers":[{"right":"unclear","options":[{"id":"looked","label":"It looked","says":"Nothing in the message shows it. \"I checked\" could mean it opened them, or only read the code."},{"id":"reasoned","label":"It only reasoned","says":"It may have. The message does not say, so you cannot tell."},{"id":"unclear","label":"I can't tell","says":"The message gives no evidence either way. That is exactly why you ask."}]},{"right":"ask","options":[{"id":"accept","label":"Accept it. The AI said it checked.","says":"\"Checked\" can mean it read code that looked fine. A board can still be wrong when it is drawn."},{"id":"ask","label":"Ask: \"Did you look at this rendered, or did you reason about it? Show me the evidence.\"","says":"One question separates the two. A real check comes with a screenshot or a list of what it saw."},{"id":"again","label":"Ask it to say it again, more clearly.","says":"It will say the same words. You need evidence, not a repeat."}]}],"chipHead":"What you could send","chip":"Did you look at the boards rendered, or did you reason about them? Show me the evidence: a screenshot for each board at phone width."},{"id":"shots","title":"With screenshots","text":"The AI says: \"I opened each board in a browser at 390 and 1280 pixels wide, and saved screenshots. On board C the loaf name wraps onto three lines on the phone. I have not fixed it yet.\"","facts":["It names the widths.","It saved screenshots.","It reports a problem."],"answers":[{"right":"looked","options":[{"id":"looked","label":"It looked","says":"It opened the boards, named the widths and reported what it saw. You can check its screenshots."},{"id":"reasoned","label":"It only reasoned","says":"A guess from code does not come with screenshots or a problem it found on one board."},{"id":"unclear","label":"I can't tell","says":"You can tell here: the message names the widths, mentions screenshots and reports one specific fault."}]},{"right":"open","options":[{"id":"again","label":"Ask it to check again.","says":"It already showed its evidence. Asking again only costs time."},{"id":"never","label":"Ignore it. A name that long will never happen.","says":"Real names come in all lengths. Ask for the awkward cases on purpose."},{"id":"open","label":"Open the screenshots, see the wrapping, and decide what to change.","says":"You have evidence to judge. Your decision is what is needed now."}]}],"chipHead":"What you could send","chip":"Fix the loaf name on board C so it fits on two lines at phone width. Show me a new screenshot."},{"id":"fit","title":"It should fit","text":"The AI says: \"The code uses a flexible width, so the loaf name will fit on any phone.\"","facts":["It talks about the code.","It does not mention a screenshot.","It says what \"will\" happen."],"answers":[{"right":"reasoned","options":[{"id":"looked","label":"It looked","says":"It describes the code, not a page it saw. No screenshot is mentioned."},{"id":"reasoned","label":"It only reasoned","says":"It read the code and drew a conclusion. That is a guess about the page, not a look at it."},{"id":"unclear","label":"I can't tell","says":"You can tell here: the message talks about what the code should do, and shows nothing the AI saw."}]},{"right":"render","options":[{"id":"render","label":"Ask for a rendered check at phone width, with a very long loaf name.","says":"Now you see what happens in the awkward case, with evidence."},{"id":"trust","label":"Trust it. A flexible width always fits.","says":"It often does, but not always. A very long word can still spill out of its box."},{"id":"explain","label":"Ask it to explain the code.","says":"You get more reasoning. You still have not seen the page."}]}],"chipHead":"What you could send","chip":"Show me board A rendered at phone width, with the loaf name \"Rye \u0026 caraway with extra seeded crust\". Give me a screenshot."}],"summary":{"head":"The rule of thumb","text":"Ask every time: did you run it, or imagine it? A screenshot, a test result or a file list is evidence. \"It should work\" is not."}}</script>
-<div class="pl-static"><p class="pl__sech">Your turn</p><p class="pl__title">Read what the AI says. Pick what it did, then pick what you do next.</p><ol><li><p><strong>Looks good</strong></p><p>The AI says: "I checked all three boards. They look good at phone size and at desktop size."</p><ul><li>It names no screenshot or width.</li><li>It does not say whether it opened the boards.</li></ul><p><strong>What did the AI do?</strong> Best answer: I can't tell. The message gives no evidence either way. That is exactly why you ask.</p><ul><li><strong>It looked.</strong> Nothing in the message shows it. "I checked" could mean it opened them, or only read the code.</li><li><strong>It only reasoned.</strong> It may have. The message does not say, so you cannot tell.</li></ul><p><strong>What do you do next?</strong> Best answer: Ask: "Did you look at this rendered, or did you reason about it? Show me the evidence." One question separates the two. A real check comes with a screenshot or a list of what it saw.</p><ul><li><strong>Accept it. The AI said it checked.</strong> "Checked" can mean it read code that looked fine. A board can still be wrong when it is drawn.</li><li><strong>Ask it to say it again, more clearly.</strong> It will say the same words. You need evidence, not a repeat.</li></ul><p><strong>What you could send</strong> Did you look at the boards rendered, or did you reason about them? Show me the evidence: a screenshot for each board at phone width.</p></li><li><p><strong>With screenshots</strong></p><p>The AI says: "I opened each board in a browser at 390 and 1280 pixels wide, and saved screenshots. On board C the loaf name wraps onto three lines on the phone. I have not fixed it yet."</p><ul><li>It names the widths.</li><li>It saved screenshots.</li><li>It reports a problem.</li></ul><p><strong>What did the AI do?</strong> Best answer: It looked. It opened the boards, named the widths and reported what it saw. You can check its screenshots.</p><ul><li><strong>It only reasoned.</strong> A guess from code does not come with screenshots or a problem it found on one board.</li><li><strong>I can't tell.</strong> You can tell here: the message names the widths, mentions screenshots and reports one specific fault.</li></ul><p><strong>What do you do next?</strong> Best answer: Open the screenshots, see the wrapping, and decide what to change. You have evidence to judge. Your decision is what is needed now.</p><ul><li><strong>Ask it to check again.</strong> It already showed its evidence. Asking again only costs time.</li><li><strong>Ignore it. A name that long will never happen.</strong> Real names come in all lengths. Ask for the awkward cases on purpose.</li></ul><p><strong>What you could send</strong> Fix the loaf name on board C so it fits on two lines at phone width. Show me a new screenshot.</p></li><li><p><strong>It should fit</strong></p><p>The AI says: "The code uses a flexible width, so the loaf name will fit on any phone."</p><ul><li>It talks about the code.</li><li>It does not mention a screenshot.</li><li>It says what "will" happen.</li></ul><p><strong>What did the AI do?</strong> Best answer: It only reasoned. It read the code and drew a conclusion. That is a guess about the page, not a look at it.</p><ul><li><strong>It looked.</strong> It describes the code, not a page it saw. No screenshot is mentioned.</li><li><strong>I can't tell.</strong> You can tell here: the message talks about what the code should do, and shows nothing the AI saw.</li></ul><p><strong>What do you do next?</strong> Best answer: Ask for a rendered check at phone width, with a very long loaf name. Now you see what happens in the awkward case, with evidence.</p><ul><li><strong>Trust it. A flexible width always fits.</strong> It often does, but not always. A very long word can still spill out of its box.</li><li><strong>Ask it to explain the code.</strong> You get more reasoning. You still have not seen the page.</li></ul><p><strong>What you could send</strong> Show me board A rendered at phone width, with the loaf name "Rye &amp; caraway with extra seeded crust". Give me a screenshot.</p></li></ol><p><strong>The rule of thumb</strong> Ask every time: did you run it, or imagine it? A screenshot, a test result or a file list is evidence. "It should work" is not.</p></div>
+<div class="takeaway"><div class="label">Takeaway</div><p>If two boards look alike, say which two and what should change: "A and B only differ in colour. Redo B so something else leads."</p></div>
 </div>
-    <p>When you say "this is it", the design stops moving. That is the freeze. The AI turns the final boards into a <b>build brief</b>: a written, exact description of what to build. The boards show how it looks. The build brief says what to build.</p>
-    <div class="card spec" role="group" aria-label="What a build brief holds">
-      <div class="label label--muted">A build brief holds</div>
-      <ol class="spec__lines">
-        <li><span><b>Named values.</b> Exact values with a name, such as crust-brown for one colour. Designers call them tokens.</span></li>
-        <li><span><b>Page structure.</b> What sits where, from top to bottom.</span></li>
-        <li><span><b>Components.</b> Reusable pieces, such as a button or a loaf card.</span></li>
-        <li><span><b>States.</b> What shows with no photo, a very long name, nothing found, or an error.</span></li>
-        <li><span><b>Accessibility notes.</b> What people with different abilities and settings need.</span></li>
-        <li><span><b>Open items.</b> Which parts are placeholders or LATER.</span></li>
-      </ol>
-    </div>
-    <p>Read the build brief against the boards. Ask the AI to list every place where they could disagree, and decide in advance which one wins. I suggest the boards. You now have a frozen design and a written build brief, not a live website. Hand both to whoever builds it.</p>
-  </div>
 </section>
+<section class="section section--alt" id="s6" data-stage="6" data-stage-name="Refine">
+<div class="wrap stack reveal">
+<div class="label">Step 5 &middot; Pick and refine</div>
+<h2>Pick in your own words, then change it in batches</h2>
+<p>Do not answer "B". Say why, and what to borrow from the others. Then leave all your comments first and say "that's all", so the AI redraws once for the whole batch. Ask it to save each redraw as a new version, and to keep a short decision log: one line per decision, with the reason.</p>
 
-<!-- 7 · AFTER THE FREEZE, THE GOOD AND THE BAD -->
-<section class="section" id="s7" data-stage="7" data-stage-name="Good and bad">
-  <div class="wrap stack reveal">
-    <div class="label">Step 6 · After the freeze</div>
-    <h2>The build brief is the contract. People still decide.</h2>
-    <p>Once the design is frozen, the build brief says what to build, and the boards show how it should look. "Done" becomes something you can check.</p>
-    <p>Before anything goes live, verify the result. You can do it yourself, or ask an AI in a new chat. If an AI checks, give it the build brief and the boards, not your own verdict. Ask it to report only where the result departs from the build brief or the boards. The <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">docs for Claude Code</a>, Anthropic's coding tool, say a fresh reviewer helps, because it has not seen your reasoning.</p>
-    <div class="sub">
-    <h3>Eight things to check before you trust the result</h3>
-    <p class="hint">Tick them as you go.</p>
-    <ul class="ticks" id="safety-list" data-ticks="safety-sum">
-      <li><label><input type="checkbox"><span><b>No passwords or keys for the AI.</b> A key is a secret code that lets a program act as you. Never paste one into a prompt or a file the AI can read.</span></label></li>
-      <li><label><input type="checkbox"><span><b>Going live is for people.</b> The AI may prepare it. You do it, or someone you trust who can read code.</span></label></li>
-      <li><label><input type="checkbox"><span><b>Invented text is labelled.</b> Placeholder text and sample data go in [square brackets], so nobody takes them for facts.</span></label></li>
-      <li><label><input type="checkbox"><span><b>"Did you run it, or imagine it?"</b> Ask every time, and ask for evidence: a screenshot, a test result or a file list.</span></label></li>
-      <li><label><input type="checkbox"><span><b>The design is a promise.</b> Check that real content can keep it: real names, real lengths, real photos.</span></label></li>
-      <li><label><input type="checkbox"><span><b>People with different abilities can use it.</b> These are minimums from the W3C, the body that sets web standards. Text stands out from its background. Its contrast ratio, which compares how light two colours are, is at least 4.5 to 1 (3 to 1 for large text). Buttons are at least 24 by 24 pixels, with a few exceptions. Bigger is easier to tap. Text can be enlarged to 200% without losing anything. A photo that carries meaning has a short text description.</span></label></li>
-      <li><label><input type="checkbox"><span><b>Photos, fonts and icons have licences.</b> "Free" does not mean "no rules". Read the licence.</span></label></li>
-      <li><label><input type="checkbox"><span><b>Stop and ask.</b> If the AI wants to delete data, change settings, spend money or touch anything live, stop and decide yourself.</span></label></li>
-    </ul>
-    <p class="ticks__sum" id="safety-sum" aria-live="polite">0 of 8 ticked. Nothing is saved or sent anywhere.</p>
-    </div>
-    <div class="sub">
-    <h3>The good and the bad</h3>
-    <div class="score">
-      <ul class="score__list">
-        <li class="score__item">
-          <span class="score__mark score__mark--for" aria-hidden="true">+</span>
-          <div class="score__body"><h4>Choosing is often easier than describing</h4>
-            <p>You react to real pictures, instead of finding the words yourself.</p></div>
-        </li>
-        <li class="score__item">
-          <span class="score__mark score__mark--for" aria-hidden="true">+</span>
-          <div class="score__body"><h4>Rough work is cheap to change</h4>
-            <p>A sketch can be redrawn in minutes, before anyone builds on it.</p></div>
-        </li>
-        <li class="score__item">
-          <span class="score__mark score__mark--for" aria-hidden="true">+</span>
-          <div class="score__body"><h4>Builders get a target</h4>
-            <p>Everyone builds and checks against the same boards and the same build brief.</p></div>
-        </li>
-        <li class="score__item">
-          <span class="score__mark score__mark--against" aria-hidden="true">−</span>
-          <div class="score__body"><h4>It costs rounds and time</h4>
-            <p>Looking, deciding and redrawing take turns, and each turn takes time.</p></div>
-        </li>
-        <li class="score__item">
-          <span class="score__mark score__mark--against" aria-hidden="true">−</span>
-          <div class="score__body"><h4>Many small choices tire you</h4>
-            <p>Send your comments in batches, and let the AI recommend.</p></div>
-        </li>
-        <li class="score__item">
-          <span class="score__mark score__mark--against" aria-hidden="true">−</span>
-          <div class="score__body"><h4>A drawing can promise too much</h4>
-            <p>A board can show what the content or the code cannot deliver, and a redraw can change something you had approved. The LATER tag and the question "what changed?" are your defences.</p></div>
-        </li>
-      </ul>
-    </div>
-    <p>Skip drawing first for a change in the hidden part of a site, with nothing to look at. Skip it for a change you could describe in one sentence. Skip it too when the content is not known yet. If your project already has a design system, ask the AI to follow it. A design system is a written set of colours, type and parts that the whole product uses.</p>
-    </div>
-  </div>
+<div class="card card--visual" role="group" aria-label="Three messages you could send">
+<div class="label label--sm label--muted">Three messages you could send &middot; the bakery</div>
+<div class="msgs">
+<div class="msg"><span class="msg__tag">Pick</span><div class="msg__b">B, because the order button is the first thing I see. But I like A's big photo.</div></div>
+<div class="msg"><span class="msg__tag">One batch</span><div class="msg__b">My comments on B:<ol><li>Bigger type.</li><li>A photo on top.</li><li>Calmer colours.</li><li>A row of tags.</li><li>Shorter text.</li></ol>That's all. Please redraw once, as a new version.</div></div>
+<div class="msg"><span class="msg__tag">After a redraw</span><div class="msg__b">List everything that changed in version 2. Tell me which of my approved choices moved.</div></div>
+</div>
+<p class="caption">A redraw can quietly change something you had approved. Before you choose, check the LATER tags too: the prettiest board may promise what the content cannot supply.</p>
+</div>
+<div class="takeaway"><div class="label">Takeaway</div><p>Give reasons when you pick. Collect your comments and send them together. After each redraw, ask what changed.</p></div>
+</div>
 </section>
+<section class="section" id="s7" data-stage="7" data-stage-name="Test">
+<div class="wrap stack reveal">
+<div class="label">Step 6 &middot; Test, then freeze</div>
+<h2>Look at it on a screen, then freeze it</h2>
+<p>Boards are made of code. An AI can read that code and tell you the page is fine without ever drawing it. So look at the boards on a real phone and a real desktop. Include the awkward cases: no photo, a very long name, an error. When you are happy, say "this is it". That is the freeze.</p>
 
-<!-- 8 · TRY IT -->
+<div class="card card--visual" role="group" aria-label="Three AI replies: did it look, or only reason?">
+<div class="label label--sm label--muted">Try it &middot; looked, or only reasoned? &middot; three AI replies</div>
+<div class="quiz"><div class="reply"><div class="sm"><input class="sm-in" type="radio" name="rep6" id="rep6-0" value="0" checked><input class="sm-in" type="radio" name="rep6" id="rep6-1" value="1"><input class="sm-in" type="radio" name="rep6" id="rep6-2" value="2"><input class="sm-in" type="radio" name="rep6" id="rep6-3" value="3"><blockquote>"I checked all three boards. They look good at phone size and at desktop size."</blockquote><div class="seg" role="radiogroup" aria-label="Did the AI look, or only reason?"><label for="rep6-1" data-wrong="1">It looked</label><label for="rep6-2" data-wrong="2">It only reasoned</label><label for="rep6-3" data-on="3">I can't tell</label></div><p class="fb" data-s="3" style="--sm-d:block"><b>Right.</b> The message gives no evidence either way. That is exactly why you ask.</p><p class="fb fb--no" data-s="1 2" style="--sm-d:block"><b>Not quite. The answer is "I can't tell".</b> The message gives no evidence either way. That is exactly why you ask.</p></div></div><div class="reply"><div class="sm"><input class="sm-in" type="radio" name="rep7" id="rep7-0" value="0" checked><input class="sm-in" type="radio" name="rep7" id="rep7-1" value="1"><input class="sm-in" type="radio" name="rep7" id="rep7-2" value="2"><input class="sm-in" type="radio" name="rep7" id="rep7-3" value="3"><blockquote>"I opened each board in a browser at 390 and 1280 pixels wide, and saved screenshots. On board C the loaf name wraps onto three lines on the phone. I have not fixed it yet."</blockquote><div class="seg" role="radiogroup" aria-label="Did the AI look, or only reason?"><label for="rep7-1" data-on="1">It looked</label><label for="rep7-2" data-wrong="2">It only reasoned</label><label for="rep7-3" data-wrong="3">I can't tell</label></div><p class="fb" data-s="1" style="--sm-d:block"><b>Right.</b> It named the widths and reported what it saw. You can check its screenshots.</p><p class="fb fb--no" data-s="2 3" style="--sm-d:block"><b>Not quite. The answer is "It looked".</b> It named the widths and reported what it saw. You can check its screenshots.</p></div></div><div class="reply"><div class="sm"><input class="sm-in" type="radio" name="rep8" id="rep8-0" value="0" checked><input class="sm-in" type="radio" name="rep8" id="rep8-1" value="1"><input class="sm-in" type="radio" name="rep8" id="rep8-2" value="2"><input class="sm-in" type="radio" name="rep8" id="rep8-3" value="3"><blockquote>"The code uses a flexible width, so the loaf name will fit on any phone."</blockquote><div class="seg" role="radiogroup" aria-label="Did the AI look, or only reason?"><label for="rep8-1" data-wrong="1">It looked</label><label for="rep8-2" data-on="2">It only reasoned</label><label for="rep8-3" data-wrong="3">I can't tell</label></div><p class="fb" data-s="2" style="--sm-d:block"><b>Right.</b> That is a guess about the page, not a look at it.</p><p class="fb fb--no" data-s="1 3" style="--sm-d:block"><b>Not quite. The answer is "It only reasoned".</b> That is a guess about the page, not a look at it.</p></div></div><div class="sendchip"><b>What you could send</b>Tell me whether you looked at the boards on a screen or only reasoned about them. Show me the evidence: a screenshot for each board at phone width.</div></div>
+</div>
+<div class="takeaway"><div class="label">Takeaway</div><p>Ask every time whether it ran the check or imagined it. A screenshot, a test result or a file list is evidence. "It should work" is not.</p></div>
+</div>
+</section>
 <section class="section section--alt" id="s8" data-stage="8" data-stage-name="Try it">
-  <div class="wrap stack reveal">
-    <div class="label">Step 7 · Try it yourself</div>
-    <h2>See the loop once</h2>
-    <p>This demo runs the loop on the pretend bakery. Pick a direction, add comments, redraw, and freeze it into a build brief. A real AI would redraw from your comments. This toy uses a fixed script, so it shows the rhythm, not the quality. Nothing you do here is saved or sent anywhere.</p>
-  </div>
-  <div class="cc-demo" data-cc="loop">
+<div class="wrap stack reveal">
+<div class="label">Step 7 &middot; Try it yourself</div>
+<h2>See the loop once</h2>
+<p>Pick a direction, add comments, redraw, and freeze it into a build brief. A real AI would redraw from your comments. This toy uses a fixed script, so it shows the rhythm, not the quality. Nothing you do here is saved or sent anywhere.</p>
+
+<div class="card card--visual">
+<div class="label label--sm label--muted">Try it &middot; pick, comment, redraw, freeze</div>
+<div class="cc-demo" data-cc="loop">
     <noscript><p class="cc-noscript">This demo needs JavaScript. It lets you pick a rough drawing, comment on it, redraw it and freeze it into a build brief. With JavaScript off, the text around it describes the steps.</p></noscript>
 
     <div class="cc-loop cc-js">
@@ -379,87 +292,82 @@ Without that split, the AI may redesign what you wanted left alone. If everythin
           <button type="button" class="btn" data-cc-act="freeze" data-cc-part="freeze" disabled>Freeze this version</button>
           <button type="button" class="btn btn--secondary" data-cc-act="again" data-cc-part="again" disabled>Start again</button>
         </div>
-        <div class="cc-brief" data-cc-part="brief" hidden>
+        <details class="cc-brief-fold" data-cc-part="brieffold" hidden>
+          <summary>Show the build brief</summary>
+          <div class="cc-brief" data-cc-part="brief">
           <div class="cc-brief__head">
             <h4 tabindex="-1" data-cc-part="briefhead">Build brief</h4>
             <button type="button" class="btn btn--secondary recipe__copy" data-cc-act="copy"><span data-cc-part="copylabel">Copy</span></button>
           </div>
           <p class="hint" data-cc-part="copynote" hidden>Copying is blocked in this browser. The text below is selected: press Ctrl+C or Cmd+C.</p>
           <pre class="cc-brief__text" data-cc-part="brieftext"></pre>
-        </div>
+          </div>
+        </details>
       </section>
     </div>
 
     <div class="visually-hidden" aria-live="polite" data-cc-part="live"></div>
   </div>
+</div>
+<div class="takeaway"><div class="label">Takeaway</div><p>The build brief is the written result of the freeze: what to build, in exact words, with a decision log.</p></div>
+</div>
 </section>
+<section class="section" id="s9" data-stage="9" data-stage-name="After">
+<div class="wrap stack reveal">
+<div class="label">Step 8 &middot; After the freeze</div>
+<h2>The build brief is the contract. People still decide.</h2>
+<p>The build brief and the boards say what "done" looks like, so you can check it. Check it yourself, or ask an AI in a new chat: give it the brief and the boards, not your own verdict. The docs for Claude Code, Anthropic's coding tool, say a fresh reviewer helps, because it has not seen your reasoning.</p>
 
-<!-- 9 · GO FURTHER -->
-<section class="section closing" id="s9" style="padding-bottom:140px">
-  <div class="wrap stack reveal">
-    <div class="label">Go further</div>
-    <h2>Where a drawing stops</h2>
-    <p>A drawing shows the normal path. It does not show the rules for errors, data or who may see what. Tuomas Härkönen, a senior product designer, makes a similar point on the <a href="https://www.futurice.com/blog/spec-driven-design" target="_blank" rel="noopener">Futurice blog</a>. He writes: "A mockup shows the happy path while hiding the edge cases, error states and data consistency rules where production bugs live." So when a job has rules that matter, write them down too. <a href="/learn/spec-driven-development/">Write It Down Before You Build It</a> shows how.</p>
-    <p>The idea is old. In 2006 Marty Cagan <a href="https://svpg.com/revisiting-the-product-spec/" target="_blank" rel="noopener">argued</a> that most of a product spec should be a high-fidelity prototype: a detailed mock-up of the real thing. He called use cases, which describe the main flows through a product, a useful supplement.</p>
-    <p>Not sure which way to start? <a href="/learn/ask-write-or-draw/">Ask, Write or Draw?</a> has five short jobs to practise on.</p>
-    <div class="related" style="margin-top:8px">
-      <div class="label">Keep reading</div>
-      <div class="related__grid related__grid--4">
-        <a class="related-card" href="/learn/spec-driven-development/">
-          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
-          <div class="related-card__title">Write It Down Before You Build It</div>
-          <div class="related-card__desc">For jobs with rules that matter: write the rules down first, then build in small stages and check each one.</div>
-          <div class="related-card__meta"><span>7 steps · 10 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-        </a>
-        <a class="related-card" href="/learn/ask-write-or-draw/">
-          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
-          <div class="related-card__title">Ask, Write or Draw?</div>
-          <div class="related-card__desc">Three ways to start a job with an AI, and five short jobs to practise picking one.</div>
-          <div class="related-card__meta"><span>3 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-        </a>
-        <a class="related-card" href="/learn/from-thought-to-answer/">
-          <div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div>
-          <div class="related-card__title">From Thought to Answer</div>
-          <div class="related-card__desc">How the model reads at all: tokens, attention, and where an answer comes from.</div>
-          <div class="related-card__meta"><span>11 steps · 5 min</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-        </a>
-        <a class="related-card related-card--index" href="/learn/">
-          <div class="related-card__title">The full list</div>
-          <div class="related-card__desc">All the explainers in one place.</div>
-          <div class="related-card__meta"><span>Learn</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-        </a>
-      </div>
-    </div>
-    <details class="sources">
-      <summary>Sources (12)</summary>
-      <div class="label">Step 1 · What it is</div>
-      <ul>
-        <li>Nielsen Norman Group — <a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank" rel="noopener">UX Prototypes: Low Fidelity vs. High Fidelity</a> <span>(article by Kara Pernice, 18 December 2016, read 1 November 2026 — with low-fidelity prototypes, users "feel less obliged to be successful, and be more likely to express negative reactions")</span></li>
-        <li>Nielsen Norman Group — <a href="https://www.nngroup.com/articles/recognition-and-recall/" target="_blank" rel="noopener">Memory Recognition and Recall in User Interfaces</a> <span>(article by Raluca Budiu, 15 January 2024, read 1 November 2026 — "Recognition is easier than recall because it involves more cues". The article is about user interfaces, such as menus. Applying the rule to choosing between drawings is my own reading)</span></li>
-        <li>Kiro — <a href="https://kiro.dev/docs/specs/" target="_blank" rel="noopener">Specs</a> <span>(documentation, "Page updated: October 15, 2026", read 1 November 2026 — design.md "Documents technical architecture, sequence diagrams, and implementation considerations"; the design phase is "Create technical architecture and implementation approach in design.md")</span></li>
-      </ul>
-      <div class="label">Step 3 · Directions</div>
-      <ul>
-        <li>Nielsen Norman Group — <a href="https://www.nngroup.com/articles/parallel-and-iterative-design/" target="_blank" rel="noopener">3 Design Processes for High Usability: Iterative Design, Parallel Design, and Competitive Testing</a> <span>(article by Therese Fessenden, 3 December 2024, an update of a 2011 article by Jakob Nielsen, read 1 November 2026 — "you should create a minimum of 3 different design alternatives" and "5 is probably the maximum"; "all parallel versions should be created quickly and cheaply"; "refine them only to the level of rough wireframes"; "the goal is to create a single merged design that uses the best ideas from each of the parallel versions")</span></li>
-        <li>Dow, Glassco, Kass, Schwarz, Schwartz and Klemmer — <a href="https://www.cs.cmu.edu/~spdow/files/PrototypingParallel-TOCHI10.pdf" target="_blank" rel="noopener">Parallel Prototyping Leads to Better Design Results, More Divergence, and Increased Self-Efficacy</a> <span>(ACM Transactions on Computer-Human Interaction 17(4), Article 18, 2010, read 1 November 2026 — 33 participants designed banner ads; "Parallel participants created multiple prototypes before receiving feedback" and "Serial participants received descriptive critique directly after each prototype"; "ads created in the Parallel condition significantly outperformed those from the Serial condition"; the ads were judged by four magazine editors and three advertising professionals. The main study was one experiment on one kind of job. The paper also reports two short follow-up experiments)</span></li>
-      </ul>
-      <div class="label">Steps 5 and 6 · Test, freeze and check</div>
-      <ul>
-        <li>Anthropic — <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">Best practices for Claude Code</a> <span>(documentation, read 1 November 2026 — on checking the result, "ask Claude for evidence: the command it ran and its output, or the screenshot. 'All tests pass' on its own tells you very little, and reading the output is faster than rerunning the check yourself."; "A fresh reviewer does help, because it hasn't seen your reasoning"; on /code-review, "reviews the diff in a fresh subagent that never saw your conversation. It isn't swayed by the reasoning that produced the code." The advice to give the reviewer the build brief and the boards, and not your own verdict, is my own)</span></li>
-        <li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank" rel="noopener">Understanding Success Criterion 1.4.3: Contrast (Minimum)</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — text has "a contrast ratio of at least 4.5:1", and large-scale text at least 3:1; Level AA)</span></li>
-        <li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html" target="_blank" rel="noopener">Understanding Success Criterion 2.5.8: Target Size (Minimum)</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — "The size of the target for pointer inputs is at least 24 by 24 CSS pixels", with named exceptions; Level AA)</span></li>
-        <li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html" target="_blank" rel="noopener">Understanding Success Criterion 1.4.4: Resize Text</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — text "can be resized without assistive technology up to 200 percent", without loss of content or functionality; Level AA)</span></li>
-        <li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html" target="_blank" rel="noopener">Understanding Success Criterion 1.1.1: Non-text Content</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — "All non-text content that is presented to the user has a text alternative that serves the equivalent purpose", with listed exceptions; Level A)</span></li>
-      </ul>
-      <div class="label">Go further</div>
-      <ul>
-        <li>Futurice — <a href="https://www.futurice.com/blog/spec-driven-design" target="_blank" rel="noopener">Faster prototypes miss the point: The case for spec-driven design</a> <span>(blog, 11 August 2026, read 1 November 2026 — signed Tuomas Härkönen, Senior Product Designer; "A mockup shows the happy path while hiding the edge cases, error states and data consistency rules where production bugs live." The page does not name the author's employer; it is published on Futurice's site)</span></li>
-        <li>Marty Cagan, Silicon Valley Product Group — <a href="https://svpg.com/revisiting-the-product-spec/" target="_blank" rel="noopener">Revisiting the Product Spec</a> <span>(12 October 2006, read 1 November 2026 — "But the majority of the product spec should be the high-fidelity prototype"; "Also useful as a supplement are use cases, describing the most important flows through the product.")</span></li>
-      </ul>
-    </details>
-  </div>
+<div class="card card--visual" role="group" aria-label="Eight checks before the work goes live">
+<div class="label label--sm label--muted">Before it goes live &middot; tick each one &middot; eight checks</div>
+<ul class="ticks ticks--live">
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>No passwords or keys for the AI.</b> A key is a secret code that lets a program act as you. Never paste one into a prompt or a file the AI can read.</span></label></li>
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>Going live is for people.</b> The AI may prepare it. You do it, or someone you trust who can read code.</span></label></li>
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>Invented text is labelled.</b> Placeholder text and sample data go in [square brackets], so nobody takes them for facts.</span></label></li>
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>"Did you run it, or imagine it?"</b> Ask every time, and ask for evidence.</span></label></li>
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>The design is a promise.</b> Check that real content can keep it: real names, real lengths, real photos.</span></label></li>
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>People with different abilities can use it.</b> The W3C, a body that sets web standards, sets the minimums. Show them.</span></label><details><summary>See the minimums</summary><p>Text stands out from its background. Its contrast ratio, which compares how light two colours are, is at least 4.5 to 1 (3 to 1 for large text). Buttons are at least 24 by 24 pixels, with a few exceptions. Bigger is easier to tap. Apart from captions and images of text, text can be enlarged to 200% without losing content or functions. A photo that carries meaning has a short text description.</p></details></li>
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>Photos, fonts and icons have licences.</b> "Free" does not mean "no rules". Read the licence.</span></label></li>
+<li><label class="tick"><input type="checkbox"><i class="ticks__box" aria-hidden="true"></i><span><b>Stop and ask.</b> If the AI wants to delete data, change settings, spend money or touch anything live, stop and decide yourself.</span></label></li>
+</ul>
+<p class="tickcount">Nothing is saved or sent anywhere.</p>
+</div>
+<div class="takeaway"><div class="label">Takeaway</div><p>The AI may prepare the launch. A person checks the result against the brief and the boards, and a person goes live.</p></div>
+</div>
 </section>
-
+<section class="section section--alt closing" id="s10">
+<div class="wrap stack reveal">
+<div class="label">Where a drawing stops</div>
+<h2>When to draw first, and when not</h2>
+<p>In my reading of a Nielsen Norman Group guideline, choosing is often easier than describing. Rough work is cheap to change. But the loop costs rounds and time, many small choices can tire you, and a drawing can promise too much.</p>
+<p>Skip drawing first for a change in the hidden part of a site, with nothing to look at. Skip it for a change you could describe in one sentence, and when the content is not known yet.</p>
+<p>A drawing shows the normal path. It does not show the rules for errors, data or who may see what. Tuomas H&auml;rk&ouml;nen, a senior product designer, makes a similar point on the <a href="https://www.futurice.com/blog/spec-driven-design" target="_blank" rel="noopener">Futurice blog</a>. He writes: "A mockup shows the happy path while hiding the edge cases, error states and data consistency rules where production bugs live." So when a job has rules that matter, write them down too. <a href="/learn/spec-driven-development/">Write It Down Before You Build It</a> shows how.</p>
+<div class="related" style="margin-top:8px"><div class="label">Keep reading</div><div class="related__grid related__grid--4"><a class="related-card" href="/learn/spec-driven-development/"><div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div><div class="related-card__title">Write It Down Before You Build It</div><div class="related-card__desc">For jobs with rules that matter: write the rules down first, then build in small stages and check each one.</div><div class="related-card__meta"><span>8 steps &middot; 10 min</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div></a><a class="related-card" href="/learn/ask-write-or-draw/"><div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div><div class="related-card__title">Ask, Write or Draw?</div><div class="related-card__desc">Three ways to start a job with an AI, and five short jobs to practise picking one.</div><div class="related-card__meta"><span>3 steps &middot; 5 min</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div></a><a class="related-card" href="/learn/from-thought-to-answer/"><div class="steps" aria-hidden="true"><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div><div class="steps__seg"></div></div><div class="related-card__title">From Thought to Answer</div><div class="related-card__desc">How the model reads at all: tokens, attention, and where an answer comes from.</div><div class="related-card__meta"><span>11 steps &middot; 5 min</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div></a><a class="related-card" href="/learn/"><div class="steps" aria-hidden="true"><div class="steps__seg"></div></div><div class="related-card__title">The full list</div><div class="related-card__desc">All the explainers in one place.</div><div class="related-card__meta"><span>Learn</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-right"/></svg></div></a></div></div>
+<details class="sources">
+<summary>Sources (8)</summary>
+<div class="label">Step 4 &middot; Directions</div>
+<ul>
+<li>Nielsen Norman Group — <a href="https://www.nngroup.com/articles/parallel-and-iterative-design/" target="_blank" rel="noopener">3 Design Processes for High Usability: Iterative Design, Parallel Design, and Competitive Testing</a> <span>(article by Therese Fessenden, 3 December 2024, an update of a 2011 article by Jakob Nielsen, read 1 November 2026 — "you should create a minimum of 3 different design alternatives" and "5 is probably the maximum"; "all parallel versions should be created quickly and cheaply"; "refine them only to the level of rough wireframes"; "the goal is to create a single merged design that uses the best ideas from each of the parallel versions")</span></li>
+</ul>
+<div class="label">Steps 6 and 8 &middot; Evidence and review</div>
+<ul>
+<li>Anthropic — <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">Best practices for Claude Code</a> <span>(documentation, read 1 November 2026 — on checking the result, "ask Claude for evidence: the command it ran and its output, or the screenshot. 'All tests pass' on its own tells you very little, and reading the output is faster than rerunning the check yourself."; "A fresh reviewer does help, because it hasn't seen your reasoning"; on /code-review, "reviews the diff in a fresh subagent that never saw your conversation. It isn't swayed by the reasoning that produced the code." The advice to give the reviewer the build brief and the boards, and not your own verdict, is my own)</span></li>
+</ul>
+<div class="label">Step 8 &middot; After the freeze</div>
+<ul>
+<li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank" rel="noopener">Understanding Success Criterion 1.4.3: Contrast (Minimum)</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — text has "a contrast ratio of at least 4.5:1", and large-scale text at least 3:1; Level AA)</span></li>
+<li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html" target="_blank" rel="noopener">Understanding Success Criterion 2.5.8: Target Size (Minimum)</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — "The size of the target for pointer inputs is at least 24 by 24 CSS pixels", with named exceptions; Level AA)</span></li>
+<li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html" target="_blank" rel="noopener">Understanding Success Criterion 1.4.4: Resize Text</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — text "can be resized without assistive technology up to 200 percent", without loss of content or functionality, except for captions and images of text; Level AA)</span></li>
+<li>W3C — <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html" target="_blank" rel="noopener">Understanding Success Criterion 1.1.1: Non-text Content</a> <span>(Web Content Accessibility Guidelines 2.2, read 1 November 2026 — "All non-text content that is presented to the user has a text alternative that serves the equivalent purpose", with listed exceptions; Level A)</span></li>
+</ul>
+<div class="label">Where a drawing stops</div>
+<ul>
+<li>Nielsen Norman Group — <a href="https://www.nngroup.com/articles/recognition-and-recall/" target="_blank" rel="noopener">Memory Recognition and Recall in User Interfaces</a> <span>(article by Raluca Budiu, 15 January 2024, read 1 November 2026 — "Recognition is easier than recall because it involves more cues". The article is about user interfaces, such as menus. Applying the guideline to choosing between drawings is my own reading)</span></li>
+<li>Futurice — <a href="https://www.futurice.com/blog/spec-driven-design" target="_blank" rel="noopener">Faster prototypes miss the point: The case for spec-driven design</a> <span>(blog, 11 August 2026, read 1 November 2026 — signed Tuomas Härkönen, Senior Product Designer; "A mockup shows the happy path while hiding the edge cases, error states and data consistency rules where production bugs live." The page does not name the author's employer; it is published on Futurice's site)</span></li>
+</ul>
+</details>
+</div>
+</section>
 </main>
 
 <footer class="site-footer">

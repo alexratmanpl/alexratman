@@ -16,6 +16,7 @@ pages/
   assets/
     site.css                design system: tokens, base styles, shared components
     guide.css               parts the two how-to guides share (Write It Down…, Draw It…)
+    bands.css               the step layout the three guide pages share: bands, cards and their CSS-only widgets
     play.css                styles for the question and demo blocks
     play.js                 the question kit: builds the blocks from JSON in the page, plus the progress bar and stage pill
     fonts.css               @font-face rules for the self-hosted fonts
@@ -38,15 +39,17 @@ pages/
       page.css              its page-specific styles
       app.js                its four widgets — prices and sizes are constants at the top of the file
     ask-write-or-draw/
-      index.html            the page (3 steps): three ways to start a job with an AI, five short jobs, a guide for a job of your own. Uses play.css and play.js; no script of its own
+      index.html            the page (3 steps): three ways to start a job with an AI, five short jobs, a guide for a job of your own. Steps 2 and 3 hold their text as JSON in the page, with a readable copy for readers without script
+      page.css              its page-specific styles
+      app.js                builds the job card (step 2) and the own-job card with its map (step 3) from that JSON
     spec-driven-development/
-      index.html            the page (7 steps): write the rules down before an AI builds, one small example, questions along the way
-      page.css              its page-specific styles
-      app.js                its own demos: the four stages, the checks, the example chat
+      index.html            the page (8 steps): write down what you want before an AI builds it, with a small shopping-list example and things to try along the way
+      page.css              what the step layout does not cover: the skills table on a phone and the folded blocks
+      app.js                opens a folded block when a link points at it
     design-first/
-      index.html            the page (7 steps): compare rough drawings before an AI builds, with a pretend bakery
-      page.css              its page-specific styles
-      app.js                its own demos: the rough boards, the pick-comment-redraw-freeze loop, the tick list
+      index.html            the page (8 steps): compare rough drawings before an AI builds, with a pretend bakery
+      page.css              its page-specific styles: the phone frames, the pickers and the compact app creator
+      app.js                its own demos: the rough boards and the pick-comment-redraw-freeze loop
   blog/
     index.html              list of posts
     five-mistakes-learning-ai/
@@ -54,7 +57,7 @@ pages/
       page.css              its page-specific styles
 ```
 
-Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page. The three guide pages also link `/assets/play.css` and load `/assets/play.js`; the two longer ones link `/assets/guide.css` as well.
+Every page links `/assets/fonts.css` and `/assets/site.css`, then adds page-specific rules in a `<style>` block or a `page.css` beside the page. The three guide pages also link `/assets/play.css` and `/assets/bands.css` and load `/assets/play.js`; the two longer ones link `/assets/guide.css` as well.
 
 The site has two sections, **Learn** (`/learn/`, interactive pieces) and **Blog** (`/blog/`, reading pages). Every page carries the same nav: Learn, Blog, GitHub, LinkedIn. Below 400px wide the nav drops LinkedIn, because a fourth link does not fit. The footer of every page keeps GitHub and LinkedIn at every width.
 
@@ -83,9 +86,17 @@ Black, white, greys, and one red. See `assets/site.css` for the tokens.
   - **The slug is the contract, the wording is not.** Each chip carries `data-tag="<slug>"`; each card link and each piece's `<main>` carries `data-tags="<slug> <slug> <slug>"`. Anything that filters or searches reads the slugs, so a label can be reworded without breaking it.
   - A topic that every piece carries cannot filter anything. Do not offer such a tag as a filter control until at least one piece does not have it.
 
+## The step layout
+
+The three guide pages share one layout, in `assets/bands.css`. Each step after the hero is a band with five parts, in this order: a red "Step N · name" label, a heading, a short description (60 words at most), one white card, and a takeaway line. A "Go deeper" row of up to three links may follow. The card is the only picture or widget in the band.
+
+- Most widgets in the cards use only CSS (radio buttons and `:has()`), so they work with scripts off. Two pages build widgets with script: `design-first/app.js` draws the rough boards and the pick, comment, redraw and freeze demo, and `ask-write-or-draw/app.js` builds the job card and the own-job card from the JSON in the page. The `app.js` of the Write page only opens a folded block when a link points at it.
+- Rules for one page go in that page's own `page.css`. `bands.css` is shared, so a change to it changes all three pages: check all three.
+- The CSP allows no inline script. A `<script type="application/json">` block is fine, because it is data.
+
 ## The question kit
 
-The three guide pages ask the reader questions with five kinds of block: `quiz` (pick an answer, then a reason), `rows` (decide each line), `dial` (turn a dial to a setting), `explorer` (press tabs to compare side by side) and `flow` (answer up to three questions to reach a result). A block is an element with `data-pl="<kind>"`. It holds its content as JSON in `<script type="application/json" class="pl-data">` and a readable copy in `.pl-static`. `play.js` hides the copy and builds the live block from the JSON, so a reader without script still gets the content as plain text. The JSON is data, not code, so `script-src 'self'` does not apply to it. The words the kit says itself ("Check my answer", "Try again") sit in one object at the top of `play.js`.
+`play.js` can ask the reader questions with five kinds of block: `quiz` (pick an answer, then a reason), `rows` (decide each line), `dial` (turn a dial to a setting), `explorer` (press tabs to compare side by side) and `flow` (answer up to three questions to reach a result). A block is an element with `data-pl="<kind>"`. It holds its content as JSON in `<script type="application/json" class="pl-data">` and a readable copy in `.pl-static`. `play.js` hides the copy and builds the live block from the JSON, so a reader without script still gets the content as plain text. The JSON is data, not code, so `script-src 'self'` does not apply to it. The words the kit says itself ("Check my answer", "Try again") sit in one object at the top of `play.js`. No page uses these blocks today: the three guide pages moved to the step layout above. They still load `play.js` for the progress bar, the stage pill and a few shared helpers, and the kit stays in the file for the next page that needs a block.
 
 ## Adding a piece
 
