@@ -1,5 +1,5 @@
-/* Draw It Before You Build It — the parts only this page has: the rough bakery boards, the pick-comment-redraw-freeze demo and the tick list.
-   The questions, the progress bar and the stage pill come from /assets/play.js. Plain JS, no dependencies, no network. */
+/* Draw It Before You Build It — the parts only this page has: the rough bakery boards, and the pick-comment-redraw-freeze demo.
+   The progress bar and the stage pill come from /assets/play.js. Plain JS, no dependencies, no network. */
 ;(function () {
   'use strict';
   var Play = window.Play;
@@ -299,8 +299,9 @@
     var body = add(el('div', 'cc-body'), main);
     if (side.firstChild) { add(body, side); canvas.classList.add('cc-split'); }
     add(canvas, body);
-    if (!desktop && d.bottom) add(canvas, BLOCKS[d.bottom](c));
-    return { node: canvas, out: c.out };
+    // On a phone, what sits at the foot of the screen (the tab bar or the order bar) is not part of the long page: the frame docks it.
+    var dock = !desktop && d.bottom ? BLOCKS[d.bottom](c) : null;
+    return { node: canvas, dock: dock, out: c.out };
   }
 
   function describe(key, page, opts, out, extra) {
@@ -315,15 +316,41 @@
   /* ---------- 5. Scaling: a fixed-width canvas, shrunk to fit, never wider than its box ---------- */
 
   function fit(frame) {
-    var canvas = frame.firstElementChild, box = frame.parentNode;
+    // The frame is the screen: an outline, a status strip, the scroller that holds the drawing, an optional dock and a home strip.
+    var scroll = frame.querySelector('.cc-scroll'), canvas = (scroll || frame).firstElementChild, box = frame.parentNode;
     if (!canvas || !box) return;
-    var cw = canvas.offsetWidth, avail = box.clientWidth;
-    if (!cw || !avail) return;
-    var s = Math.min(1, avail / cw), max = Number(frame.getAttribute('data-cc-max')) || Infinity;
+    var edge = frame.offsetWidth - frame.clientWidth;                         // the outline, left and right
+    var cap = parseFloat(getComputedStyle(box).getPropertyValue('--cc-maxw'));  // a board can ask for a narrower phone
+    var cw = canvas.offsetWidth, avail = Math.min(box.clientWidth, cap > 0 ? cap : Infinity) - edge;
+    if (!cw || !(avail > 0)) return;
+    var s = Math.min(1, avail / cw), dock = frame.querySelector('.cc-dock'), shell = dock && dock.firstElementChild;
     canvas.style.transform = 'scale(' + s + ')';
-    frame.style.width = Math.floor(cw * s) + 'px';
-    frame.style.height = Math.ceil(Math.min(canvas.offsetHeight * s, max)) + 'px';
-    box.style.setProperty('--cc-fw', Math.floor(cw * s) + 'px');
+    if (shell) {
+      shell.style.transform = 'scale(' + s + ')';
+      dock.style.height = Math.ceil(shell.offsetHeight * s) + 'px';
+    }
+    frame.style.width = (Math.floor(cw * s) + edge) + 'px';
+    // Every screen has the same height (--cc-vh, set in the page's CSS) and a taller drawing scrolls inside it.
+    // --cc-sh is the drawing's height after scaling: the scroller holds a spacer that tall, which is what makes it scrollable.
+    frame.style.setProperty('--cc-sh', Math.ceil(canvas.offsetHeight * s) + 'px');
+    box.style.setProperty('--cc-fw', frame.style.width);
+    if (scroll && !scroll.hasAttribute('data-cc-scroll') && !frame.closest('[aria-hidden="true"]')) {
+      scroll.setAttribute('data-cc-scroll', '');
+      scroll.tabIndex = 0;                                                    // so the keyboard can scroll it
+      scroll.addEventListener('scroll', function () { place(frame); }, { passive: true });
+    }
+    place(frame);
+  }
+  function place(frame) {                                   // the thumb: a short bar at the right edge, showing how far the page has scrolled
+    var scroll = frame.querySelector('.cc-scroll'), thumb = frame.querySelector('.cc-cue');
+    if (!scroll || !thumb) return;
+    var max = scroll.scrollHeight - scroll.clientHeight, pad = 8, track = scroll.clientHeight - 2 * pad;
+    frame.classList.toggle('is-scrollable', max > 1);       // the caption says "scrolls" only when it does
+    if (max <= 1 || track <= 0) { thumb.style.display = 'none'; return; }
+    var h = Math.max(32, Math.round(track * scroll.clientHeight / scroll.scrollHeight));
+    thumb.style.display = '';
+    thumb.style.height = h + 'px';
+    thumb.style.transform = 'translateY(' + Math.round(pad + (track - h) * scroll.scrollTop / max) + 'px)';
   }
   function fitAll(root) { each(root.querySelectorAll('.cc-frame'), fit); }
   function watch(root) {
@@ -338,9 +365,23 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(soon);
   }
   function frameFor(r, label) {
-    var frame = add(el('div', 'cc-frame'), r.node);
-    frame.setAttribute('role', 'img');
-    frame.setAttribute('aria-label', label);
+    // A screen. The outline, the status strip and the home strip are fixed; the page scrolls between them. On a phone the tab bar (A)
+    // and the order bar (B) are docked under the page, drawn at the same size, so they stay on screen as the page moves.
+    var scroll = add(el('div', 'cc-scroll'), r.node), thumb = el('span', 'cc-cue');
+    var screen = add(el('div', 'cc-screen'), scroll, thumb);
+    var top = el('span', 'cc-device__bar'), home = el('span', 'cc-device__home'), parts = [top, screen];
+    scroll.setAttribute('role', 'img');
+    scroll.setAttribute('aria-label', label);
+    [thumb, top, home].forEach(function (n) { n.setAttribute('aria-hidden', 'true'); });
+    if (r.dock) {
+      var shell = el('div', r.node.className);               // the same classes and sizes as the page, so the bar is drawn the same way
+      shell.style.cssText = r.node.style.cssText;
+      shell.setAttribute('aria-hidden', 'true');
+      parts.push(add(el('div', 'cc-dock'), add(shell, r.dock)));
+    }
+    parts.push(home);
+    var frame = el('div', 'cc-frame');
+    parts.forEach(function (n) { add(frame, n); });
     return frame;
   }
 
@@ -352,7 +393,9 @@
     var stage = root.querySelector('[data-cc-part="stage"]');
     var hint = root.querySelector('[data-cc-part="hint"]');
     var allBtn = root.querySelector('[data-cc-dir="all"]');
-    var wide = window.matchMedia('(min-width: 1000px)');
+    // Side by side from 760px: three phones about 190px wide or more fit across a card from there. Narrower, one board at a time, big enough to read.
+    var wide = window.matchMedia('(min-width: 760px)');
+    if (!basic && wide.matches) st.dir = 'all';             // the directions step opens on the three boards
 
     function paint() {
       var three = st.dir === 'all', keys = three ? ['A', 'B', 'C'] : [st.dir];
@@ -372,8 +415,7 @@
       each(root.querySelectorAll('button[data-cc-page]'), function (b) { setPressed(b, b.dataset.ccPage === st.page); });
       each(root.querySelectorAll('button[data-cc-size]'), function (b) { setPressed(b, b.dataset.ccSize === opts.size); b.disabled = three; });
       each(root.querySelectorAll('button[data-cc-opt]'), function (b) { setPressed(b, b.dataset.ccOpt === 'tags' ? st.tags : st.hideLater); });
-      hint.textContent = three ? 'Side by side always shows the phone size.'
-        : wide.matches ? '' : 'On a screen at least 1000px wide you can also see all three side by side.';
+      hint.textContent = three ? 'Side by side always shows the phone size.' : '';
       hint.hidden = !hint.textContent;
       fitAll(root);
     }
@@ -420,14 +462,14 @@
     var ui = {
       pick: part('pick'), pic: part('pic'), count: part('count'), chipNote: part('chipnote'), redraw: part('redraw'),
       versions: part('versions'), cap: part('cap'), log: part('log'), freeze: part('freeze'), freezeNote: part('freezenote'),
-      again: part('again'), brief: part('brief'), briefHead: part('briefhead'), briefText: part('brieftext'),
+      again: part('again'), fold: part('brieffold'), briefText: part('brieftext'),
       copyLabel: part('copylabel'), copyNote: part('copynote'), live: part('live')
     };
     var chips = Array.prototype.slice.call(root.querySelectorAll('[data-cc-chip]'));
     var st, copyTimer;
 
     function reset() {
-      st = { dir: null, versions: [], view: 0, pending: {}, comments: 0, frozen: false, log: [], out: null, canvas: null };
+      st = { dir: null, versions: [], view: 0, pending: {}, comments: 0, frozen: false, log: [], out: null, canvas: null, dock: null };
     }
     function current() { return st.versions[st.view]; }
     function locked() { return st.versions.length > 1 || st.frozen; }
@@ -495,12 +537,13 @@
       clear(ui.count);
       if (!picked) {
         add(ui.pic, el('p', 'cc-empty', 'Version 1 appears here after you pick a direction.'));
-        st.out = st.canvas = null;
+        st.out = st.canvas = st.dock = null;
       } else {
         var opts = Object.assign({ size: 'phone', tagRow: false }, v.set);
         var r = draw(st.dir, 'loaf', opts);
         st.out = r.out;
         st.canvas = r.node;
+        st.dock = r.dock;
         var frame = frameFor(r, describe(st.dir, 'loaf', opts, r.out, 'version ' + v.n + (frozen ? ', frozen' : '')));
         if (frozen) add(frame, el('span', 'cc-frozen', 'Frozen'));
         add(ui.pic, frame);
@@ -529,7 +572,8 @@
       ui.freezeNote.textContent = !picked ? 'Pick a direction first.'
         : frozen ? 'Version ' + v.n + ' is frozen. Start again to try another direction.'
         : 'This freezes the version on screen: Version ' + v.n + '.';
-      ui.brief.hidden = !frozen;
+      ui.fold.hidden = !frozen;
+      if (!frozen) ui.fold.open = false;
       fitAll(root);
     }
 
@@ -569,8 +613,8 @@
       render();
       ui.briefText.textContent = brief();
       ui.copyNote.hidden = true;
-      ui.briefHead.focus();
-      announce('Version ' + current().n + ' frozen. The build brief is below.');
+      ui.fold.querySelector('summary').focus();           // the brief is folded: focus the button that opens it
+      announce('Version ' + current().n + ' frozen. The build brief is below. Open it to read it.');
     }
 
     function copy() {
@@ -607,7 +651,7 @@
       rows.push(['spacing', d.space + 'px between blocks'], ['corner-radius', d.radius + 'px']);
 
       var placeholders = [];
-      (st.canvas.textContent.match(/\[[^\]]+\]/g) || []).forEach(function (p) { if (placeholders.indexOf(p) < 0) placeholders.push(p); });
+      ((st.canvas.textContent + ' ' + (st.dock ? st.dock.textContent : '')).match(/\[[^\]]+\]/g) || []).forEach(function (p) { if (placeholders.indexOf(p) < 0) placeholders.push(p); });
       var applied = CHIPS.filter(function (ch) { return v.set[ch[0]]; }).map(function (ch) { return ch[1]; });
       function pad(s) { return (s + '                    ').slice(0, 18); }
       function list(items, numbered) { return items.map(function (s, i) { return '   ' + (numbered ? (i + 1) + '. ' : '- ') + capital(s); }); }
@@ -670,25 +714,4 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
-})();
-
-/* the tick list (step 6) */
-(function () {
-  'use strict';
-  var Play = window.Play;
-  if (!Play) return;
-  var $ = function (id) { return document.getElementById(id); };
-
-  /* ---------- step 6 · the tick list: a running count, nothing saved ---------- */
-  Array.prototype.forEach.call(document.querySelectorAll('[data-ticks]'), function (list) {
-    var out = $(list.getAttribute('data-ticks'));
-    var boxes = list.querySelectorAll('input[type=checkbox]');
-    function count() {
-      var n = 0;
-      Array.prototype.forEach.call(boxes, function (b) { if (b.checked) n++; });
-      if (out) out.textContent = n + ' of ' + boxes.length + ' ticked. Nothing is saved or sent anywhere.';
-    }
-    Array.prototype.forEach.call(boxes, function (b) { b.addEventListener('change', count); });
-    count();
-  });
 })();
